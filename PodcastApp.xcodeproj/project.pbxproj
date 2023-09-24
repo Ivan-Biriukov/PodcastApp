@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		805D4FCB2AC0A48600905151 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FCA2AC0A48600905151 /* BaseCollectionViewCell.swift */; };
 		805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FCC2AC0A4F600905151 /* BaseTableViewCell.swift */; };
+		805D4FD72AC0AE7A00905151 /* ExampleServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FD62AC0AE7A00905151 /* ExampleServiceProtocol.swift */; };
+		805D4FD92AC0AE9600905151 /* ExampleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FD82AC0AE9600905151 /* ExampleService.swift */; };
+		805D4FDB2AC0AF4D00905151 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FDA2AC0AF4D00905151 /* AuthViewController.swift */; };
+		805D4FDD2AC0AF6500905151 /* AuthViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FDC2AC0AF6500905151 /* AuthViewInput.swift */; };
+		805D4FDF2AC0B03A00905151 /* AuthPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FDE2AC0B03A00905151 /* AuthPresenterProtocol.swift */; };
+		805D4FE12AC0B05900905151 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FE02AC0B05900905151 /* AuthPresenter.swift */; };
+		805D4FE32AC0B1C400905151 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FE22AC0B1C400905151 /* AuthRouter.swift */; };
+		805D4FE52AC0B2BC00905151 /* AuthAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FE42AC0B2BC00905151 /* AuthAssembly.swift */; };
+		805D4FEA2AC0BA2C00905151 /* ExampleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FE92AC0BA2C00905151 /* ExampleCellViewModel.swift */; };
 		809355D92ABE23710094F3AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809355D82ABE23710094F3AB /* AppDelegate.swift */; };
 		809355E22ABE23730094F3AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 809355E12ABE23730094F3AB /* Assets.xcassets */; };
 		809355E52ABE23730094F3AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 809355E32ABE23730094F3AB /* LaunchScreen.storyboard */; };
@@ -64,6 +73,15 @@
 /* Begin PBXFileReference section */
 		805D4FCA2AC0A48600905151 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		805D4FCC2AC0A4F600905151 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		805D4FD62AC0AE7A00905151 /* ExampleServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleServiceProtocol.swift; sourceTree = "<group>"; };
+		805D4FD82AC0AE9600905151 /* ExampleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleService.swift; sourceTree = "<group>"; };
+		805D4FDA2AC0AF4D00905151 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		805D4FDC2AC0AF6500905151 /* AuthViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewInput.swift; sourceTree = "<group>"; };
+		805D4FDE2AC0B03A00905151 /* AuthPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenterProtocol.swift; sourceTree = "<group>"; };
+		805D4FE02AC0B05900905151 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		805D4FE22AC0B1C400905151 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		805D4FE42AC0B2BC00905151 /* AuthAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAssembly.swift; sourceTree = "<group>"; };
+		805D4FE92AC0BA2C00905151 /* ExampleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCellViewModel.swift; sourceTree = "<group>"; };
 		809355D52ABE23710094F3AB /* PodcastApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		809355D82ABE23710094F3AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		809355E12ABE23730094F3AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -129,6 +147,86 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		805D4FCE2AC0AC8A00905151 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				805D4FD32AC0AE2B00905151 /* Assembly */,
+				805D4FD42AC0AE4700905151 /* Router */,
+				805D4FD22AC0AE2800905151 /* View */,
+				805D4FD12AC0AE2300905151 /* Presenter */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		805D4FD12AC0AE2300905151 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				805D4FDE2AC0B03A00905151 /* AuthPresenterProtocol.swift */,
+				805D4FE02AC0B05900905151 /* AuthPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		805D4FD22AC0AE2800905151 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				805D4FDA2AC0AF4D00905151 /* AuthViewController.swift */,
+				805D4FDC2AC0AF6500905151 /* AuthViewInput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		805D4FD32AC0AE2B00905151 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				805D4FE42AC0B2BC00905151 /* AuthAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		805D4FD42AC0AE4700905151 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				805D4FE22AC0B1C400905151 /* AuthRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		805D4FD52AC0AE6900905151 /* ExampleService */ = {
+			isa = PBXGroup;
+			children = (
+				805D4FD62AC0AE7A00905151 /* ExampleServiceProtocol.swift */,
+				805D4FD82AC0AE9600905151 /* ExampleService.swift */,
+			);
+			path = ExampleService;
+			sourceTree = "<group>";
+		};
+		805D4FE62AC0BA1000905151 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				805D4FD52AC0AE6900905151 /* ExampleService */,
+				805D4FE82AC0BA2100905151 /* ViewModels */,
+				805D4FE72AC0BA1600905151 /* Modules */,
+			);
+			name = Examples;
+			sourceTree = "<group>";
+		};
+		805D4FE72AC0BA1600905151 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				805D4FCE2AC0AC8A00905151 /* Example */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		805D4FE82AC0BA2100905151 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				805D4FE92AC0BA2C00905151 /* ExampleCellViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
 		809355CC2ABE23710094F3AB = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +246,7 @@
 		809355D72ABE23710094F3AB /* PodcastApp */ = {
 			isa = PBXGroup;
 			children = (
+				805D4FE62AC0BA1000905151 /* Examples */,
 				809355EE2ABE23AC0094F3AB /* App */,
 				809355ED2ABE23A90094F3AB /* Base */,
 				809355F82ABE3B160094F3AB /* Services */,
@@ -381,16 +480,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				8093564B2ABE40840094F3AB /* SavingManagerProtocol.swift in Sources */,
+				805D4FE12AC0B05900905151 /* AuthPresenter.swift in Sources */,
+				805D4FE32AC0B1C400905151 /* AuthRouter.swift in Sources */,
+				805D4FD72AC0AE7A00905151 /* ExampleServiceProtocol.swift in Sources */,
 				809355FE2ABE3B6E0094F3AB /* NetworkService.swift in Sources */,
 				809356502ABE414A0094F3AB /* BaseViewController.swift in Sources */,
+				805D4FDB2AC0AF4D00905151 /* AuthViewController.swift in Sources */,
 				809356042ABE3CD30094F3AB /* UIColor + Extension.swift in Sources */,
 				809356022ABE3BA60094F3AB /* PlayerService.swift in Sources */,
 				805D4FCB2AC0A48600905151 /* BaseCollectionViewCell.swift in Sources */,
+				805D4FDF2AC0B03A00905151 /* AuthPresenterProtocol.swift in Sources */,
 				809355FC2ABE3B560094F3AB /* NetworkServiceProtocol.swift in Sources */,
+				805D4FE52AC0B2BC00905151 /* AuthAssembly.swift in Sources */,
 				8093564D2ABE40990094F3AB /* SavingManager.swift in Sources */,
 				809355F22ABE25B90094F3AB /* MainTabBarController.swift in Sources */,
 				809355D92ABE23710094F3AB /* AppDelegate.swift in Sources */,
+				805D4FDD2AC0AF6500905151 /* AuthViewInput.swift in Sources */,
+				805D4FEA2AC0BA2C00905151 /* ExampleCellViewModel.swift in Sources */,
 				809356002ABE3B940094F3AB /* PlayerServiceProtocol.swift in Sources */,
+				805D4FD92AC0AE9600905151 /* ExampleService.swift in Sources */,
 				805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */,
 				809355F72ABE30790094F3AB /* UIImage + Extension.swift in Sources */,
 			);
