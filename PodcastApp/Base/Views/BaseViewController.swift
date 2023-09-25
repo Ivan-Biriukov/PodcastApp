@@ -1,15 +1,7 @@
 import UIKit
 
-extension BaseViewController {
-    struct BaseConstants {
-        
-    }
-}
-
 class BaseViewController: UIViewController {
-    
-    let constants = BaseConstants()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
