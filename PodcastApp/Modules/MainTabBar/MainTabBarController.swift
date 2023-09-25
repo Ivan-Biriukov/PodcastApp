@@ -85,9 +85,8 @@ private extension MainTabBarController {
             firstVC.view.backgroundColor = .systemRed
             navController.pushViewController(firstVC, animated: true)
         case .home:
-            let firstVC = UIViewController()
-            firstVC.view.backgroundColor = .systemOrange
-            navController.pushViewController(firstVC, animated: true)
+            let home = HomeAssembly.assemble()
+            navController.pushViewController(home, animated: true)
         case .settings:
             let firstVC = UIViewController()
             firstVC.view.backgroundColor = .systemYellow
