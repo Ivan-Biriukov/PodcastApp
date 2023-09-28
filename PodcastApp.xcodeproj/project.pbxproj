@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57C1AA952AC60A6000444C47 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA892AC60A6000444C47 /* HomeAssembly.swift */; };
+		57C1AA962AC60A6000444C47 /* HomePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA8B2AC60A6000444C47 /* HomePresenterProtocol.swift */; };
+		57C1AA972AC60A6000444C47 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA8C2AC60A6000444C47 /* HomePresenter.swift */; };
+		57C1AA982AC60A6000444C47 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA8E2AC60A6000444C47 /* HomeViewController.swift */; };
+		57C1AA992AC60A6000444C47 /* HomeViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA8F2AC60A6000444C47 /* HomeViewInput.swift */; };
+		57C1AA9A2AC60A6000444C47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA912AC60A6000444C47 /* SearchView.swift */; };
+		57C1AA9B2AC60A6000444C47 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA922AC60A6000444C47 /* HomeView.swift */; };
+		57C1AA9C2AC60A6000444C47 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA942AC60A6000444C47 /* HomeRouter.swift */; };
 		801A820A2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A81FD2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift */; };
 		801A820B2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A81FF2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift */; };
 		801A820C2AC5F5B6005ADD4A /* ProfileSettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A82002AC5F5B6005ADD4A /* ProfileSettingPresenter.swift */; };
@@ -87,6 +95,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57C1AA892AC60A6000444C47 /* HomeAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
+		57C1AA8B2AC60A6000444C47 /* HomePresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePresenterProtocol.swift; sourceTree = "<group>"; };
+		57C1AA8C2AC60A6000444C47 /* HomePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		57C1AA8E2AC60A6000444C47 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		57C1AA8F2AC60A6000444C47 /* HomeViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewInput.swift; sourceTree = "<group>"; };
+		57C1AA912AC60A6000444C47 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		57C1AA922AC60A6000444C47 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		57C1AA942AC60A6000444C47 /* HomeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		801A81FD2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingAssembly.swift; sourceTree = "<group>"; };
 		801A81FF2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingPresenterProtocol.swift; sourceTree = "<group>"; };
 		801A82002AC5F5B6005ADD4A /* ProfileSettingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingPresenter.swift; sourceTree = "<group>"; };
@@ -179,6 +195,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57C1AA872AC60A6000444C47 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				57C1AA882AC60A6000444C47 /* Assembly */,
+				57C1AA8A2AC60A6000444C47 /* Presenter */,
+				57C1AA8D2AC60A6000444C47 /* View */,
+				57C1AA932AC60A6000444C47 /* Router */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		57C1AA882AC60A6000444C47 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				57C1AA892AC60A6000444C47 /* HomeAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		57C1AA8A2AC60A6000444C47 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				57C1AA8B2AC60A6000444C47 /* HomePresenterProtocol.swift */,
+				57C1AA8C2AC60A6000444C47 /* HomePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		57C1AA8D2AC60A6000444C47 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				57C1AA8E2AC60A6000444C47 /* HomeViewController.swift */,
+				57C1AA8F2AC60A6000444C47 /* HomeViewInput.swift */,
+				57C1AA902AC60A6000444C47 /* Views */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		57C1AA902AC60A6000444C47 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				57C1AA912AC60A6000444C47 /* SearchView.swift */,
+				57C1AA922AC60A6000444C47 /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		57C1AA932AC60A6000444C47 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				57C1AA942AC60A6000444C47 /* HomeRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		801A81FB2AC5F5B6005ADD4A /* ProfileSetting */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,6 +506,7 @@
 		809355EF2ABE23EB0094F3AB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				57C1AA872AC60A6000444C47 /* Home */,
 				801A81FB2AC5F5B6005ADD4A /* ProfileSetting */,
 				809355F02ABE23FF0094F3AB /* MainTabBar */,
 			);
@@ -636,8 +708,11 @@
 				805D4FE32AC0B1C400905151 /* AuthRouter.swift in Sources */,
 				804C1FB62AC371AE00B07C87 /* TestModel.swift in Sources */,
 				801A82112AC5F5B6005ADD4A /* ProfileSettingRouter.swift in Sources */,
+				57C1AA982AC60A6000444C47 /* HomeViewController.swift in Sources */,
 				805D4FD72AC0AE7A00905151 /* ExampleServiceProtocol.swift in Sources */,
+				57C1AA952AC60A6000444C47 /* HomeAssembly.swift in Sources */,
 				804C1FA72AC3577400B07C87 /* URLParameterEncoder.swift in Sources */,
+				57C1AA9C2AC60A6000444C47 /* HomeRouter.swift in Sources */,
 				804C1FAD2AC3650F00B07C87 /* Router.swift in Sources */,
 				809356502ABE414A0094F3AB /* BaseViewController.swift in Sources */,
 				804C1FA52AC3570500B07C87 /* NetworkError.swift in Sources */,
@@ -648,7 +723,9 @@
 				805D4FCB2AC0A48600905151 /* BaseCollectionViewCell.swift in Sources */,
 				804C1FB22AC36B2500B07C87 /* PodcastAPI.swift in Sources */,
 				804C1FA92AC3638C00B07C87 /* JSONParameterEncoder.swift in Sources */,
+				57C1AA9A2AC60A6000444C47 /* SearchView.swift in Sources */,
 				801A820C2AC5F5B6005ADD4A /* ProfileSettingPresenter.swift in Sources */,
+				57C1AA992AC60A6000444C47 /* HomeViewInput.swift in Sources */,
 				805D4FDF2AC0B03A00905151 /* AuthPresenterProtocol.swift in Sources */,
 				805D4FE52AC0B2BC00905151 /* AuthAssembly.swift in Sources */,
 				8093564D2ABE40990094F3AB /* SavingManager.swift in Sources */,
@@ -669,9 +746,12 @@
 				805D4FD92AC0AE9600905151 /* ExampleService.swift in Sources */,
 				804C1F9E2AC3527300B07C87 /* HTTPMethod.swift in Sources */,
 				805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */,
+				57C1AA962AC60A6000444C47 /* HomePresenterProtocol.swift in Sources */,
 				801A820D2AC5F5B6005ADD4A /* ProfileMainSettingsViewModel.swift in Sources */,
 				804C1F9C2AC3520D00B07C87 /* EndPointType.swift in Sources */,
+				57C1AA9B2AC60A6000444C47 /* HomeView.swift in Sources */,
 				809355F72ABE30790094F3AB /* UIImage + Extension.swift in Sources */,
+				57C1AA972AC60A6000444C47 /* HomePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
