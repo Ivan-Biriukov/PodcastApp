@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		801A820A2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A81FD2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift */; };
+		801A820B2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A81FF2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift */; };
+		801A820C2AC5F5B6005ADD4A /* ProfileSettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A82002AC5F5B6005ADD4A /* ProfileSettingPresenter.swift */; };
+		801A820D2AC5F5B6005ADD4A /* ProfileMainSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A82042AC5F5B6005ADD4A /* ProfileMainSettingsViewModel.swift */; };
+		801A820E2AC5F5B6005ADD4A /* ProfileSettingViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A82052AC5F5B6005ADD4A /* ProfileSettingViewInput.swift */; };
+		801A820F2AC5F5B6005ADD4A /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A82062AC5F5B6005ADD4A /* ProfileSettingViewController.swift */; };
+		801A82102AC5F5B6005ADD4A /* ProfileSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A82072AC5F5B6005ADD4A /* ProfileSettingsTableViewCell.swift */; };
+		801A82112AC5F5B6005ADD4A /* ProfileSettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A82092AC5F5B6005ADD4A /* ProfileSettingRouter.swift */; };
 		804C1F9C2AC3520D00B07C87 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1F9B2AC3520D00B07C87 /* EndPointType.swift */; };
 		804C1F9E2AC3527300B07C87 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1F9D2AC3527300B07C87 /* HTTPMethod.swift */; };
 		804C1FA02AC352DB00B07C87 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1F9F2AC352DB00B07C87 /* HTTPTask.swift */; };
@@ -82,6 +90,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		801A81FD2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingAssembly.swift; sourceTree = "<group>"; };
+		801A81FF2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingPresenterProtocol.swift; sourceTree = "<group>"; };
+		801A82002AC5F5B6005ADD4A /* ProfileSettingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingPresenter.swift; sourceTree = "<group>"; };
+		801A82042AC5F5B6005ADD4A /* ProfileMainSettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainSettingsViewModel.swift; sourceTree = "<group>"; };
+		801A82052AC5F5B6005ADD4A /* ProfileSettingViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewInput.swift; sourceTree = "<group>"; };
+		801A82062AC5F5B6005ADD4A /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
+		801A82072AC5F5B6005ADD4A /* ProfileSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		801A82092AC5F5B6005ADD4A /* ProfileSettingRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingRouter.swift; sourceTree = "<group>"; };
 		804C1F9B2AC3520D00B07C87 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		804C1F9D2AC3527300B07C87 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		804C1F9F2AC352DB00B07C87 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
@@ -169,6 +185,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		801A81FB2AC5F5B6005ADD4A /* ProfileSetting */ = {
+			isa = PBXGroup;
+			children = (
+				801A81FC2AC5F5B6005ADD4A /* Assembly */,
+				801A81FE2AC5F5B6005ADD4A /* Presenter */,
+				801A82012AC5F5B6005ADD4A /* View */,
+				801A82082AC5F5B6005ADD4A /* Router */,
+			);
+			path = ProfileSetting;
+			sourceTree = "<group>";
+		};
+		801A81FC2AC5F5B6005ADD4A /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				801A81FD2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		801A81FE2AC5F5B6005ADD4A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				801A81FF2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift */,
+				801A82002AC5F5B6005ADD4A /* ProfileSettingPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		801A82012AC5F5B6005ADD4A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				801A82022AC5F5B6005ADD4A /* Cell */,
+				801A82052AC5F5B6005ADD4A /* ProfileSettingViewInput.swift */,
+				801A82062AC5F5B6005ADD4A /* ProfileSettingViewController.swift */,
+				801A82072AC5F5B6005ADD4A /* ProfileSettingsTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		801A82022AC5F5B6005ADD4A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				801A82032AC5F5B6005ADD4A /* ViewModel */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		801A82032AC5F5B6005ADD4A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				801A82042AC5F5B6005ADD4A /* ProfileMainSettingsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		801A82082AC5F5B6005ADD4A /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				801A82092AC5F5B6005ADD4A /* ProfileSettingRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		804C1F972AC351D300B07C87 /* EndPoint */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +441,7 @@
 		809355EF2ABE23EB0094F3AB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				801A81FB2AC5F5B6005ADD4A /* ProfileSetting */,
 				809355F02ABE23FF0094F3AB /* MainTabBar */,
 			);
 			path = Modules;
@@ -564,17 +644,20 @@
 				805D4FE12AC0B05900905151 /* AuthPresenter.swift in Sources */,
 				805D4FE32AC0B1C400905151 /* AuthRouter.swift in Sources */,
 				804C1FB62AC371AE00B07C87 /* TestModel.swift in Sources */,
+				801A82112AC5F5B6005ADD4A /* ProfileSettingRouter.swift in Sources */,
 				805D4FD72AC0AE7A00905151 /* ExampleServiceProtocol.swift in Sources */,
 				804C1FA72AC3577400B07C87 /* URLParameterEncoder.swift in Sources */,
 				804C1FAD2AC3650F00B07C87 /* Router.swift in Sources */,
 				809356502ABE414A0094F3AB /* BaseViewController.swift in Sources */,
 				804C1FA52AC3570500B07C87 /* NetworkError.swift in Sources */,
 				805D4FDB2AC0AF4D00905151 /* AuthViewController.swift in Sources */,
+				801A82102AC5F5B6005ADD4A /* ProfileSettingsTableViewCell.swift in Sources */,
 				809356042ABE3CD30094F3AB /* UIColor + Extension.swift in Sources */,
 				809356022ABE3BA60094F3AB /* PlayerService.swift in Sources */,
 				805D4FCB2AC0A48600905151 /* BaseCollectionViewCell.swift in Sources */,
 				804C1FB22AC36B2500B07C87 /* PodcastAPI.swift in Sources */,
 				804C1FA92AC3638C00B07C87 /* JSONParameterEncoder.swift in Sources */,
+				801A820C2AC5F5B6005ADD4A /* ProfileSettingPresenter.swift in Sources */,
 				805D4FDF2AC0B03A00905151 /* AuthPresenterProtocol.swift in Sources */,
 				805D4FE52AC0B2BC00905151 /* AuthAssembly.swift in Sources */,
 				8093564D2ABE40990094F3AB /* SavingManager.swift in Sources */,
@@ -583,14 +666,19 @@
 				809355D92ABE23710094F3AB /* AppDelegate.swift in Sources */,
 				804C1FB42AC36C1100B07C87 /* NetworkManager.swift in Sources */,
 				804C1FA02AC352DB00B07C87 /* HTTPTask.swift in Sources */,
+				801A820B2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift in Sources */,
 				805D4FDD2AC0AF6500905151 /* AuthViewInput.swift in Sources */,
 				805D4FEA2AC0BA2C00905151 /* ExampleCellViewModel.swift in Sources */,
 				809356002ABE3B940094F3AB /* PlayerServiceProtocol.swift in Sources */,
+				801A820A2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift in Sources */,
 				804C1FB02AC36A3600B07C87 /* URLRequest+Extension.swift in Sources */,
+				801A820E2AC5F5B6005ADD4A /* ProfileSettingViewInput.swift in Sources */,
 				804C1FA22AC3534B00B07C87 /* ParameterEncoding.swift in Sources */,
+				801A820F2AC5F5B6005ADD4A /* ProfileSettingViewController.swift in Sources */,
 				805D4FD92AC0AE9600905151 /* ExampleService.swift in Sources */,
 				804C1F9E2AC3527300B07C87 /* HTTPMethod.swift in Sources */,
 				805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */,
+				801A820D2AC5F5B6005ADD4A /* ProfileMainSettingsViewModel.swift in Sources */,
 				804C1F9C2AC3520D00B07C87 /* EndPointType.swift in Sources */,
 				809355F72ABE30790094F3AB /* UIImage + Extension.swift in Sources */,
 			);
