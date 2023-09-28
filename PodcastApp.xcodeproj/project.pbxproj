@@ -20,6 +20,7 @@
 		57C1AAA52AC62BA200444C47 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AAA42AC62BA200444C47 /* CategoryCollectionViewCell.swift */; };
 		57C1AAA72AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AAA62AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift */; };
 		57C1AAA92AC62E3700444C47 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AAA82AC62E3700444C47 /* HomeTableViewCell.swift */; };
+		57C1AAAD2AC637E600444C47 /* SearchViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AAAC2AC637E600444C47 /* SearchViewCollectionViewCell.swift */; };
 		801A820A2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A81FD2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift */; };
 		801A820B2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A81FF2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift */; };
 		801A820C2AC5F5B6005ADD4A /* ProfileSettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A82002AC5F5B6005ADD4A /* ProfileSettingPresenter.swift */; };
@@ -113,6 +114,7 @@
 		57C1AAA42AC62BA200444C47 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		57C1AAA62AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryesNamesCollectionViewCell.swift; sourceTree = "<group>"; };
 		57C1AAA82AC62E3700444C47 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		57C1AAAC2AC637E600444C47 /* SearchViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		801A81FD2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingAssembly.swift; sourceTree = "<group>"; };
 		801A81FF2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingPresenterProtocol.swift; sourceTree = "<group>"; };
 		801A82002AC5F5B6005ADD4A /* ProfileSettingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingPresenter.swift; sourceTree = "<group>"; };
@@ -246,7 +248,7 @@
 		57C1AA902AC60A6000444C47 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				57C1AA912AC60A6000444C47 /* SearchView.swift */,
+				57C1AAAA2AC637A700444C47 /* SearchView */,
 				57C1AAA22AC62B4F00444C47 /* HomeView */,
 			);
 			path = Views;
@@ -275,6 +277,23 @@
 				57C1AAA42AC62BA200444C47 /* CategoryCollectionViewCell.swift */,
 				57C1AAA62AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift */,
 				57C1AAA82AC62E3700444C47 /* HomeTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		57C1AAAA2AC637A700444C47 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				57C1AAAB2AC637BF00444C47 /* Cells */,
+				57C1AA912AC60A6000444C47 /* SearchView.swift */,
+			);
+			path = SearchView;
+			sourceTree = "<group>";
+		};
+		57C1AAAB2AC637BF00444C47 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				57C1AAAC2AC637E600444C47 /* SearchViewCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -750,6 +769,7 @@
 				809356502ABE414A0094F3AB /* BaseViewController.swift in Sources */,
 				804C1FA52AC3570500B07C87 /* NetworkError.swift in Sources */,
 				805D4FDB2AC0AF4D00905151 /* AuthViewController.swift in Sources */,
+				57C1AAAD2AC637E600444C47 /* SearchViewCollectionViewCell.swift in Sources */,
 				801A82102AC5F5B6005ADD4A /* ProfileSettingsTableViewCell.swift in Sources */,
 				809356042ABE3CD30094F3AB /* UIColor + Extension.swift in Sources */,
 				809356022ABE3BA60094F3AB /* PlayerService.swift in Sources */,
