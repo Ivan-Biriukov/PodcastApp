@@ -101,9 +101,8 @@ private extension MainTabBarController {
             firstVC.view.backgroundColor = .systemRed
             navController.pushViewController(firstVC, animated: true)
         case .home:
-            let secondVC = UIViewController()
-            secondVC.view.backgroundColor = .systemOrange
-            navController.pushViewController(secondVC, animated: true)
+            let home = HomeAssembly.assemble()
+            navController.pushViewController(home, animated: true)
         case .settings:
             let settings = ProfileSettingAssembly.assemble()
             navController.pushViewController(settings, animated: true)
