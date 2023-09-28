@@ -15,6 +15,8 @@
 		57C1AA9A2AC60A6000444C47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA912AC60A6000444C47 /* SearchView.swift */; };
 		57C1AA9B2AC60A6000444C47 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA922AC60A6000444C47 /* HomeView.swift */; };
 		57C1AA9C2AC60A6000444C47 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA942AC60A6000444C47 /* HomeRouter.swift */; };
+		57C1AA9E2AC60C6200444C47 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA9D2AC60C6200444C47 /* UIViewController + Extension.swift */; };
+		57C1AAA02AC622DE00444C47 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA9F2AC622DE00444C47 /* UITextField + Extension.swift */; };
 		801A820A2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A81FD2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift */; };
 		801A820B2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A81FF2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift */; };
 		801A820C2AC5F5B6005ADD4A /* ProfileSettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A82002AC5F5B6005ADD4A /* ProfileSettingPresenter.swift */; };
@@ -103,6 +105,8 @@
 		57C1AA912AC60A6000444C47 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		57C1AA922AC60A6000444C47 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		57C1AA942AC60A6000444C47 /* HomeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		57C1AA9D2AC60C6200444C47 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		57C1AA9F2AC622DE00444C47 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		801A81FD2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingAssembly.swift; sourceTree = "<group>"; };
 		801A81FF2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingPresenterProtocol.swift; sourceTree = "<group>"; };
 		801A82002AC5F5B6005ADD4A /* ProfileSettingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingPresenter.swift; sourceTree = "<group>"; };
@@ -535,6 +539,8 @@
 			children = (
 				809355F62ABE30790094F3AB /* UIImage + Extension.swift */,
 				809356032ABE3CD30094F3AB /* UIColor + Extension.swift */,
+				57C1AA9D2AC60C6200444C47 /* UIViewController + Extension.swift */,
+				57C1AA9F2AC622DE00444C47 /* UITextField + Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -709,6 +715,7 @@
 				804C1FB62AC371AE00B07C87 /* TestModel.swift in Sources */,
 				801A82112AC5F5B6005ADD4A /* ProfileSettingRouter.swift in Sources */,
 				57C1AA982AC60A6000444C47 /* HomeViewController.swift in Sources */,
+				57C1AA9E2AC60C6200444C47 /* UIViewController + Extension.swift in Sources */,
 				805D4FD72AC0AE7A00905151 /* ExampleServiceProtocol.swift in Sources */,
 				57C1AA952AC60A6000444C47 /* HomeAssembly.swift in Sources */,
 				804C1FA72AC3577400B07C87 /* URLParameterEncoder.swift in Sources */,
@@ -746,6 +753,7 @@
 				805D4FD92AC0AE9600905151 /* ExampleService.swift in Sources */,
 				804C1F9E2AC3527300B07C87 /* HTTPMethod.swift in Sources */,
 				805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */,
+				57C1AAA02AC622DE00444C47 /* UITextField + Extension.swift in Sources */,
 				57C1AA962AC60A6000444C47 /* HomePresenterProtocol.swift in Sources */,
 				801A820D2AC5F5B6005ADD4A /* ProfileMainSettingsViewModel.swift in Sources */,
 				804C1F9C2AC3520D00B07C87 /* EndPointType.swift in Sources */,

@@ -65,7 +65,6 @@ final class HomeViewController: BaseViewController {
     
     private lazy var contentView: UIView = {
         let view = UIView()
-        view.isUserInteractionEnabled = false
         view.addSubview(homeView)
         view.addSubview(searchView)
         homeView.snp.makeConstraints { make in
@@ -98,6 +97,7 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         makeConstraints()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewDidLayoutSubviews() {
@@ -111,6 +111,7 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController: HomeViewInput {
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let x = scrollView.contentOffset.x / 2 + 16
         separatorView.frame.origin.x = x
@@ -118,7 +119,7 @@ extension HomeViewController: HomeViewInput {
 }
 
 extension HomeViewController: UIScrollViewDelegate {
-    
+
 }
 
 private extension HomeViewController {
@@ -128,12 +129,12 @@ private extension HomeViewController {
     
     func makeConstraints() {
         homeTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(separatorView.snp.top).inset(-10)
             make.leading.equalToSuperview().inset(constants.sideTitlePadding)
         }
         
         searchTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(separatorView.snp.top).inset(-10)
             make.trailing.equalToSuperview().inset(constants.sideTitlePadding)
         }
         
@@ -147,7 +148,7 @@ private extension HomeViewController {
             make.height.equalTo(constants.separatorHeight)
             make.width.equalTo(view.snp.width).dividedBy(constants.separatorDivideWidth)
             make.leading.equalToSuperview().inset(constants.sideTitlePadding)
-            make.bottom.equalTo(mainScrollView.snp.top)       
+            make.bottom.equalTo(mainScrollView.snp.top)
         }
     }
 }
