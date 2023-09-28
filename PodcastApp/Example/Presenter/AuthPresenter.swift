@@ -14,17 +14,7 @@ final class ExamplePresenter {
 }
 
 extension ExamplePresenter: ExamplePresenterProtocol {
-    func viewDidLoad() {
-        authService.createUser { [weak self] result in
-            switch result {
-            case .success:
-                self?.router.routeToMainTabBar()
-                let viewModels = self?.createViewModels(array: ["one, first"])
-            case .failure:
-                self?.view?.changeBackground()
-            }
-        }
-    }
+    func viewDidLoad() { }
 }
 
 private extension ExamplePresenter {
