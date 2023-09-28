@@ -17,6 +17,9 @@
 		57C1AA9C2AC60A6000444C47 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA942AC60A6000444C47 /* HomeRouter.swift */; };
 		57C1AA9E2AC60C6200444C47 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA9D2AC60C6200444C47 /* UIViewController + Extension.swift */; };
 		57C1AAA02AC622DE00444C47 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA9F2AC622DE00444C47 /* UITextField + Extension.swift */; };
+		57C1AAA52AC62BA200444C47 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AAA42AC62BA200444C47 /* CategoryCollectionViewCell.swift */; };
+		57C1AAA72AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AAA62AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift */; };
+		57C1AAA92AC62E3700444C47 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AAA82AC62E3700444C47 /* HomeTableViewCell.swift */; };
 		801A820A2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A81FD2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift */; };
 		801A820B2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A81FF2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift */; };
 		801A820C2AC5F5B6005ADD4A /* ProfileSettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A82002AC5F5B6005ADD4A /* ProfileSettingPresenter.swift */; };
@@ -107,6 +110,9 @@
 		57C1AA942AC60A6000444C47 /* HomeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		57C1AA9D2AC60C6200444C47 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		57C1AA9F2AC622DE00444C47 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
+		57C1AAA42AC62BA200444C47 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		57C1AAA62AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryesNamesCollectionViewCell.swift; sourceTree = "<group>"; };
+		57C1AAA82AC62E3700444C47 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		801A81FD2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingAssembly.swift; sourceTree = "<group>"; };
 		801A81FF2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingPresenterProtocol.swift; sourceTree = "<group>"; };
 		801A82002AC5F5B6005ADD4A /* ProfileSettingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingPresenter.swift; sourceTree = "<group>"; };
@@ -241,7 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				57C1AA912AC60A6000444C47 /* SearchView.swift */,
-				57C1AA922AC60A6000444C47 /* HomeView.swift */,
+				57C1AAA22AC62B4F00444C47 /* HomeView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -252,6 +258,25 @@
 				57C1AA942AC60A6000444C47 /* HomeRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		57C1AAA22AC62B4F00444C47 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				57C1AAA32AC62B5E00444C47 /* Cells */,
+				57C1AA922AC60A6000444C47 /* HomeView.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		57C1AAA32AC62B5E00444C47 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				57C1AAA42AC62BA200444C47 /* CategoryCollectionViewCell.swift */,
+				57C1AAA62AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift */,
+				57C1AAA82AC62E3700444C47 /* HomeTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		801A81FB2AC5F5B6005ADD4A /* ProfileSetting */ = {
@@ -713,6 +738,7 @@
 				805D4FE12AC0B05900905151 /* AuthPresenter.swift in Sources */,
 				805D4FE32AC0B1C400905151 /* AuthRouter.swift in Sources */,
 				804C1FB62AC371AE00B07C87 /* TestModel.swift in Sources */,
+				57C1AAA72AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift in Sources */,
 				801A82112AC5F5B6005ADD4A /* ProfileSettingRouter.swift in Sources */,
 				57C1AA982AC60A6000444C47 /* HomeViewController.swift in Sources */,
 				57C1AA9E2AC60C6200444C47 /* UIViewController + Extension.swift in Sources */,
@@ -741,6 +767,7 @@
 				809355D92ABE23710094F3AB /* AppDelegate.swift in Sources */,
 				804C1FB42AC36C1100B07C87 /* NetworkManager.swift in Sources */,
 				804C1FA02AC352DB00B07C87 /* HTTPTask.swift in Sources */,
+				57C1AAA52AC62BA200444C47 /* CategoryCollectionViewCell.swift in Sources */,
 				801A820B2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift in Sources */,
 				805D4FDD2AC0AF6500905151 /* AuthViewInput.swift in Sources */,
 				805D4FEA2AC0BA2C00905151 /* ExampleCellViewModel.swift in Sources */,
@@ -749,6 +776,7 @@
 				804C1FB02AC36A3600B07C87 /* URLRequest+Extension.swift in Sources */,
 				801A820E2AC5F5B6005ADD4A /* ProfileSettingViewInput.swift in Sources */,
 				804C1FA22AC3534B00B07C87 /* ParameterEncoding.swift in Sources */,
+				57C1AAA92AC62E3700444C47 /* HomeTableViewCell.swift in Sources */,
 				801A820F2AC5F5B6005ADD4A /* ProfileSettingViewController.swift in Sources */,
 				805D4FD92AC0AE9600905151 /* ExampleService.swift in Sources */,
 				804C1F9E2AC3527300B07C87 /* HTTPMethod.swift in Sources */,
