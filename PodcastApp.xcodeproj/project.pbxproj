@@ -17,7 +17,7 @@
 		804C1FAB2AC3644B00B07C87 /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FAA2AC3644B00B07C87 /* NetworkRouter.swift */; };
 		804C1FAD2AC3650F00B07C87 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FAC2AC3650F00B07C87 /* Router.swift */; };
 		804C1FB02AC36A3600B07C87 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FAF2AC36A3600B07C87 /* URLRequest+Extension.swift */; };
-		804C1FB22AC36B2500B07C87 /* TestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FB12AC36B2500B07C87 /* TestAPI.swift */; };
+		804C1FB22AC36B2500B07C87 /* PodcastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FB12AC36B2500B07C87 /* PodcastAPI.swift */; };
 		804C1FB42AC36C1100B07C87 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FB32AC36C1100B07C87 /* NetworkManager.swift */; };
 		804C1FB62AC371AE00B07C87 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FB52AC371AE00B07C87 /* TestModel.swift */; };
 		805D4FCB2AC0A48600905151 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FCA2AC0A48600905151 /* BaseCollectionViewCell.swift */; };
@@ -92,7 +92,7 @@
 		804C1FAA2AC3644B00B07C87 /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
 		804C1FAC2AC3650F00B07C87 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		804C1FAF2AC36A3600B07C87 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
-		804C1FB12AC36B2500B07C87 /* TestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPI.swift; sourceTree = "<group>"; };
+		804C1FB12AC36B2500B07C87 /* PodcastAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAPI.swift; sourceTree = "<group>"; };
 		804C1FB32AC36C1100B07C87 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		804C1FB52AC371AE00B07C87 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		805D4FCA2AC0A48600905151 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 		804C1F972AC351D300B07C87 /* EndPoint */ = {
 			isa = PBXGroup;
 			children = (
-				804C1FB12AC36B2500B07C87 /* TestAPI.swift */,
+				804C1FB12AC36B2500B07C87 /* PodcastAPI.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -573,7 +573,7 @@
 				809356042ABE3CD30094F3AB /* UIColor + Extension.swift in Sources */,
 				809356022ABE3BA60094F3AB /* PlayerService.swift in Sources */,
 				805D4FCB2AC0A48600905151 /* BaseCollectionViewCell.swift in Sources */,
-				804C1FB22AC36B2500B07C87 /* TestAPI.swift in Sources */,
+				804C1FB22AC36B2500B07C87 /* PodcastAPI.swift in Sources */,
 				804C1FA92AC3638C00B07C87 /* JSONParameterEncoder.swift in Sources */,
 				805D4FDF2AC0B03A00905151 /* AuthPresenterProtocol.swift in Sources */,
 				805D4FE52AC0B2BC00905151 /* AuthAssembly.swift in Sources */,

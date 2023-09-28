@@ -52,6 +52,8 @@ fileprivate enum TabBarPage {
 
 final class MainTabBarController: UITabBarController {
     
+    private let network: NetworkManagerProtocol = NetworkManager()
+    
     private let pages: [TabBarPage] = [
         .favorites, .home, .settings
     ]
@@ -59,6 +61,20 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabBarModules()
+        
+        network.fetchCategoriest(page: 2) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let genres = try JSONDecoder().decode(GenresModel.self, from: data)
+                    print(genres.genres)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
@@ -85,8 +101,9 @@ private extension MainTabBarController {
             firstVC.view.backgroundColor = .systemRed
             navController.pushViewController(firstVC, animated: true)
         case .home:
-            let home = HomeAssembly.assemble()
-            navController.pushViewController(home, animated: true)
+            let secondVC = UIViewController()
+            secondVC.view.backgroundColor = .systemOrange
+            navController.pushViewController(secondVC, animated: true)
         case .settings:
             let firstVC = UIViewController()
             firstVC.view.backgroundColor = .systemYellow

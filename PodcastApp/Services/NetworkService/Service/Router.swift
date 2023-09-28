@@ -31,17 +31,12 @@ fileprivate extension Router {
             cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
             timeoutInterval: 10.0
         )
+        route.header?.forEach({ request.setValue($1, forHTTPHeaderField: $0) })
         request.httpMethod = route.httpMethod.rawValue
-        
         do {
             switch route.task {
-            case .request:
-                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            case .requestParameters(bodyParam: let bodyParam, urlParam: let urlParam):
-                try self.configureParameters(bodyParam: bodyParam, urlParam: urlParam, request: &request)
-            case .requestHeaderParam(bodyParam: let bodyParam, urlParam: let urlParam, header: let header):
-                self.addHeader(header, request: &request)
-                try self.configureParameters(bodyParam: bodyParam, urlParam: urlParam, request: &request)
+            case .request(bodyParam: let body, urlParam: let urlParam):
+                try self.configureParameters(bodyParam: body, urlParam: urlParam, request: &request)
             }
             return request
         } catch {
@@ -56,15 +51,15 @@ fileprivate extension Router {
                 try JSONParameterEncoder.encode(urlRequest: &request, with: bodyParam)
             }
             if let urlParam {
-                try JSONParameterEncoder.encode(urlRequest: &request, with: urlParam)
+                try URLParameterEncoder.encode(urlRequest: &request, with: urlParam)
             }
         } catch {
             throw error
         }
     }
     
-    func addHeader(_ header: HTTPHeader?, request: inout URLRequest) {
-        guard let header else { return }
-        header.forEach({ request.setValue($1, forHTTPHeaderField: $0) })
-    }
+//    func addHeader(_ header: HTTPHeader?, request: inout URLRequest) {
+//        guard let header else { return }
+//        header.forEach({ request.setValue($1, forHTTPHeaderField: $0) })
+//    }
 }
