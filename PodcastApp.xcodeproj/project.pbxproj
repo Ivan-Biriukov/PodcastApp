@@ -48,7 +48,6 @@
 		809356022ABE3BA60094F3AB /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809356012ABE3BA60094F3AB /* PlayerService.swift */; };
 		809356042ABE3CD30094F3AB /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809356032ABE3CD30094F3AB /* UIColor + Extension.swift */; };
 		809356072ABE3E6F0094F3AB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 809356062ABE3E6F0094F3AB /* SnapKit */; };
-		809356092ABE3E6F0094F3AB /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 809356082ABE3E6F0094F3AB /* SnapKit-Dynamic */; };
 		8093560C2ABE3FCD0094F3AB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8093560B2ABE3FCD0094F3AB /* FirebaseAnalytics */; };
 		8093560E2ABE3FCD0094F3AB /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 8093560D2ABE3FCD0094F3AB /* FirebaseAnalyticsOnDeviceConversion */; };
 		809356102ABE3FCD0094F3AB /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8093560F2ABE3FCD0094F3AB /* FirebaseAnalyticsSwift */; };
@@ -83,9 +82,7 @@
 		8093564D2ABE40990094F3AB /* SavingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8093564C2ABE40990094F3AB /* SavingManager.swift */; };
 		809356502ABE414A0094F3AB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8093564F2ABE414A0094F3AB /* BaseViewController.swift */; };
 		809356532ABE43790094F3AB /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 809356522ABE43790094F3AB /* RxBlocking */; };
-		809356552ABE43790094F3AB /* RxBlocking-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 809356542ABE43790094F3AB /* RxBlocking-Dynamic */; };
 		809356572ABE43790094F3AB /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 809356562ABE43790094F3AB /* RxCocoa */; };
-		809356592ABE43790094F3AB /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 809356582ABE43790094F3AB /* RxCocoa-Dynamic */; };
 		8093565B2ABE43790094F3AB /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 8093565A2ABE43790094F3AB /* RxRelay */; };
 /* End PBXBuildFile section */
 
@@ -146,10 +143,8 @@
 				809356072ABE3E6F0094F3AB /* SnapKit in Frameworks */,
 				809356282ABE3FCD0094F3AB /* FirebaseFirestoreSwift in Frameworks */,
 				809356122ABE3FCD0094F3AB /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				809356592ABE43790094F3AB /* RxCocoa-Dynamic in Frameworks */,
 				8093562A2ABE3FCD0094F3AB /* FirebaseFunctions in Frameworks */,
 				809356432ABE40140094F3AB /* GoogleSignIn in Frameworks */,
-				809356092ABE3E6F0094F3AB /* SnapKit-Dynamic in Frameworks */,
 				8093560C2ABE3FCD0094F3AB /* FirebaseAnalytics in Frameworks */,
 				809356182ABE3FCD0094F3AB /* FirebaseAuth in Frameworks */,
 				809356222ABE3FCD0094F3AB /* FirebaseDynamicLinks in Frameworks */,
@@ -172,7 +167,6 @@
 				809356452ABE40140094F3AB /* GoogleSignInSwift in Frameworks */,
 				809356102ABE3FCD0094F3AB /* FirebaseAnalyticsSwift in Frameworks */,
 				809356162ABE3FCD0094F3AB /* FirebaseAppDistribution-Beta in Frameworks */,
-				809356552ABE43790094F3AB /* RxBlocking-Dynamic in Frameworks */,
 				8093563A2ABE3FCD0094F3AB /* FirebaseRemoteConfig in Frameworks */,
 				809356532ABE43790094F3AB /* RxBlocking in Frameworks */,
 				8093563E2ABE3FCD0094F3AB /* FirebaseStorage in Frameworks */,
@@ -542,7 +536,6 @@
 			name = PodcastApp;
 			packageProductDependencies = (
 				809356062ABE3E6F0094F3AB /* SnapKit */,
-				809356082ABE3E6F0094F3AB /* SnapKit-Dynamic */,
 				8093560B2ABE3FCD0094F3AB /* FirebaseAnalytics */,
 				8093560D2ABE3FCD0094F3AB /* FirebaseAnalyticsOnDeviceConversion */,
 				8093560F2ABE3FCD0094F3AB /* FirebaseAnalyticsSwift */,
@@ -574,9 +567,7 @@
 				809356442ABE40140094F3AB /* GoogleSignInSwift */,
 				809356472ABE406B0094F3AB /* Kingfisher */,
 				809356522ABE43790094F3AB /* RxBlocking */,
-				809356542ABE43790094F3AB /* RxBlocking-Dynamic */,
 				809356562ABE43790094F3AB /* RxCocoa */,
-				809356582ABE43790094F3AB /* RxCocoa-Dynamic */,
 				8093565A2ABE43790094F3AB /* RxRelay */,
 			);
 			productName = PodcastApp;
@@ -951,11 +942,6 @@
 			package = 809356052ABE3E6E0094F3AB /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		809356082ABE3E6F0094F3AB /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 809356052ABE3E6E0094F3AB /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
-		};
 		8093560B2ABE3FCD0094F3AB /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8093560A2ABE3FCD0094F3AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -1111,20 +1097,10 @@
 			package = 809356512ABE43790094F3AB /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxBlocking;
 		};
-		809356542ABE43790094F3AB /* RxBlocking-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 809356512ABE43790094F3AB /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxBlocking-Dynamic";
-		};
 		809356562ABE43790094F3AB /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 809356512ABE43790094F3AB /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
-		};
-		809356582ABE43790094F3AB /* RxCocoa-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 809356512ABE43790094F3AB /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxCocoa-Dynamic";
 		};
 		8093565A2ABE43790094F3AB /* RxRelay */ = {
 			isa = XCSwiftPackageProductDependency;

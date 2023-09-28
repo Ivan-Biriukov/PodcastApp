@@ -8,11 +8,11 @@ fileprivate enum TabBarPage {
     var pageIndex: Int {
         switch self {
         case .favorites:
-            0
+            return 0
         case .home:
-            1
+            return 1
         case .settings:
-            2
+            return 2
         }
     }
     
@@ -41,11 +41,11 @@ fileprivate enum TabBarPage {
     var pageTitle: String {
         switch self {
         case .favorites:
-            "Favorites"
+            return "Favorites"
         case .home:
-            "Home"
+            return "Home"
         case .settings:
-            "Settings"
+            return "Settings"
         }
     }
 }
