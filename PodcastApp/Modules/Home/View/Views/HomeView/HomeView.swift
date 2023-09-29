@@ -274,7 +274,6 @@ extension HomeView : UITableViewDelegate {
         viewModel.action()
     }
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 92
     }
