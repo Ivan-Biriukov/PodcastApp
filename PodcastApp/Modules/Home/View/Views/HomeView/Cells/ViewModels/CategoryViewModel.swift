@@ -10,5 +10,7 @@ struct CategoryViewModel {
 
 struct AllCategoryesViewModel {
     let categoryName : String
+    var isItemSelected : Bool
     let action: () -> ()
 }
+

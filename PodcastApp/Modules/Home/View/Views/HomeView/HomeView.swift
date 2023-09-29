@@ -207,11 +207,21 @@ extension HomeView : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         switch collectionView {
+            
         case categoryCollecntion:
             let viewModel = categoryesViewModel[indexPath.row]
             viewModel.action()
+            
         default:
-            let selectedItem = categoryesViewModel[indexPath.row]
+            for index in 0 ..< allCategoryesViewModel.count {
+                if index != indexPath.row {
+                    allCategoryesViewModel[index].isItemSelected = false
+                }
+            }
+            
+            let currentCellSelectedStatus = allCategoryesViewModel[indexPath.row].isItemSelected
+            allCategoryesViewModel[indexPath.row].isItemSelected = !currentCellSelectedStatus
+            collectionView.reloadData()
         }
     }
 }
@@ -249,9 +259,7 @@ extension HomeView : UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             cell.fill(viewModel: allCategoryesViewModel[indexPath.row])
-            if indexPath.row == 0 {
-                cell.changeUIForSelected()
-            }
+            cell.getItemSelectedStatus(isChoosen: allCategoryesViewModel[indexPath.row].isItemSelected)
             return cell
         }
     }

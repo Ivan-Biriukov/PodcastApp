@@ -12,8 +12,8 @@ final class SearchView: UIView {
     private let textDarkColor : UIColor = .init(rgb: 0x423F51)
     private let textLightColor : UIColor = .init(rgb: 0xA3A1AF)
     
-    var topGenresViewModel = [AllCategoryesViewModel]()
-    var allGenresViewModel = [AllCategoryesViewModel]()
+    var topGenresViewModel = [SearchGenresViewModel]()
+    var allGenresViewModel = [SearchGenresViewModel]()
     weak var delegate : SearchSeeAllDelegate?
     
     // MARK: - UI Elements

@@ -46,7 +46,7 @@ class SearchViewCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func fill(viewModel: AllCategoryesViewModel) {
+    func fill(viewModel: SearchGenresViewModel) {
         titleLabel.text = viewModel.categoryName
     }
 }

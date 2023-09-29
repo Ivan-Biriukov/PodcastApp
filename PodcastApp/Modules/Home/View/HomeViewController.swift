@@ -117,7 +117,7 @@ final class HomeViewController: BaseViewController {
 
 extension HomeViewController: HomeViewInput {
     
-    func updateSearchCollections(topViewModels: [AllCategoryesViewModel], allViewModels: [AllCategoryesViewModel]) {
+    func updateSearchCollections(topViewModels: [SearchGenresViewModel], allViewModels: [SearchGenresViewModel]) {
         self.searchView.allGenresViewModel = allViewModels
         self.searchView.topGenresViewModel = topViewModels
         self.searchView.reloadCollections()

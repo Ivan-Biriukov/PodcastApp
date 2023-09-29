@@ -4,6 +4,7 @@ import SnapKit
 class CategoryesNamesCollectionViewCell: UICollectionViewCell {
     
     static let reuseId = "HomeCategoryesNamesCell"
+    private var isItemSelected : Bool = false
     
     // MARK: - UI Elements
     
@@ -58,17 +59,26 @@ class CategoryesNamesCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func changeUIForSelected() {
+    private func changeUIForSelected() {
         fireImageView.isHidden = false
         contentView.backgroundColor = .init(rgb: 0xE5E5E5)
     }
     
-    func resotreUIForUnselected() {
+    private func resotreUIForUnselected() {
         fireImageView.isHidden = true
         contentView.backgroundColor = .clear
     }
     
     func fill(viewModel: AllCategoryesViewModel) {
         titleLabel.text = viewModel.categoryName
+        isItemSelected = viewModel.isItemSelected
+    }
+    
+    func getItemSelectedStatus(isChoosen : Bool) {
+        if isChoosen {
+            changeUIForSelected()
+        } else {
+            resotreUIForUnselected()
+        }
     }
 }

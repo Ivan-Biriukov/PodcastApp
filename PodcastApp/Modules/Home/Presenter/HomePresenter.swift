@@ -8,7 +8,6 @@ final class HomePresenter {
     init(router: HomeRouterInput) {
         self.router = router
     }
-    
 }
 
 extension HomePresenter: HomePresenterProtocol {
@@ -45,14 +44,14 @@ private extension HomePresenter {
     
     func fetchAllCategoryes() {
         let viewModels : [AllCategoryesViewModel] = [
-            .init(categoryName: "Popular", action: {print("cell taped")}),
-            .init(categoryName: "Recent", action: {print("cell taped")}),
-            .init(categoryName: "Music", action: {print("cell taped")}),
-            .init(categoryName: "Design", action: {print("cell taped")}),
-            .init(categoryName: "Lify", action: {print("cell taped")}),
-            .init(categoryName: "Education", action: {print("cell taped")}),
-            .init(categoryName: "Sport", action: {print("cell taped")}),
-            .init(categoryName: "Chill", action: {print("cell taped")})
+            .init(categoryName: "Popular", isItemSelected: true, action: {print("cell taped")}),
+            .init(categoryName: "Recent", isItemSelected: false, action: {print("cell taped")}),
+            .init(categoryName: "Music", isItemSelected: false, action: {print("cell taped")}),
+            .init(categoryName: "Design", isItemSelected: false, action: {print("cell taped")}),
+            .init(categoryName: "Lify", isItemSelected: false, action: {print("cell taped")}),
+            .init(categoryName: "Education", isItemSelected: false, action: {print("cell taped")}),
+            .init(categoryName: "Sport", isItemSelected: false, action: {print("cell taped")}),
+            .init(categoryName: "Chill", isItemSelected: false, action: {print("cell taped")})
         ]
         
         DispatchQueue.main.async {
@@ -74,7 +73,7 @@ private extension HomePresenter {
     
     func fetchSearchViewCategoryes() {
         
-        let allCategoryesViewModels : [AllCategoryesViewModel] = [
+        let allCategoryesViewModels : [SearchGenresViewModel] = [
             .init(categoryName: "Popular", action: {print("cell taped")}),
             .init(categoryName: "Recent", action: {print("cell taped")}),
             .init(categoryName: "Music", action: {print("cell taped")}),
@@ -93,7 +92,7 @@ private extension HomePresenter {
             .init(categoryName: "Chill", action: {print("cell taped")})
         ]
         
-        var topGenresViewModel = [AllCategoryesViewModel]()
+        var topGenresViewModel = [SearchGenresViewModel]()
         
         for (index, element) in allCategoryesViewModels.enumerated() {
             if index % 2 == 0 {
