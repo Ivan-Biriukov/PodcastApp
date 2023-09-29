@@ -272,6 +272,7 @@ extension HomeView : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewModel = tableViewModel[indexPath.row]
         viewModel.action()
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -294,6 +295,15 @@ extension HomeView : UITableViewDataSource {
             return UITableViewCell()
         }
         cell.fill(viewModel: tableViewModel[indexPath.row])
+        cell.delegate = self
         return cell
     }
+}
+
+extension HomeView : HomeTableViewCellDelegate {
+    
+    func didTapLikeButton(selected: Bool) {
+        
+    }
+
 }

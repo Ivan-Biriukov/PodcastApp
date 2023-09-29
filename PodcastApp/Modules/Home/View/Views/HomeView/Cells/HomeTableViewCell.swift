@@ -1,9 +1,15 @@
 import UIKit
 import SnapKit
 
+protocol HomeTableViewCellDelegate: AnyObject {
+    func didTapLikeButton(selected: Bool)
+}
+
 class HomeTableViewCell: UITableViewCell {
     
     static let reuseId = "HomeTableViewCell"
+    private var isLikeButtonTaped : Bool = false
+    weak var delegate : HomeTableViewCellDelegate?
     
     // MARK: - UI Elements
     
@@ -30,6 +36,7 @@ class HomeTableViewCell: UITableViewCell {
         buton.setImage(.Home.likeImage, for: .normal)
         buton.heightAnchor.constraint(equalToConstant: 17).isActive = true
         buton.widthAnchor.constraint(equalToConstant: 19).isActive = true
+        buton.addTarget(self, action: #selector(didTapedLike(_:)), for: .touchUpInside)
         buton.contentMode = .scaleAspectFill
         return buton
     }()
@@ -109,6 +116,13 @@ class HomeTableViewCell: UITableViewCell {
         return lb
     }()
     
+    // MARK: - Button Method
+    
+    @objc private func didTapedLike(_ sender: UIButton) {
+        delegate?.didTapLikeButton(selected: isLikeButtonTaped)
+        updateButtonStatus()
+    }
+    
     // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -174,6 +188,15 @@ class HomeTableViewCell: UITableViewCell {
         authorNameLabel.text = viewModel.authorName
         podcastCategoryLabel.text = viewModel.podcastCategoryName
         episodsCountLabel.text = viewModel.episodsCount + " " + "Eps"
+        isLikeButtonTaped = viewModel.savedToFavorits
+    }
+    
+    func updateButtonStatus() {
+        if isLikeButtonTaped {
+            likeButton.setImage(.Home.activeLikeImage, for: .normal)
+        } else {
+            likeButton.setImage(.Home.likeImage, for: .normal)
+        }
     }
 }
 

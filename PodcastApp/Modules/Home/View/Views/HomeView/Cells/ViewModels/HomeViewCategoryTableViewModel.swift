@@ -7,6 +7,6 @@ struct HomeViewCategoryTableViewModel {
     let authorName : String
     let podcastCategoryName : String
     let episodsCount : String
-    let savedToFavorits : Bool
+    var savedToFavorits : Bool
     let action: () -> ()
 }
