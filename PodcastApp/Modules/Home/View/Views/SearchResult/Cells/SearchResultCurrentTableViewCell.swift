@@ -71,6 +71,15 @@ class SearchResultCurrentTableViewCell: UITableViewCell {
         setupUI()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageBuble.image = nil
+        imageBuble.backgroundColor = .clear
+        podcastNameLabel.text = nil
+        episodsCountLabel.text = nil
+        authorNameLabel.text = nil
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -97,6 +106,13 @@ class SearchResultCurrentTableViewCell: UITableViewCell {
             make.top.equalTo(podcastNameLabel.snp.bottom).inset(-5)
             make.leading.equalTo(imageBuble.snp.trailing).inset(-12)
         }
+    }
+    
+    func fill(viewModel: SearchResultViewModel) {
+        imageBuble.backgroundColor = viewModel.bgColor
+        podcastNameLabel.text = viewModel.podcastGroupName
+        episodsCountLabel.text = viewModel.episodsCount + " " + "Eps"
+        authorNameLabel.text = viewModel.authorName
     }
 
 }

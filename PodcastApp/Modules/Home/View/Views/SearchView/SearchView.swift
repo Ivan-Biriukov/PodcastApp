@@ -122,7 +122,7 @@ final class SearchView: UIView {
     
     @objc func searchTaped(_ sender: UIButton) {
         sender.alpha = 0.5
-        let vcToPresent = SearchResultsViewController()
+        let vcToPresent = SearchResultsViewController(currentResults: [SearchResultViewModel(bgColor: .gray, podcastGroupName: "Baby Pesut Podcast", episodsCount: "56", authorName: "Dr. Oi om jean")], allPodcastsResults: [SearchResultAllPodcastsViewModel(bgColor: .yellow, podcastName: "Between love and career", trackDuration: "56:38", episodeNumber: "56"), SearchResultAllPodcastsViewModel(bgColor: .red, podcastName: "The powerful way to move on", trackDuration: "58:40", episodeNumber: "55"), SearchResultAllPodcastsViewModel(bgColor: .purple, podcastName: "Monkey love makes me curious", trackDuration: "1:40:40", episodeNumber: "54"), SearchResultAllPodcastsViewModel(bgColor: .link, podcastName: "My love is blocked by Covid-19", trackDuration: "1:45:20", episodeNumber: "53"), SearchResultAllPodcastsViewModel(bgColor: .brown, podcastName: "Why should you be baper?", trackDuration: "1:45:20", episodeNumber: "52")], searchText: self.searchField.text!)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
             sender.alpha = 1

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57A5BAC22AC72A750036557A /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */; };
+		57A5BAC42AC72B730036557A /* SearchResultAllPodcastsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */; };
 		57C1AA952AC60A6000444C47 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA892AC60A6000444C47 /* HomeAssembly.swift */; };
 		57C1AA962AC60A6000444C47 /* HomePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA8B2AC60A6000444C47 /* HomePresenterProtocol.swift */; };
 		57C1AA972AC60A6000444C47 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA8C2AC60A6000444C47 /* HomePresenter.swift */; };
@@ -106,6 +108,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultAllPodcastsViewModel.swift; sourceTree = "<group>"; };
 		57C1AA892AC60A6000444C47 /* HomeAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 		57C1AA8B2AC60A6000444C47 /* HomePresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePresenterProtocol.swift; sourceTree = "<group>"; };
 		57C1AA8C2AC60A6000444C47 /* HomePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -217,6 +221,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57A5BAC02AC72A230036557A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */,
+				57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		57C1AA872AC60A6000444C47 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +335,7 @@
 		57C1AAB12AC6395F00444C47 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				57A5BAC02AC72A230036557A /* ViewModels */,
 				57C1AAB42AC644B400444C47 /* SearchResultCurrentTableViewCell.swift */,
 				57C1AAB62AC6456200444C47 /* AllResultsTableViewCell.swift */,
 			);
@@ -804,6 +818,7 @@
 				57C1AA952AC60A6000444C47 /* HomeAssembly.swift in Sources */,
 				804C1FA72AC3577400B07C87 /* URLParameterEncoder.swift in Sources */,
 				57C1AA9C2AC60A6000444C47 /* HomeRouter.swift in Sources */,
+				57A5BAC22AC72A750036557A /* SearchResultViewModel.swift in Sources */,
 				804C1FAD2AC3650F00B07C87 /* Router.swift in Sources */,
 				809356502ABE414A0094F3AB /* BaseViewController.swift in Sources */,
 				804C1FA52AC3570500B07C87 /* NetworkError.swift in Sources */,
@@ -841,6 +856,7 @@
 				57C1AAA92AC62E3700444C47 /* HomeTableViewCell.swift in Sources */,
 				801A820F2AC5F5B6005ADD4A /* ProfileSettingViewController.swift in Sources */,
 				805D4FD92AC0AE9600905151 /* ExampleService.swift in Sources */,
+				57A5BAC42AC72B730036557A /* SearchResultAllPodcastsViewModel.swift in Sources */,
 				804C1F9E2AC3527300B07C87 /* HTTPMethod.swift in Sources */,
 				805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */,
 				57C1AAA02AC622DE00444C47 /* UITextField + Extension.swift in Sources */,

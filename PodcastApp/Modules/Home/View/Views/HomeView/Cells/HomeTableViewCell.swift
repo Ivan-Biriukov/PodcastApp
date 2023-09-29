@@ -118,6 +118,16 @@ class HomeTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        avatarImageView.image = nil
+        avatarImageView.backgroundColor = .clear
+        podcastNameLabel.text = nil
+        authorNameLabel.text = nil
+        podcastCategoryLabel.text = nil
+        episodsCountLabel.text = nil
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

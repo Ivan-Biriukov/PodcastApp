@@ -56,6 +56,12 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         addSubviews()
         configure()
     }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        itemImageView.image = nil
+        itemTitleLabel.text = nil
+        podcastTitleLabel.text = nil
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

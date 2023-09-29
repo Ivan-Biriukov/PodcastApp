@@ -7,11 +7,15 @@ class SearchResultsViewController: BaseViewController {
     
     private let textDarkColor : UIColor = .init(rgb: 0x423F51)
     private let textLightColor : UIColor = .init(rgb: 0xA3A1AF)
-
+    private var currentResults : [SearchResultViewModel]
+    private var allPodcastsResults : [SearchResultAllPodcastsViewModel]
+    private var searchText : String
     
     // MARK: - UI Elements
-    
-    private lazy var resultsTextLabel = UILabel()
+        
+    private lazy var resultsTextLabel : UILabel = {
+        return createLabel(text: searchText, font: .systemFont(ofSize: 14, weight: .regular), textColor: textDarkColor)
+    }()
 
     private lazy var cancelButton : UIButton = {
         let btn = UIButton()
@@ -31,7 +35,9 @@ class SearchResultsViewController: BaseViewController {
         return view
     }()
     
-    private lazy var resultTitleLabel = UILabel()
+    private lazy var resultTitleLabel : UILabel = {
+        return createLabel(text: "Search Result", font: .systemFont(ofSize: 14, weight: .bold), textColor: textDarkColor)
+    }()
     
     private lazy var resultsTableView : UITableView = {
         let tb = UITableView()
@@ -43,7 +49,9 @@ class SearchResultsViewController: BaseViewController {
         return tb
     }()
     
-    private lazy var allPodcastLabel = UILabel()
+    private lazy var allPodcastLabel : UILabel = {
+        return createLabel(text: "All Podcast", font: .systemFont(ofSize: 14, weight: .regular), textColor: textLightColor)
+    }()
     
     private lazy var allPodcastTableView : UITableView = {
         let tb = UITableView()
@@ -55,11 +63,24 @@ class SearchResultsViewController: BaseViewController {
         return tb
     }()
     
+    // MARK: - Init
+    
+    init(currentResults: [SearchResultViewModel], allPodcastsResults: [SearchResultAllPodcastsViewModel], searchText: String) {
+        self.currentResults = currentResults
+        self.allPodcastsResults = allPodcastsResults
+        self.searchText = searchText
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         addSubviews(views: resultsTextLabel, cancelButton, separateView, resultTitleLabel, resultsTableView, allPodcastLabel, allPodcastTableView)
         setupConstraint()
         view.backgroundColor = .white
@@ -76,12 +97,6 @@ class SearchResultsViewController: BaseViewController {
     }
     
     // MARK: - Configure
-    
-    private func setupUI() {
-        resultsTextLabel = createLabel(text: "Baby Pesut", font: .systemFont(ofSize: 14, weight: .regular), textColor: textDarkColor)
-        resultTitleLabel = createLabel(text: "Search Result", font: .systemFont(ofSize: 14, weight: .bold), textColor: textDarkColor)
-        allPodcastLabel = createLabel(text: "All Podcast", font: .systemFont(ofSize: 14, weight: .regular), textColor: textLightColor)
-    }
     
     private func setupConstraint() {
         resultsTextLabel.snp.makeConstraints { make in
@@ -127,6 +142,14 @@ class SearchResultsViewController: BaseViewController {
 
 extension SearchResultsViewController : UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch tableView {
+        case resultsTableView:
+            return 60
+        default:
+            return 88
+        }
+    }
 }
 
 // MARK: - TableView DataSource
@@ -136,29 +159,31 @@ extension SearchResultsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case resultsTableView:
-            return 1
+            return currentResults.count
         default:
-            return 11
+            return allPodcastsResults.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         switch tableView {
         case resultsTableView:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultCurrentTableViewCell.reuseId, for: indexPath) as! SearchResultCurrentTableViewCell
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: SearchResultCurrentTableViewCell.reuseId,
+                for: indexPath) as? SearchResultCurrentTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.fill(viewModel: currentResults[indexPath.row])
             return cell
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: AllResultsTableViewCell.reuseId, for: indexPath) as! AllResultsTableViewCell
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: AllResultsTableViewCell.reuseId,
+                for: indexPath) as? AllResultsTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.fill(viewModel: allPodcastsResults[indexPath.row])
             return cell
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch tableView {
-        case resultsTableView:
-            return 60
-        default:
-            return 88
         }
     }
 }

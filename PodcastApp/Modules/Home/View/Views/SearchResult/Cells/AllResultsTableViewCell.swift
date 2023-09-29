@@ -78,6 +78,15 @@ class AllResultsTableViewCell: UITableViewCell {
         configure()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        iconImageView.image = nil
+        iconImageView.backgroundColor = .clear
+        podcastNameLabel.text = nil
+        durationLabel.text = nil
+        episodsCountLabel.text = nil
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -112,5 +121,12 @@ class AllResultsTableViewCell: UITableViewCell {
             make.top.equalTo(podcastNameLabel.snp.bottom).inset(-6)
             make.leading.equalTo(iconImageView.snp.trailing).inset(-19)
         }
+    }
+    
+    func fill(viewModel: SearchResultAllPodcastsViewModel) {
+        iconImageView.backgroundColor = viewModel.bgColor
+        podcastNameLabel.text = viewModel.podcastName
+        durationLabel.text = viewModel.trackDuration
+        episodsCountLabel.text = viewModel.episodeNumber
     }
 }
