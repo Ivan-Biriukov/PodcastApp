@@ -63,7 +63,7 @@ class CategoryesNamesCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
     }
     
-    func fill(viewModel: CategoryViewModel) {
-        titleLabel.text = viewModel.genreTitle
+    func fill(viewModel: AllCategoryesViewModel) {
+        titleLabel.text = viewModel.categoryName
     }
 }

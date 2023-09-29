@@ -7,8 +7,9 @@ final class HomeView: UIView {
     
     private let textDarkColor : UIColor = .init(rgb: 0x423F51)
     private let textLightColor : UIColor = .init(rgb: 0xA3A1AF)
-    private var categoryesViewModel = [CategoryViewModel]()
-    private var tableViewModel = [HomeViewCategoryTableViewModel]()
+    var categoryesViewModel = [CategoryViewModel]()
+    var allCategoryesViewModel = [AllCategoryesViewModel]()
+    var tableViewModel = [HomeViewCategoryTableViewModel]()
     
     // MARK: - UI Elements
     
@@ -211,7 +212,7 @@ extension HomeView : UICollectionViewDataSource {
         case categoryCollecntion:
             return categoryesViewModel.count
         default:
-            return categoryesViewModel.count + 10
+            return allCategoryesViewModel.count
         }
     }
     
@@ -234,7 +235,7 @@ extension HomeView : UICollectionViewDataSource {
                 for: indexPath) as? CategoryesNamesCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.fill(viewModel: categoryesViewModel[indexPath.row])
+            cell.fill(viewModel: allCategoryesViewModel[indexPath.row])
             if indexPath.row == 0 {
                 cell.changeUIForSelected()
             }

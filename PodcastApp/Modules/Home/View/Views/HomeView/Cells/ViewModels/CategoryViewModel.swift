@@ -7,3 +7,7 @@ struct CategoryViewModel {
     let backgroundColor : UIColor
     let action: () -> ()
 }
+
+struct AllCategoryesViewModel {
+    let categoryName : String
+}

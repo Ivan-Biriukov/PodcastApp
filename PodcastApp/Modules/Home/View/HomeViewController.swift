@@ -98,6 +98,7 @@ final class HomeViewController: BaseViewController {
         addSubviews()
         makeConstraints()
         hideKeyboardWhenTappedAround()
+        presenter.viewDidLoad()
     }
     
     override func viewDidLayoutSubviews() {
@@ -111,6 +112,17 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController: HomeViewInput {
+    func updateTableView(viewModels: [HomeViewCategoryTableViewModel]) {
+        self.homeView.tableViewModel = viewModels
+    }
+    
+    func updateAllCategoryes(viewModels: [AllCategoryesViewModel]) {
+        self.homeView.allCategoryesViewModel = viewModels
+    }
+    
+    func updateMainCategoryCollection(viewModels: [CategoryViewModel]) {
+        self.homeView.categoryesViewModel = viewModels
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let x = scrollView.contentOffset.x / 2 + 16
