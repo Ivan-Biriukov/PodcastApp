@@ -272,7 +272,10 @@ extension HomeView : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewModel = tableViewModel[indexPath.row]
         viewModel.action()
-
+        
+        let currentCell = tableViewModel[indexPath.row]
+        tableViewModel[indexPath.row].savedToFavorits = !currentCell.savedToFavorits
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -295,15 +298,7 @@ extension HomeView : UITableViewDataSource {
             return UITableViewCell()
         }
         cell.fill(viewModel: tableViewModel[indexPath.row])
-        cell.delegate = self
+        cell.updateButtonStatus(selected: tableViewModel[indexPath.row].savedToFavorits)
         return cell
     }
-}
-
-extension HomeView : HomeTableViewCellDelegate {
-    
-    func didTapLikeButton(selected: Bool) {
-        
-    }
-
 }

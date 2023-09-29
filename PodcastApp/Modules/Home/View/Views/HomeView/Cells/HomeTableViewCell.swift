@@ -1,15 +1,10 @@
 import UIKit
 import SnapKit
 
-protocol HomeTableViewCellDelegate: AnyObject {
-    func didTapLikeButton(selected: Bool)
-}
-
 class HomeTableViewCell: UITableViewCell {
     
     static let reuseId = "HomeTableViewCell"
     private var isLikeButtonTaped : Bool = false
-    weak var delegate : HomeTableViewCellDelegate?
     
     // MARK: - UI Elements
     
@@ -119,8 +114,7 @@ class HomeTableViewCell: UITableViewCell {
     // MARK: - Button Method
     
     @objc private func didTapedLike(_ sender: UIButton) {
-        delegate?.didTapLikeButton(selected: isLikeButtonTaped)
-        updateButtonStatus()
+        updateButtonStatus(selected: isLikeButtonTaped)
     }
     
     // MARK: - Init
@@ -191,8 +185,8 @@ class HomeTableViewCell: UITableViewCell {
         isLikeButtonTaped = viewModel.savedToFavorits
     }
     
-    func updateButtonStatus() {
-        if isLikeButtonTaped {
+    func updateButtonStatus(selected: Bool) {
+        if selected {
             likeButton.setImage(.Home.activeLikeImage, for: .normal)
         } else {
             likeButton.setImage(.Home.likeImage, for: .normal)
