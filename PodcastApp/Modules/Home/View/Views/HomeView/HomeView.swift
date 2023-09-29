@@ -11,6 +11,7 @@ final class HomeView: UIView {
     var allCategoryesViewModel = [AllCategoryesViewModel]()
     var tableViewModel = [HomeViewCategoryTableViewModel]()
     
+    
     // MARK: - UI Elements
     
     private lazy var nameLabel : UILabel = {
@@ -186,7 +187,7 @@ final class HomeView: UIView {
     
     // MARK: - Button Methods
     
-    @objc private func seeAllTaped(_ sender: UIButton) {
+    @objc func seeAllTaped(_ sender: UIButton) {
         sender.alpha = 0.5
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
             sender.alpha = 1

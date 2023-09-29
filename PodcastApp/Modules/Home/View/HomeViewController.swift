@@ -141,6 +141,7 @@ extension HomeViewController: HomeViewInput {
         let x = scrollView.contentOffset.x / 2 + 16
         separatorView.frame.origin.x = x
     }
+    
 }
 
 extension HomeViewController: UIScrollViewDelegate {

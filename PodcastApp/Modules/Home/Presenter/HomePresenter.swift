@@ -13,6 +13,10 @@ final class HomePresenter {
 
 extension HomePresenter: HomePresenterProtocol {
     
+    func didTapesTopGenresSeeAll() {
+        print("Did Taped top genres see all")
+    }
+    
     func viewDidLoad() {
         fetchMainCategoryes()
         fetchAllCategoryes()

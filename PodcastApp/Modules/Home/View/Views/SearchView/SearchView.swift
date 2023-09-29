@@ -201,13 +201,26 @@ final class SearchView: UIView {
 // MARK: - TextField Delegate
 
 extension SearchView : UITextFieldDelegate {
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
 // MARK: - Collection Delegate
 
 extension SearchView : UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case topGenresCollection:
+            let viewModel = topGenresViewModel[indexPath.row]
+            viewModel.action()
+        default:
+            let viewModel = allGenresViewModel[indexPath.row]
+            viewModel.action()
+        }
+    }
 }
 
 // MARK: - Collection DataSource
@@ -229,14 +242,12 @@ extension SearchView : UICollectionViewDataSource {
             for: indexPath) as? SearchViewCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
         switch collectionView {
         case topGenresCollection:
             cell.fill(viewModel: topGenresViewModel[indexPath.row])
         default:
             cell.fill(viewModel: allGenresViewModel[indexPath.row])
         }
-        
         return cell
     }
 }
