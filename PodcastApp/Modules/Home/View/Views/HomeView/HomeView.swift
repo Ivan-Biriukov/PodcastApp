@@ -7,7 +7,8 @@ final class HomeView: UIView {
     
     private let textDarkColor : UIColor = .init(rgb: 0x423F51)
     private let textLightColor : UIColor = .init(rgb: 0xA3A1AF)
-
+    private var categoryesViewModel = [CategoryViewModel]()
+    private var tableViewModel = [HomeViewCategoryTableViewModel]()
     
     // MARK: - UI Elements
     
@@ -189,7 +190,16 @@ final class HomeView: UIView {
 // MARK: - Collection Delegates
 
 extension HomeView : UICollectionViewDelegate {
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        switch collectionView {
+        case categoryCollecntion:
+            let viewModel = categoryesViewModel[indexPath.row]
+            viewModel.action()
+        default:
+            let selectedItem = categoryesViewModel[indexPath.row]
+        }
+    }
 }
 
 // MARK: - Collection DataSource
@@ -199,25 +209,34 @@ extension HomeView : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case categoryCollecntion:
-            return 5
+            return categoryesViewModel.count
         default:
-            return 10
+            return categoryesViewModel.count + 10
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch collectionView {
-        case categoryCollecntion:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.reuseId, for: indexPath) as! CategoryCollectionViewCell
-            return cell
-        default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryesNamesCollectionViewCell.reuseId, for: indexPath) as! CategoryesNamesCollectionViewCell
             
+        case categoryCollecntion:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CategoryCollectionViewCell.reuseId,
+                for: indexPath) as? CategoryCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.fill(viewModel: categoryesViewModel[indexPath.row])
+            return cell
+            
+        default:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CategoryesNamesCollectionViewCell.reuseId,
+                for: indexPath) as? CategoryesNamesCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.fill(viewModel: categoryesViewModel[indexPath.row])
             if indexPath.row == 0 {
                 cell.changeUIForSelected()
-            } else {
-                cell.resotreUIForUnselected()
             }
             return cell
         }
@@ -228,6 +247,15 @@ extension HomeView : UICollectionViewDataSource {
 
 extension HomeView : UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = tableViewModel[indexPath.row]
+        viewModel.action()
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 92
+    }
 }
 
 // MARK: - Table DataSource
@@ -235,16 +263,16 @@ extension HomeView : UITableViewDelegate {
 extension HomeView : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return tableViewModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseId, for: indexPath) as! HomeTableViewCell
-        
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: HomeTableViewCell.reuseId,
+            for: indexPath) as? HomeTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.fill(viewModel: tableViewModel[indexPath.row])
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 92
     }
 }

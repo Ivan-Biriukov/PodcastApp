@@ -62,4 +62,8 @@ class CategoryesNamesCollectionViewCell: UICollectionViewCell {
         fireImageView.isHidden = true
         contentView.backgroundColor = .clear
     }
+    
+    func fill(viewModel: CategoryViewModel) {
+        titleLabel.text = viewModel.genreTitle
+    }
 }

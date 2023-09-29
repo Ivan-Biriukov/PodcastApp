@@ -157,5 +157,13 @@ class HomeTableViewCell: UITableViewCell {
             make.bottom.equalTo(bubbleView.snp.bottom).inset(15)
         }
     }
+    
+    func fill(viewModel: HomeViewCategoryTableViewModel) {
+        avatarImageView.backgroundColor = viewModel.color
+        podcastNameLabel.text = viewModel.podcastName
+        authorNameLabel.text = viewModel.authorName
+        podcastCategoryLabel.text = viewModel.podcastCategoryName
+        episodsCountLabel.text = viewModel.episodsCount + " " + "Eps"
+    }
 }
 

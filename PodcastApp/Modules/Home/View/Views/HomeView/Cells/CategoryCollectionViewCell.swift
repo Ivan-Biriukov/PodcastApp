@@ -32,7 +32,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         return lb
     }()
     
-    private lazy var podcastTitleLabvel : UILabel = {
+    private lazy var podcastTitleLabel : UILabel = {
         let lb = UILabel()
         lb.font = .systemFont(ofSize: 12, weight: .regular)
         lb.textColor = .init(rgb: 0xA3A1AF)
@@ -66,7 +66,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     private func addSubviews() {
         [itemImageView, bottomBubbleView].forEach({contentView.addSubview($0)})
         bottomBubbleView.addSubview(lablesStack)
-        [itemTitleLabel, podcastTitleLabvel].forEach({lablesStack.addArrangedSubview($0)})
+        [itemTitleLabel, podcastTitleLabel].forEach({lablesStack.addArrangedSubview($0)})
     }
     
     private func configure() {
@@ -86,5 +86,11 @@ class CategoryCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(bottomBubbleView.snp.top).inset(14)
             make.bottom.equalTo(bottomBubbleView.snp.bottom).inset(14)
         }
+    }
+    
+    func fill(viewModel: CategoryViewModel) {
+        contentView.backgroundColor = viewModel.backgroundColor
+        itemTitleLabel.text = viewModel.genreTitle
+        podcastTitleLabel.text = viewModel.podcastCount + " " + "Podcast"
     }
 }
