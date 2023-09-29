@@ -17,16 +17,16 @@ extension HomePresenter: HomePresenterProtocol {
         fetchMainCategoryes()
         fetchAllCategoryes()
         fetchTableViewCategory()
+        fetchSearchViewCategoryes()
     }
     
     func didTapedSeeAllCategoryes() {
         print("Did Taped See all categoryes")
     }
-    
-    
 }
 
 private extension HomePresenter {
+    
     func fetchMainCategoryes() {
         let viewModels : [CategoryViewModel] = [
             .init(genreTitle: "Music & Fun", podcastCount: "84", backgroundColor: .init(rgb: 0xFED9D6), action: {print("first cell")}),
@@ -41,14 +41,14 @@ private extension HomePresenter {
     
     func fetchAllCategoryes() {
         let viewModels : [AllCategoryesViewModel] = [
-            .init(categoryName: "Popular"),
-            .init(categoryName: "Recent"),
-            .init(categoryName: "Music"),
-            .init(categoryName: "Design"),
-            .init(categoryName: "Lify"),
-            .init(categoryName: "Education"),
-            .init(categoryName: "Sport"),
-            .init(categoryName: "Chill")
+            .init(categoryName: "Popular", action: {print("cell taped")}),
+            .init(categoryName: "Recent", action: {print("cell taped")}),
+            .init(categoryName: "Music", action: {print("cell taped")}),
+            .init(categoryName: "Design", action: {print("cell taped")}),
+            .init(categoryName: "Lify", action: {print("cell taped")}),
+            .init(categoryName: "Education", action: {print("cell taped")}),
+            .init(categoryName: "Sport", action: {print("cell taped")}),
+            .init(categoryName: "Chill", action: {print("cell taped")})
         ]
         
         DispatchQueue.main.async {
@@ -65,6 +65,39 @@ private extension HomePresenter {
         
         DispatchQueue.main.async {
             self.view?.updateTableView(viewModels: viewModels)
+        }
+    }
+    
+    func fetchSearchViewCategoryes() {
+        
+        let allCategoryesViewModels : [AllCategoryesViewModel] = [
+            .init(categoryName: "Popular", action: {print("cell taped")}),
+            .init(categoryName: "Recent", action: {print("cell taped")}),
+            .init(categoryName: "Music", action: {print("cell taped")}),
+            .init(categoryName: "Design", action: {print("cell taped")}),
+            .init(categoryName: "Lify", action: {print("cell taped")}),
+            .init(categoryName: "Education", action: {print("cell taped")}),
+            .init(categoryName: "Sport", action: {print("cell taped")}),
+            .init(categoryName: "Chill", action: {print("cell taped")}),
+            .init(categoryName: "Popular", action: {print("cell taped")}),
+            .init(categoryName: "Recent", action: {print("cell taped")}),
+            .init(categoryName: "Music", action: {print("cell taped")}),
+            .init(categoryName: "Design", action: {print("cell taped")}),
+            .init(categoryName: "Lify", action: {print("cell taped")}),
+            .init(categoryName: "Education", action: {print("cell taped")}),
+            .init(categoryName: "Sport", action: {print("cell taped")}),
+            .init(categoryName: "Chill", action: {print("cell taped")})
+        ]
+        
+        var topGenresViewModel = [AllCategoryesViewModel]()
+        
+        for (index, element) in allCategoryesViewModels.enumerated() {
+            if index % 2 == 0 {
+                topGenresViewModel.append(element)
+            }
+        }
+        DispatchQueue.main.async {
+            self.view?.updateSearchCollections(topViewModels: allCategoryesViewModels, allViewModels: topGenresViewModel)
         }
     }
 }

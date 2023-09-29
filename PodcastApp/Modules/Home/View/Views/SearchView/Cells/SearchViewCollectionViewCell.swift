@@ -40,4 +40,8 @@ class SearchViewCollectionViewCell: UICollectionViewCell {
             make.centerY.equalTo(contentView.snp.centerY)
         }
     }
+    
+    func fill(viewModel: AllCategoryesViewModel) {
+        titleLabel.text = viewModel.categoryName
+    }
 }

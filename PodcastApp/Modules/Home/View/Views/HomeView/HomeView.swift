@@ -178,6 +178,12 @@ final class HomeView: UIView {
         tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.reuseId)
     }
     
+    func reloadViews() {
+        categoryCollecntion.reloadData()
+        categoryesNamesCollection.reloadData()
+        tableView.reloadData()
+    }
+    
     // MARK: - Button Methods
     
     @objc private func seeAllTaped(_ sender: UIButton) {

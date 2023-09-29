@@ -8,6 +8,9 @@ final class SearchView: UIView {
     private let textDarkColor : UIColor = .init(rgb: 0x423F51)
     private let textLightColor : UIColor = .init(rgb: 0xA3A1AF)
     
+    var topGenresViewModel = [AllCategoryesViewModel]()
+    var allGenresViewModel = [AllCategoryesViewModel]()
+    
     // MARK: - UI Elements
     
     private lazy var searchFieldButton : UIButton = {
@@ -188,6 +191,11 @@ final class SearchView: UIView {
         allGenresCollection.dataSource = self
         allGenresCollection.register(SearchViewCollectionViewCell.self, forCellWithReuseIdentifier: SearchViewCollectionViewCell.reuseId)
     }
+    
+    func reloadCollections() {
+        topGenresCollection.reloadData()
+        allGenresCollection.reloadData()
+    }
 }
 
 // MARK: - TextField Delegate
@@ -208,22 +216,28 @@ extension SearchView : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == topGenresCollection {
-            return 9
+            return topGenresViewModel.count
         } else {
-            return 22
+            return allGenresViewModel.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: SearchViewCollectionViewCell.reuseId,
+            for: indexPath) as? SearchViewCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
         switch collectionView {
         case topGenresCollection:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchViewCollectionViewCell.reuseId, for: indexPath) as! SearchViewCollectionViewCell
-            return cell
+            cell.fill(viewModel: topGenresViewModel[indexPath.row])
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchViewCollectionViewCell.reuseId, for: indexPath) as! SearchViewCollectionViewCell
-            return cell
+            cell.fill(viewModel: allGenresViewModel[indexPath.row])
         }
+        
+        return cell
     }
 }
 

@@ -10,4 +10,5 @@ struct CategoryViewModel {
 
 struct AllCategoryesViewModel {
     let categoryName : String
+    let action: () -> ()
 }

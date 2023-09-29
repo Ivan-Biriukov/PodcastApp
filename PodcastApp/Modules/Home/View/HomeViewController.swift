@@ -101,6 +101,11 @@ final class HomeViewController: BaseViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewDidLoad()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         contentView.frame.size = .init(
@@ -112,8 +117,16 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController: HomeViewInput {
+    
+    func updateSearchCollections(topViewModels: [AllCategoryesViewModel], allViewModels: [AllCategoryesViewModel]) {
+        self.searchView.allGenresViewModel = allViewModels
+        self.searchView.topGenresViewModel = topViewModels
+        self.searchView.reloadCollections()
+    }
+    
     func updateTableView(viewModels: [HomeViewCategoryTableViewModel]) {
         self.homeView.tableViewModel = viewModels
+        self.homeView.reloadViews()
     }
     
     func updateAllCategoryes(viewModels: [AllCategoryesViewModel]) {
