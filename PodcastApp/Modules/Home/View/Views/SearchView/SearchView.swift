@@ -1,6 +1,10 @@
 import UIKit
 import SnapKit
 
+protocol SearchSeeAllDelegate: AnyObject {
+    func searchSeeAllTaped()
+}
+
 final class SearchView: UIView {
     
     // MARK: - Propertyes
@@ -10,6 +14,7 @@ final class SearchView: UIView {
     
     var topGenresViewModel = [AllCategoryesViewModel]()
     var allGenresViewModel = [AllCategoryesViewModel]()
+    weak var delegate : SearchSeeAllDelegate?
     
     // MARK: - UI Elements
     
@@ -129,6 +134,7 @@ final class SearchView: UIView {
         sender.alpha = 0.5
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
             sender.alpha = 1
+            self.delegate?.searchSeeAllTaped()
         })
     }
     

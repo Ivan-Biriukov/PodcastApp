@@ -93,17 +93,16 @@ final class HomeViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - LifeCycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         makeConstraints()
         hideKeyboardWhenTappedAround()
         presenter.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        presenter.viewDidLoad()
+        homeView.delegate = self
+        searchView.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -177,4 +176,21 @@ private extension HomeViewController {
             make.bottom.equalTo(mainScrollView.snp.top)
         }
     }
+}
+
+// MARK: - HomeView Delegate
+
+extension HomeViewController : HomeSeeAllDelegate {
+    func seeAllTaped() {
+        presenter.didTapedSeeAllCategoryes()
+    }
+}
+
+// MARK: - SearchView Delegate
+
+extension HomeViewController : SearchSeeAllDelegate {
+    func searchSeeAllTaped() {
+        presenter.didTapesTopGenresSeeAll()
+    }
+    
 }

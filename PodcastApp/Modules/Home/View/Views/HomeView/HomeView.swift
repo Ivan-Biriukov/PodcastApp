@@ -1,7 +1,11 @@
 import UIKit
 import SnapKit
 
-final class HomeView: UIView {
+protocol HomeSeeAllDelegate: AnyObject {
+    func seeAllTaped()
+}
+
+final class HomeView: UIView{
     
     // MARK: - Propertyes
     
@@ -10,6 +14,7 @@ final class HomeView: UIView {
     var categoryesViewModel = [CategoryViewModel]()
     var allCategoryesViewModel = [AllCategoryesViewModel]()
     var tableViewModel = [HomeViewCategoryTableViewModel]()
+    weak var delegate: HomeSeeAllDelegate?
     
     
     // MARK: - UI Elements
@@ -191,6 +196,7 @@ final class HomeView: UIView {
         sender.alpha = 0.5
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
             sender.alpha = 1
+            self.delegate?.seeAllTaped()
         })
     }
 }

@@ -123,7 +123,6 @@ class SearchResultsViewController: BaseViewController {
     }
 }
 
-
 // MARK: - TableView Delegate
 
 extension SearchResultsViewController : UITableViewDelegate {
