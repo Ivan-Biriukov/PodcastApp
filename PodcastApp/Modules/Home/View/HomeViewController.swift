@@ -21,6 +21,7 @@ final class HomeViewController: BaseViewController {
     
     private let presenter: HomePresenterProtocol
     private let constants: Constants
+    private let network: NetworkManagerProtocol = NetworkManager()
     
     private lazy var homeView: HomeView = {
         return HomeView()

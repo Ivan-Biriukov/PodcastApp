@@ -4,6 +4,7 @@ final class HomePresenter {
     
     weak var view: HomeViewInput?
     private let router: HomeRouterInput
+    private let network: NetworkManagerProtocol = NetworkManager()
     
     init(router: HomeRouterInput) {
         self.router = router
@@ -43,20 +44,29 @@ private extension HomePresenter {
     }
     
     func fetchAllCategoryes() {
-        let viewModels : [AllCategoryesViewModel] = [
-            .init(categoryName: "Popular", isItemSelected: true, action: {print("cell taped")}),
-            .init(categoryName: "Recent", isItemSelected: false, action: {print("cell taped")}),
-            .init(categoryName: "Music", isItemSelected: false, action: {print("cell taped")}),
-            .init(categoryName: "Design", isItemSelected: false, action: {print("cell taped")}),
-            .init(categoryName: "Lify", isItemSelected: false, action: {print("cell taped")}),
-            .init(categoryName: "Education", isItemSelected: false, action: {print("cell taped")}),
-            .init(categoryName: "Sport", isItemSelected: false, action: {print("cell taped")}),
-            .init(categoryName: "Chill", isItemSelected: false, action: {print("cell taped")})
-        ]
+        var test : [AllCategoryesViewModel] = []
+        let group = DispatchGroup()
         
-        DispatchQueue.main.async {
-            self.view?.updateAllCategoryes(viewModels: viewModels)
+        group.enter()
+        network.fetchCategoriest(page: 1) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let genres = try JSONDecoder().decode(GenresModel.self, from: data)
+                    for i in genres.genres {
+                        test.append(AllCategoryesViewModel(categoryName: i.name, isItemSelected: false, action: {print(i.id)}))
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        group.leave()
         }
+        
+        group.wait()
+        view?.updateAllCategoryes(viewModels: test)
     }
     
     func fetchTableViewCategory() {

@@ -9,6 +9,7 @@ enum NetworkResponse: String {
 
 protocol NetworkManagerProtocol {
     func fetchCategoriest(page: Int, completion: @escaping (Result<Data, Error>) -> Void)
+    func fetchAllCategoryes(completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 final class NetworkManager {
@@ -17,6 +18,10 @@ final class NetworkManager {
 }
 
 extension NetworkManager: NetworkManagerProtocol {
+    func fetchAllCategoryes(completion: @escaping (Result<Data, Error>) -> Void) {
+      //  router.request(<#T##route: PodcastAPI##PodcastAPI#>, completion: <#T##NetworkRouterCompletion##NetworkRouterCompletion##(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> ()#>)
+    }
+    
     func dasd() {
         
     }
