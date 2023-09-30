@@ -65,7 +65,6 @@ final class HomeViewController: BaseViewController {
     
     private lazy var contentView: UIView = {
         let view = UIView()
-        view.isUserInteractionEnabled = false
         view.addSubview(homeView)
         view.addSubview(searchView)
         homeView.snp.makeConstraints { make in
@@ -94,10 +93,16 @@ final class HomeViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - LifeCycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         makeConstraints()
+        hideKeyboardWhenTappedAround()
+        presenter.viewDidLoad()
+        homeView.delegate = self
+        searchView.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -111,14 +116,35 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController: HomeViewInput {
+    
+    func updateSearchCollections(topViewModels: [SearchGenresViewModel], allViewModels: [SearchGenresViewModel]) {
+        self.searchView.allGenresViewModel = allViewModels
+        self.searchView.topGenresViewModel = topViewModels
+        self.searchView.reloadCollections()
+    }
+    
+    func updateTableView(viewModels: [HomeViewCategoryTableViewModel]) {
+        self.homeView.tableViewModel = viewModels
+        self.homeView.reloadViews()
+    }
+    
+    func updateAllCategoryes(viewModels: [AllCategoryesViewModel]) {
+        self.homeView.allCategoryesViewModel = viewModels
+    }
+    
+    func updateMainCategoryCollection(viewModels: [CategoryViewModel]) {
+        self.homeView.categoryesViewModel = viewModels
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let x = scrollView.contentOffset.x / 2 + 16
         separatorView.frame.origin.x = x
     }
+    
 }
 
 extension HomeViewController: UIScrollViewDelegate {
-    
+
 }
 
 private extension HomeViewController {
@@ -128,12 +154,12 @@ private extension HomeViewController {
     
     func makeConstraints() {
         homeTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(separatorView.snp.top).inset(-10)
             make.leading.equalToSuperview().inset(constants.sideTitlePadding)
         }
         
         searchTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(separatorView.snp.top).inset(-10)
             make.trailing.equalToSuperview().inset(constants.sideTitlePadding)
         }
         
@@ -147,7 +173,24 @@ private extension HomeViewController {
             make.height.equalTo(constants.separatorHeight)
             make.width.equalTo(view.snp.width).dividedBy(constants.separatorDivideWidth)
             make.leading.equalToSuperview().inset(constants.sideTitlePadding)
-            make.bottom.equalTo(mainScrollView.snp.top)       
+            make.bottom.equalTo(mainScrollView.snp.top)
         }
     }
+}
+
+// MARK: - HomeView Delegate
+
+extension HomeViewController : HomeSeeAllDelegate {
+    func seeAllTaped() {
+        presenter.didTapedSeeAllCategoryes()
+    }
+}
+
+// MARK: - SearchView Delegate
+
+extension HomeViewController : SearchSeeAllDelegate {
+    func searchSeeAllTaped() {
+        presenter.didTapesTopGenresSeeAll()
+    }
+    
 }
