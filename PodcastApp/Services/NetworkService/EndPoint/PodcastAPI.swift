@@ -6,6 +6,7 @@ enum NetworkEnvironment {
 
 enum PodcastAPI { 
     case getCategories(page: Int)
+    case getHomeViewPopularCategories(genreId: String, pageNumber: Int)
 }
 
 extension PodcastAPI: EndPointType {
@@ -26,6 +27,8 @@ extension PodcastAPI: EndPointType {
             switch self {
             case .getCategories:
                 return "api/v2/genres"
+            case .getHomeViewPopularCategories:
+                return "api/v2/best_podcasts"
 //            case .searchPodcasts:
 //                return "api/v2/search"
             }
@@ -34,6 +37,8 @@ extension PodcastAPI: EndPointType {
         var httpMethod: HTTPMethod {
             switch self {
             case .getCategories: // .searchPodcasts:
+                return .get
+            case .getHomeViewPopularCategories:
                 return .get
             }
         }
@@ -45,12 +50,21 @@ extension PodcastAPI: EndPointType {
                     bodyParam: nil,
                     urlParam: ["top_level_only": "\(page)"]
                 )
+                
+            case .getHomeViewPopularCategories(genreId: let genreId, pageNumber: let pageNumber):
+                return .request(
+                    bodyParam: nil,
+                    //urlParam: ["genre_id": "\(genreId)", "page": pageNumber, "sort": "listen_score", "safe_mode": 0]
+                    urlParam: ["genre_id" : "\(genreId)"]
+                )
+            }
+                
 //            case .searchPodcasts(text: let text, offset: <#T##Int#>, limit: <#T##Int#>):
 //                return [
 //                    "q": text,
 //                    
 //                ]
-            }
+
         }
         
         var header: HTTPHeader? {

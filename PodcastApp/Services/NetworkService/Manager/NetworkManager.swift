@@ -9,7 +9,7 @@ enum NetworkResponse: String {
 
 protocol NetworkManagerProtocol {
     func fetchCategoriest(page: Int, completion: @escaping (Result<Data, Error>) -> Void)
-    func fetchAllCategoryes(completion: @escaping (Result<Data, Error>) -> Void)
+    func fetchHomeViewPopularCategories(genreId: String, pageNumber: Int,completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 final class NetworkManager {
@@ -18,13 +18,17 @@ final class NetworkManager {
 }
 
 extension NetworkManager: NetworkManagerProtocol {
-    func fetchAllCategoryes(completion: @escaping (Result<Data, Error>) -> Void) {
-      //  router.request(<#T##route: PodcastAPI##PodcastAPI#>, completion: <#T##NetworkRouterCompletion##NetworkRouterCompletion##(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> ()#>)
+    
+    func fetchHomeViewPopularCategories(genreId: String, pageNumber: Int,completion: @escaping (Result<Data, Error>) -> Void) {
+        router.request(.getHomeViewPopularCategories(genreId: genreId, pageNumber: pageNumber)) { data, response, error in
+            guard error == nil, let data else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success(data))
+        }
     }
     
-    func dasd() {
-        
-    }
     func fetchCategoriest(page: Int, completion: @escaping (Result<Data, Error>) -> Void) {
         router.request(.getCategories(page: page)) { data, response, error in
             guard error == nil, let data else {
