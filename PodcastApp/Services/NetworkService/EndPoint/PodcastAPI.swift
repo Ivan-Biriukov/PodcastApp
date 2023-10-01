@@ -54,8 +54,7 @@ extension PodcastAPI: EndPointType {
             case .getHomeViewPopularCategories(genreId: let genreId, pageNumber: let pageNumber):
                 return .request(
                     bodyParam: nil,
-                    //urlParam: ["genre_id": "\(genreId)", "page": pageNumber, "sort": "listen_score", "safe_mode": 0]
-                    urlParam: ["genre_id" : "\(genreId)"]
+                    urlParam: ["genre_id": "\(genreId)", "page": pageNumber, "sort": "listen_score", "safe_mode": 1]
                 )
             }
                 
@@ -69,8 +68,10 @@ extension PodcastAPI: EndPointType {
         
         var header: HTTPHeader? {
             return [
-                "X-ListenAPI-Key": "6797ac2453a5405d8799a56fc4c8384f",
+                "X-ListenAPI-Key": "396ff92be9a743feb4421b09a51fa56c",
                 "Content-Type": "application/json"
                 ]
         }
     }
+
+//6797ac2453a5405d8799a56fc4c8384f

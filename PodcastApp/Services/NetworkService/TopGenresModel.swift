@@ -15,6 +15,5 @@ struct Podcasts: Codable {
     let country: String
     let language: String
     let description: String
-    let listen_score: Int
     let total_episodes: Int
 }

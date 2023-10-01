@@ -32,22 +32,39 @@ extension HomePresenter: HomePresenterProtocol {
 private extension HomePresenter {
     
     func fetchMainCategoryes() {
-//        let viewModels : [CategoryViewModel] = [
-//            .init(genreTitle: "Music & Fun", podcastCount: "84", backgroundColor: .init(rgb: 0xFED9D6), action: {print("first cell")}),
-//            .init(genreTitle: "Life & Chill", podcastCount: "96", backgroundColor: .init(rgb: 0x97D7F2), action: {print(("second Cell"))}),
-//            .init(genreTitle: "Education", podcastCount: "72", backgroundColor: .init(rgb: 0xEDF0FC), action: {print("third Cell")})
-//        ]
-//        
-//        DispatchQueue.main.async {
-//            self.view?.updateMainCategoryCollection(viewModels: viewModels)
-//        }
+        let topGenresIdsArray: [String] = ["144", "151", "93", "77", "125", "122", "127", "132", "168", "88", "134", "99", "133", "100", "69", "117", "68", "82", "111", "107", "135"]
+
+        var homeViewPopularCategories : [CategoryViewModel] = []
+        let group = DispatchGroup()
+
+        for id in topGenresIdsArray{
+            group.enter()
+            network.fetchHomeViewPopularCategories(genreId: id, pageNumber: 1) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    do {
+                        let genres = try JSONDecoder().decode(TopGenresModel.self, from: data)
+                        homeViewPopularCategories.append(CategoryViewModel(genreTitle: genres.name, podcastCount: "\(genres.total)", backgroundColor: .init(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1), action: {print(genres.name)}))
+                    }
+                    catch {
+                        print(error.localizedDescription)
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                group.leave()
+            }
+        }
+
+        group.wait()
+        view?.updateMainCategoryCollection(viewModels: homeViewPopularCategories)
     }
     
     func fetchCategoryesNames() {
+        
         var homeNamesViewModel : [AllCategoryesViewModel] = []
         var searchTopNamesViewModel : [SearchGenresViewModel] = []
         var searchAllGenresViewModel : [SearchGenresViewModel] = []
-        var homeViewPopularCategories : [CategoryViewModel] = []
         let group = DispatchGroup()
         
         group.enter()
@@ -57,7 +74,6 @@ private extension HomePresenter {
                 do {
                     let genres = try JSONDecoder().decode(GenresModel.self, from: data)
                     for i in genres.genres {
-                        homeNamesViewModel.append(AllCategoryesViewModel(id: i.id, categoryName: i.name, isItemSelected: false, action: {print(i.id)}))
                         searchTopNamesViewModel.append(SearchGenresViewModel(categoryName: i.name, action: {print( i.id)}))
                     }
                 } catch {
@@ -76,6 +92,7 @@ private extension HomePresenter {
                 do {
                     let genres = try JSONDecoder().decode(GenresModel.self, from: data)
                     for i in genres.genres {
+                        homeNamesViewModel.append(AllCategoryesViewModel(id: i.id, categoryName: i.name, isItemSelected: false, action: {print(i.id)}))
                         searchAllGenresViewModel.append(SearchGenresViewModel(categoryName: i.name, action: {print(i.id)}))
                     }
                 }
@@ -89,27 +106,7 @@ private extension HomePresenter {
             group.leave()
         }
         
-        group.enter()
-        for category in homeNamesViewModel {
-            network.fetchHomeViewPopularCategories(genreId: "\(category.id)", pageNumber: 1) { [weak self] result in
-                switch result {
-                case .success(let data):
-                    do {
-                        let genres = try JSONDecoder().decode(TopGenresModel.self, from: data)
-                        homeViewPopularCategories.append(CategoryViewModel(genreTitle: genres.name, podcastCount: "\(genres.total)", backgroundColor: .init(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1), action: {print(genres.name)}))
-                    }
-                    catch {
-                        print(error.localizedDescription)
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-            group.leave()
-        }
-        
         group.wait()
-        //view?.updateMainCategoryCollection(viewModels: homeViewPopularCategories)
         view?.updateAllCategoryes(viewModels: homeNamesViewModel)
         view?.updateSearchCollections(topViewModels: searchTopNamesViewModel, allViewModels: searchAllGenresViewModel)
     }

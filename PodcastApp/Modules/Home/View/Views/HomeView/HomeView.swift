@@ -195,6 +195,7 @@ final class HomeView: UIView{
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
             sender.alpha = 1
             self.delegate?.seeAllTaped()
+            print(self.categoryesViewModel.count)
         })
     }
 }
