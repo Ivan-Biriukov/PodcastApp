@@ -55,13 +55,11 @@ private extension HomePresenter {
                 group.leave()
             }
         }
-
         group.wait()
         view?.updateMainCategoryCollection(viewModels: homeViewPopularCategories)
     }
     
     func fetchCategoryesNames() {
-        
         var homeNamesViewModel : [AllCategoryesViewModel] = []
         var searchTopNamesViewModel : [SearchGenresViewModel] = []
         var searchAllGenresViewModel : [SearchGenresViewModel] = []
@@ -107,6 +105,7 @@ private extension HomePresenter {
         }
         
         group.wait()
+        homeNamesViewModel[0].isItemSelected = true
         view?.updateAllCategoryes(viewModels: homeNamesViewModel)
         view?.updateSearchCollections(topViewModels: searchTopNamesViewModel, allViewModels: searchAllGenresViewModel)
     }
