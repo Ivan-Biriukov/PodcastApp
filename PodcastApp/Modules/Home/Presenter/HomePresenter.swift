@@ -5,6 +5,7 @@ final class HomePresenter {
     weak var view: HomeViewInput?
     private let router: HomeRouterInput
     private let network: NetworkManagerProtocol = NetworkManager()
+    private var currentSelectedHomeViewCategyName : String = ""
     
     init(router: HomeRouterInput) {
         self.router = router
@@ -18,10 +19,14 @@ extension HomePresenter: HomePresenterProtocol {
     }
     
     func viewDidLoad() {
-        fetchMainCategoryes()
+        //fetchMainCategoryes()
         fetchCategoryesNames()
         fetchTableViewCategory()
-        fetchSearchViewCategoryes()
+       // fetchSearchViewCategoryes()
+    }
+    
+    func updateCurrentCategoryName(with text: String) {
+        self.currentSelectedHomeViewCategyName = text
     }
     
     func didTapedSeeAllCategoryes() {
@@ -92,7 +97,9 @@ private extension HomePresenter {
                 do {
                     let genres = try JSONDecoder().decode(GenresModel.self, from: data)
                     for i in genres.genres {
-                        homeNamesViewModel.append(AllCategoryesViewModel(id: i.id, categoryName: i.name, isItemSelected: false, action: {self?.updateTableViewData(queryText: i.name, queryType: "episode", resultsCount: 10)}))
+                        homeNamesViewModel.append(AllCategoryesViewModel(id: i.id, categoryName: i.name, isItemSelected: false, action: {self?.updateTableViewData(queryText: i.name, queryType: "episode", resultsCount: 10)
+                            self?.currentSelectedHomeViewCategyName = i.name
+                        }))
                         searchAllGenresViewModel.append(SearchGenresViewModel(categoryName: i.name, action: {print(i.id)}))
                     }
                 }
@@ -109,6 +116,7 @@ private extension HomePresenter {
         group.wait()
         if homeNamesViewModel.count != 0 {
             homeNamesViewModel[0].isItemSelected = true
+            self.currentSelectedHomeViewCategyName = homeNamesViewModel[0].categoryName
         }
         view?.updateAllCategoryes(viewModels: homeNamesViewModel)
         view?.updateSearchCollections(topViewModels: searchTopNamesViewModel, allViewModels: searchAllGenresViewModel)
@@ -125,7 +133,7 @@ private extension HomePresenter {
                 do {
                     let elemetns = try JSONDecoder().decode(DetailResultModel.self, from: data)
                     for i in elemetns.results {
-                        viewModels.append(HomeViewCategoryTableViewModel(color: .init(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1), podcastName: i.title_original, authorName: i.podcast.publisher_original ?? "unknown", podcastCategoryName: "VR & AR", episodsCount: "\(i.audio_length_sec)", savedToFavorits: false, action: {print(i.audio)}))
+                        viewModels.append(HomeViewCategoryTableViewModel(color: .init(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1), podcastName: i.title_original, authorName: i.podcast.publisher_original ?? "unknown", podcastCategoryName: self?.currentSelectedHomeViewCategyName ?? "undefined", episodsCount: "\(i.audio_length_sec)", savedToFavorits: false, action: {print(i.audio)}))
                     }
                 }
                 catch {
@@ -157,7 +165,7 @@ private extension HomePresenter {
                 do {
                     let elemetns = try JSONDecoder().decode(DetailResultModel.self, from: data)
                     for i in elemetns.results {
-                        viewModels.append(HomeViewCategoryTableViewModel(color: .init(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1), podcastName: i.title_original, authorName: i.podcast.publisher_original ?? "unknown", podcastCategoryName: "VR & AR", episodsCount: "\(i.audio_length_sec)", savedToFavorits: false, action: {print(i.audio)}))
+                        viewModels.append(HomeViewCategoryTableViewModel(color: .init(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1), podcastName: i.title_original, authorName: i.podcast.publisher_original ?? "unknown", podcastCategoryName: self?.currentSelectedHomeViewCategyName ?? "undefinded", episodsCount: "\(i.audio_length_sec)", savedToFavorits: false, action: {print(i.audio)}))
                     }
                 }
                 catch {

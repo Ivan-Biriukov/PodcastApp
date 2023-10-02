@@ -32,18 +32,16 @@ extension PodcastAPI: EndPointType {
                 return "api/v2/best_podcasts"
             case.getDetailPodcast:
                 return "api/v2/search"
-//            case .searchPodcasts:
-//                return "api/v2/search"
             }
         }
         
         var httpMethod: HTTPMethod {
             switch self {
-            case .getCategories: // .searchPodcasts:
+            case .getCategories:
                 return .get
             case .getHomeViewPopularCategories:
                 return .get
-            case .getDetailPodcast:
+            case .getDetailPodcast: // .searchPodcasts:
                 return .get
             }
         }
@@ -72,7 +70,7 @@ extension PodcastAPI: EndPointType {
         
         var header: HTTPHeader? {
             return [
-                "X-ListenAPI-Key": "e2b4f94292374fe0be447f47d0097485",
+                "X-ListenAPI-Key": "14dbbb7efd164f88b76be3727a5c32df",
                 "Content-Type": "application/json"
                 ]
         }
@@ -80,3 +78,4 @@ extension PodcastAPI: EndPointType {
 
 //6797ac2453a5405d8799a56fc4c8384f  - limited
 //396ff92be9a743feb4421b09a51fa56c  - limited
+//14dbbb7efd164f88b76be3727a5c32df
