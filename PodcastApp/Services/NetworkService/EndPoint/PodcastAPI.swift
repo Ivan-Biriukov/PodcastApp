@@ -67,22 +67,16 @@ extension PodcastAPI: EndPointType {
                     urlParam: ["q": q, "type": type, "page_size": page_size]
                 )
             }
-                
-//            case .searchPodcasts(text: let text, offset: <#T##Int#>, limit: <#T##Int#>):
-//                return [
-//                    "q": text,
-//                    
-//                ]
 
         }
         
         var header: HTTPHeader? {
             return [
-                "X-ListenAPI-Key": "396ff92be9a743feb4421b09a51fa56c",
+                "X-ListenAPI-Key": "e2b4f94292374fe0be447f47d0097485",
                 "Content-Type": "application/json"
                 ]
         }
     }
 
-//6797ac2453a5405d8799a56fc4c8384f
-//396ff92be9a743feb4421b09a51fa56c
+//6797ac2453a5405d8799a56fc4c8384f  - limited
+//396ff92be9a743feb4421b09a51fa56c  - limited

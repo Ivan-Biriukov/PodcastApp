@@ -117,6 +117,12 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController: HomeViewInput {
+//    func updateTableViewDataWithCurrentCategori(viewModels: [HomeViewCategoryTableViewModel]) {
+//        self.homeView.tableViewModel = []
+//        self.homeView.tableViewModel = viewModels
+//        self.homeView.reloadViews()
+//    }
+    
     
     func updateSearchCollections(topViewModels: [SearchGenresViewModel], allViewModels: [SearchGenresViewModel]) {
         self.searchView.allGenresViewModel = allViewModels

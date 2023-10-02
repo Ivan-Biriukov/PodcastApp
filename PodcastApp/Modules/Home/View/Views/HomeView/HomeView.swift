@@ -253,6 +253,10 @@ extension HomeView : UICollectionViewDelegate {
             
             let currentCellSelectedStatus = allCategoryesViewModel[indexPath.row].isItemSelected
             allCategoryesViewModel[indexPath.row].isItemSelected = !currentCellSelectedStatus
+            
+            let viewModel = allCategoryesViewModel[indexPath.row]
+            viewModel.action()
+            
             collectionView.reloadData()
         }
     }
