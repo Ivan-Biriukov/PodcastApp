@@ -121,13 +121,38 @@ final class SearchView: UIView {
     // MARK: - Buttons Methods
     
     @objc func searchTaped(_ sender: UIButton) {
-        sender.alpha = 0.5
-        let vcToPresent = SearchResultsViewController(currentResults: [SearchResultViewModel(bgColor: .gray, podcastGroupName: "Baby Pesut Podcast", episodsCount: "56", authorName: "Dr. Oi om jean")], allPodcastsResults: [SearchResultAllPodcastsViewModel(bgColor: .yellow, podcastName: "Between love and career", trackDuration: "56:38", episodeNumber: "56"), SearchResultAllPodcastsViewModel(bgColor: .red, podcastName: "The powerful way to move on", trackDuration: "58:40", episodeNumber: "55"), SearchResultAllPodcastsViewModel(bgColor: .purple, podcastName: "Monkey love makes me curious", trackDuration: "1:40:40", episodeNumber: "54"), SearchResultAllPodcastsViewModel(bgColor: .link, podcastName: "My love is blocked by Covid-19", trackDuration: "1:45:20", episodeNumber: "53"), SearchResultAllPodcastsViewModel(bgColor: .brown, podcastName: "Why should you be baper?", trackDuration: "1:45:20", episodeNumber: "52")], searchText: self.searchField.text!)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            sender.alpha = 1
-            self.window?.rootViewController?.present(vcToPresent, animated: true, completion: nil)
-        })
+        let group = DispatchGroup()
+        
+        var oneResult : [SearchResultViewModel] = []
+        var allResults : [SearchResultAllPodcastsViewModel] = []
+        
+        group.enter()
+        NetworkManager().fetchSearched(q: searchField.text!, type: "episode", page_size: 10) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let searchResult = try JSONDecoder().decode(DetailResultModel.self, from: data)
+                    
+                    oneResult.append(SearchResultViewModel(bgColor: .green, podcastGroupName: searchResult.results.first?.title_original ?? "-----", episodsCount: "\(searchResult.results.first?.audio_length_sec ?? 1)", authorName: searchResult.results.first?.podcast.publisher_original ?? "dickpick"))
+                    
+                    for i in searchResult.results.dropFirst() {
+                        allResults.append(SearchResultAllPodcastsViewModel(bgColor: .init(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1), podcastName: i.title_original, trackDuration: "\(i.audio_length_sec)", episodeNumber: "\(i.audio_length_sec)"))
+                    }
+                    
+                }
+                catch {
+                    print(error.localizedDescription)
+                }
+            case .failure(let e):
+                print(e.localizedDescription)
+            }
+            group.leave()
+        }
+        
+        group.wait()
+        let vc = SearchResultsViewController(currentResults: oneResult, allPodcastsResults: allResults, searchText: searchField.text!)
+        self.window?.rootViewController?.present(vc, animated: true, completion: nil)
     }
     
     @objc func seeAllTaped (_ sender: UIButton) {
