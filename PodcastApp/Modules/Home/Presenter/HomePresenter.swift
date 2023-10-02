@@ -111,15 +111,29 @@ private extension HomePresenter {
     }
     
     func fetchTableViewCategory() {
-        let viewModels : [HomeViewCategoryTableViewModel] = [
-            .init(color: .init(rgb: 0x2882F1), podcastName: "Ngobam", authorName: "Gofar Hilman", podcastCategoryName: "Music & Fun", episodsCount: "23", savedToFavorits: true, action: {print(1)}),
-            .init(color: .init(rgb: 0xFEDCDB), podcastName: "Semprod", authorName: "Kuy Entertainment", podcastCategoryName: "Life & Chill", episodsCount: "44", savedToFavorits: false, action: {print(2)}),
-            .init(color: .init(rgb: 0x97D7F2), podcastName: "Sruput Nendang", authorName: "Marco", podcastCategoryName: "Life & Chill", episodsCount: "46", savedToFavorits: false, action: {print(3)})
-        ]
-
-        DispatchQueue.main.async {
-            self.view?.updateTableView(viewModels: viewModels)
+        var viewModels : [HomeViewCategoryTableViewModel] = []
+        let group = DispatchGroup()
+        
+        group.enter()
+        network.fetchSearched(q: "Sports", type: "episode", page_size: 10) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let elemetns = try JSONDecoder().decode(DetailResultModel.self, from: data)
+                    for i in elemetns.results {
+                        viewModels.append(HomeViewCategoryTableViewModel(color: .init(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1), podcastName: i.title_original, authorName: i.podcast.publisher_original ?? "unknown", podcastCategoryName: "VR & AR", episodsCount: "\(i.audio_length_sec)", savedToFavorits: false, action: {print(i.audio)}))
+                    }
+                }
+                catch {
+                    print(error.localizedDescription)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            group.leave()
         }
+        group.wait()
+        view?.updateTableView(viewModels: viewModels)
     }
     
     func fetchSearchViewCategoryes() {

@@ -10,6 +10,7 @@
 		57A5BAC22AC72A750036557A /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */; };
 		57A5BAC42AC72B730036557A /* SearchResultAllPodcastsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */; };
 		57A5BAC62AC7530D0036557A /* SearchGenresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC52AC7530D0036557A /* SearchGenresViewModel.swift */; };
+		57A6620B2ACAD555004652E2 /* DetailResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6620A2ACAD555004652E2 /* DetailResultModel.swift */; };
 		57B28DEE2ACA005D004EA887 /* TopGenresModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B28DED2ACA005D004EA887 /* TopGenresModel.swift */; };
 		57C1AA952AC60A6000444C47 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA892AC60A6000444C47 /* HomeAssembly.swift */; };
 		57C1AA962AC60A6000444C47 /* HomePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1AA8B2AC60A6000444C47 /* HomePresenterProtocol.swift */; };
@@ -113,6 +114,7 @@
 		57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultAllPodcastsViewModel.swift; sourceTree = "<group>"; };
 		57A5BAC52AC7530D0036557A /* SearchGenresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGenresViewModel.swift; sourceTree = "<group>"; };
+		57A6620A2ACAD555004652E2 /* DetailResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResultModel.swift; sourceTree = "<group>"; };
 		57B28DED2ACA005D004EA887 /* TopGenresModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopGenresModel.swift; sourceTree = "<group>"; };
 		57C1AA892AC60A6000444C47 /* HomeAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 		57C1AA8B2AC60A6000444C47 /* HomePresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePresenterProtocol.swift; sourceTree = "<group>"; };
@@ -675,6 +677,7 @@
 				804C1F972AC351D300B07C87 /* EndPoint */,
 				804C1FB52AC371AE00B07C87 /* TestModel.swift */,
 				57B28DED2ACA005D004EA887 /* TopGenresModel.swift */,
+				57A6620A2ACAD555004652E2 /* DetailResultModel.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -851,6 +854,7 @@
 				805D4FE52AC0B2BC00905151 /* AuthAssembly.swift in Sources */,
 				8093564D2ABE40990094F3AB /* SavingManager.swift in Sources */,
 				804C1FAB2AC3644B00B07C87 /* NetworkRouter.swift in Sources */,
+				57A6620B2ACAD555004652E2 /* DetailResultModel.swift in Sources */,
 				809355F22ABE25B90094F3AB /* MainTabBarController.swift in Sources */,
 				809355D92ABE23710094F3AB /* AppDelegate.swift in Sources */,
 				804C1FB42AC36C1100B07C87 /* NetworkManager.swift in Sources */,
