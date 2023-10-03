@@ -1,6 +1,9 @@
 import Foundation
 
 protocol HomeViewInput: AnyObject {
+    func preloadTrending(viewModel: [AllCategoryesViewModel])
+    
+    
     func updateMainCategoryCollection(viewModels: [CategoryViewModel])
     func updateAllCategoryes(viewModels: [AllCategoryesViewModel])
     func updateTableView(viewModels: [HomeViewCategoryTableViewModel])

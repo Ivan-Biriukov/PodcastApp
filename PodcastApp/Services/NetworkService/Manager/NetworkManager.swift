@@ -8,6 +8,7 @@ enum NetworkResponse: String {
 }
 
 protocol NetworkManagerProtocol {
+    func fetchTrending(safe: Bool,completion: @escaping (Result<Data, Error>) -> Void)
     func fetchCategoriest(page: Int, completion: @escaping (Result<Data, Error>) -> Void)
     func fetchHomeViewPopularCategories(genreId: String, pageNumber: Int,completion: @escaping (Result<Data, Error>) -> Void)
     func fetchSearched(q: String, type: String, page_size: Int, completion: @escaping (Result<Data, Error>) -> Void)
@@ -20,33 +21,44 @@ final class NetworkManager {
 
 extension NetworkManager: NetworkManagerProtocol {
     
-    func fetchHomeViewPopularCategories(genreId: String, pageNumber: Int,completion: @escaping (Result<Data, Error>) -> Void) {
-        router.request(.getHomeViewPopularCategories(genreId: genreId, pageNumber: pageNumber)) { data, response, error in
+    func fetchTrending(safe: Bool, completion: @escaping (Result<Data, Error>) -> Void) {
+        router.request(.getTrendingsCategoryes(safe: safe)) { data, response, error in
             guard error == nil, let data else {
                 completion(.failure(error!))
                 return
             }
             completion(.success(data))
         }
+    }
+    
+    
+    func fetchHomeViewPopularCategories(genreId: String, pageNumber: Int,completion: @escaping (Result<Data, Error>) -> Void) {
+//        router.request(.getHomeViewPopularCategories(genreId: genreId, pageNumber: pageNumber)) { data, response, error in
+//            guard error == nil, let data else {
+//                completion(.failure(error!))
+//                return
+//            }
+//            completion(.success(data))
+//        }
     }
     
     func fetchCategoriest(page: Int, completion: @escaping (Result<Data, Error>) -> Void) {
-        router.request(.getCategories(page: page)) { data, response, error in
-            guard error == nil, let data else {
-                completion(.failure(error!))
-                return
-            }
-            completion(.success(data))
-        }
+//        router.request(.getCategories(page: page)) { data, response, error in
+//            guard error == nil, let data else {
+//                completion(.failure(error!))
+//                return
+//            }
+//            completion(.success(data))
+//        }
     }
     
     func fetchSearched(q: String, type: String, page_size: Int, completion: @escaping (Result<Data, Error>) -> Void) {
-        router.request(.getDetailPodcast(q: q, type: type, page_size: page_size)) { data, response, error in
-            guard error == nil, let data else {
-                completion(.failure(error!))
-                return
-            }
-            completion(.success(data))
-        }
+//        router.request(.getDetailPodcast(q: q, type: type, page_size: page_size)) { data, response, error in
+//            guard error == nil, let data else {
+//                completion(.failure(error!))
+//                return
+//            }
+//            completion(.success(data))
+//        }
     }
 }

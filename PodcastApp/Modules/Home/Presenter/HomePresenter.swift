@@ -19,14 +19,15 @@ extension HomePresenter: HomePresenterProtocol {
     }
     
     func viewDidLoad() {
+        fetchMainViewContollerPreloads()
         //fetchMainCategoryes()
-        fetchCategoryesNames()
-        fetchTableViewCategory()
+       // fetchCategoryesNames()
+      //  fetchTableViewCategory()
        // fetchSearchViewCategoryes()
     }
     
     func updateCurrentCategoryName(with text: String) {
-        self.currentSelectedHomeViewCategyName = text
+      //  self.currentSelectedHomeViewCategyName = text
     }
     
     func didTapedSeeAllCategoryes() {
@@ -37,6 +38,53 @@ extension HomePresenter: HomePresenterProtocol {
 private extension HomePresenter {
     
     // MARK: - Network Section
+    
+    func fetchMainViewContollerPreloads() {
+        var trendingsNamesViewModel : [AllCategoryesViewModel] = []
+        
+        let group = DispatchGroup()
+        
+        group.enter()
+        network.fetchTrending(safe: true) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let trendings = try JSONDecoder().decode(TrendingsNamesModel.self, from: data)
+                    
+                    for result in  trendings.feeds {
+                        trendingsNamesViewModel.append(AllCategoryesViewModel(id: result.id, categoryName: result.name, isItemSelected: false, action: {print(result.name)}))
+                    }
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let e):
+                print(e)
+            }
+            group.leave()
+        }
+        
+        group.wait()
+        if trendingsNamesViewModel.count != 0 {
+            trendingsNamesViewModel[0].isItemSelected = true
+        }
+        view?.preloadTrending(viewModel: trendingsNamesViewModel)
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func fetchMainCategoryes() {
         let topGenresIdsArray: [String] = ["144", "151", "93", "77", "125", "122", "127", "132", "168", "88", "134", "99", "133", "100", "69", "117", "68", "82", "111", "107", "135"]

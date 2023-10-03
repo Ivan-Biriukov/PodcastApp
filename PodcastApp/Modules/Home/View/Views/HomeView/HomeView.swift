@@ -194,24 +194,7 @@ final class HomeView: UIView{
         sender.alpha = 0.5
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
             sender.alpha = 1
-            self.delegate?.seeAllTaped()
-            NetworkManager().fetchSearched(q: "Sports", type: "episode", page_size: 10) { [weak self] result in
-                switch result {
-                case .success(let data):
-                    do {
-                        let elemetns = try JSONDecoder().decode(DetailResultModel.self, from: data)
-                        for i in elemetns.results {
-                            self?.tableViewModel.append(HomeViewCategoryTableViewModel(color: .init(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1), podcastName: i.title_original, authorName: i.podcast.publisher_original ?? "unknown", podcastCategoryName: "VR & AR", episodsCount: "\(i.audio_length_sec)", savedToFavorits: false, action: {print(i.audio)}))
-                        }
-                    }
-                    catch {
-                        print(error)
-                    }
-                case .failure(let e):
-                    print(e)
-                }
-            }
-            self.tableView.reloadData()
+
         })
     }
 }
