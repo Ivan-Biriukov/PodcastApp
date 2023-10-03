@@ -61,6 +61,8 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabBarModules()
+        setTabBarAppearance()
+        
         
         network.fetchCategoriest(page: 2) { [weak self] result in
             switch result {
@@ -109,5 +111,33 @@ private extension MainTabBarController {
         }
         
         return navController
+    }
+    
+    private func setTabBarAppearance() {
+        let positionX: CGFloat = 25
+        let positionY: CGFloat = 15
+        let width = tabBar.bounds.width - positionX * 2
+        let height = tabBar.bounds.height + positionY * 2
+        
+        let roundLayer = CAShapeLayer()
+        
+        let bezierPath = UIBezierPath(roundedRect: CGRect(x: positionX, y: tabBar.bounds.minY - positionY * 1.2, width: width, height: height), cornerRadius: height / 3.5)
+        
+        roundLayer.path = bezierPath.cgPath
+        
+        tabBar.layer.insertSublayer(roundLayer, at: 0)
+        
+        tabBar.itemWidth = width / 3
+        tabBar.itemPositioning = .fill
+        
+        roundLayer.fillColor = UIColor.tabBarMain.cgColor
+        tabBar.tintColor = .tabBarItemAccent
+        tabBar.unselectedItemTintColor = .tabBarNotChosen
+        
+        tabBar.layer.shadowColor = UIColor.black.cgColor
+        tabBar.layer.shadowOpacity = 0.075
+        tabBar.layer.shadowOffset = .init(width: 2.5, height: 2.5)
+        tabBar.layer.shadowRadius = 10
+
     }
 }
