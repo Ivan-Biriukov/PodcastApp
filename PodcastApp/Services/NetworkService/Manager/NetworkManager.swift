@@ -9,6 +9,11 @@ enum NetworkResponse: String {
 
 protocol NetworkManagerProtocol {
     func fetchTrending(safe: Bool,completion: @escaping (Result<Data, Error>) -> Void)
+    func fetchResultsFromSelectedTrendings(categoryName: String, count: Int, completion: @escaping (Result<Data, Error>) -> Void)
+    
+    
+    
+    
     func fetchCategoriest(page: Int, completion: @escaping (Result<Data, Error>) -> Void)
     func fetchHomeViewPopularCategories(genreId: String, pageNumber: Int,completion: @escaping (Result<Data, Error>) -> Void)
     func fetchSearched(q: String, type: String, page_size: Int, completion: @escaping (Result<Data, Error>) -> Void)
@@ -20,6 +25,17 @@ final class NetworkManager {
 }
 
 extension NetworkManager: NetworkManagerProtocol {
+    
+    func fetchResultsFromSelectedTrendings(categoryName: String, count: Int, completion: @escaping (Result<Data, Error>) -> Void) {
+        router.request(.getResultFromSelectedTrending(categoryName: categoryName, resultsCount: count)) { data, response, error in
+            guard error == nil, let data else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success(data))
+        }
+    }
+    
     
     func fetchTrending(safe: Bool, completion: @escaping (Result<Data, Error>) -> Void) {
         router.request(.getTrendingsCategoryes(safe: safe)) { data, response, error in

@@ -117,6 +117,11 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController: HomeViewInput {
+    func preloadHomeViewTableViewResults(viewModels: [HomeViewCategoryTableViewModel]) {
+        self.homeView.tableViewModel = viewModels
+        self.homeView.reloadViews()
+    }
+    
     func preloadTrending(viewModel: [AllCategoryesViewModel]) {
         self.homeView.allCategoryesViewModel = viewModel
         self.homeView.reloadViews()

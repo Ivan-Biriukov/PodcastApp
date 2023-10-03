@@ -194,6 +194,21 @@ final class HomeView: UIView{
         sender.alpha = 0.5
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
             sender.alpha = 1
+            
+            NetworkManager().fetchResultsFromSelectedTrendings(categoryName: "Anime", count: 30) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    do {
+                        let res = try JSONDecoder().decode(SearchResultModel.self, from: data)
+                        print(res.feeds.count)
+                    }
+                    catch {
+                        print(error)
+                    }
+                case .failure(let e):
+                    print(e)
+                }
+            }
 
         })
     }
