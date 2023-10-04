@@ -11,8 +11,9 @@ struct Item: Codable {
     let title : String
     let description : String
     let enclosureUrl : String  // Link to current mp3 file
+    let enclosureType : String // file type and format
     let duration : Int // in seconds
-    let episode : Int // episode number of podcast list
+    let episode : Int? // episode number of podcast list
     let feedImage : String // image of podcast
     let feedId : Int // podcast parent id
     let feedLanguage : String // podcast language

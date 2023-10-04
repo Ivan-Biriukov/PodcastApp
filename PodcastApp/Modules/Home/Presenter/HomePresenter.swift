@@ -87,7 +87,7 @@ private extension HomePresenter {
                     let currentData = try JSONDecoder().decode(SearchResultModel.self, from: data)
                     
                     for i in currentData.feeds {
-                        tableViewViewModel.append(HomeViewCategoryTableViewModel(imageURLString: i.image, podcastName: i.title, authorName: i.author, podcastCategoryName: trendingsNamesViewModel[0].categoryName, episodsCount: "\(i.episodeCount)", savedToFavorits: false, action: {print(123)}))
+                        tableViewViewModel.append(HomeViewCategoryTableViewModel(imageURLString: i.image, podcastName: i.title, authorName: i.author, podcastCategoryName: trendingsNamesViewModel[0].categoryName, episodsCount: "\(i.episodeCount)", savedToFavorits: false, action: {self?.getEpisodesDetail(episodeId: "\(i.id)", resultsCount: 1000)}))
                     }
                 }
                 catch {
@@ -144,7 +144,7 @@ private extension HomePresenter {
                     let elements = try JSONDecoder().decode(SearchResultModel.self, from: data)
                     
                     for element in elements.feeds {
-                        viewModels.append(HomeViewCategoryTableViewModel(imageURLString: element.image, podcastName: element.title, authorName: element.author, podcastCategoryName: queryText, episodsCount: "\(element.episodeCount)", savedToFavorits: false, action: {print(123)}))
+                        viewModels.append(HomeViewCategoryTableViewModel(imageURLString: element.image, podcastName: element.title, authorName: element.author, podcastCategoryName: queryText, episodsCount: "\(element.episodeCount)", savedToFavorits: false, action: {self?.getEpisodesDetail(episodeId: "\(element.id)", resultsCount: 1000)}))
                     }
                 }
                 catch {
