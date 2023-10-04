@@ -5,4 +5,5 @@ struct SearchResultAllPodcastsViewModel {
     let podcastName : String
     let trackDuration : String
     let episodeNumber : String
+    let action: () -> ()
 }

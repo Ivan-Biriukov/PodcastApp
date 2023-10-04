@@ -150,6 +150,17 @@ extension SearchResultsViewController : UITableViewDelegate {
             return 88
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch tableView {
+        case resultsTableView:
+            let viewModel = currentResults[indexPath.row]
+            viewModel.action()
+        default:
+            let viewModel = allPodcastsResults[indexPath.row]
+            viewModel.action()
+        }
+    }
 }
 
 // MARK: - TableView DataSource

@@ -133,9 +133,9 @@ final class SearchView: UIView {
             case .success(let data):
                 do {
                     let feedBacks = try JSONDecoder().decode(SearchResultModel.self, from: data)
-                    oneResult.append(SearchResultViewModel(imageURLString: feedBacks.feeds.first!.image, podcastGroupName: feedBacks.feeds.first?.title ?? "No results", episodsCount: "\(feedBacks.feeds.first?.episodeCount ?? 0)", authorName: feedBacks.feeds.first?.author ?? "try aghain"))
+                    oneResult.append(SearchResultViewModel(imageURLString: feedBacks.feeds.first?.image ?? "", podcastGroupName: feedBacks.feeds.first?.title ?? "No results", episodsCount: "\(feedBacks.feeds.first?.episodeCount ?? 0)", authorName: feedBacks.feeds.first?.author ?? "try aghain", action: {self?.loadEpisodsDetails(id: "\(feedBacks.feeds.first?.id ?? 0)", resultsCount: 1000)}))
                     for feedBack in feedBacks.feeds.dropFirst() {
-                        allResults.append(SearchResultAllPodcastsViewModel(imageURLString: feedBack.image, podcastName: feedBack.title, trackDuration: feedBack.language, episodeNumber: "1"))
+                        allResults.append(SearchResultAllPodcastsViewModel(imageURLString: feedBack.image, podcastName: feedBack.title, trackDuration: feedBack.language, episodeNumber: "1", action: {self?.loadEpisodsDetails(id: "\(feedBack.id)", resultsCount: 1000)}))
                     }
                 }
                 catch {
@@ -280,3 +280,22 @@ extension SearchView : UICollectionViewDataSource {
     }
 }
 
+
+extension SearchView {
+    func loadEpisodsDetails(id: String, resultsCount: Int) {
+        NetworkManager().fetchEpisodsDetail(feedID: id, max: resultsCount) { [weak self] result in
+            switch result {
+            case.success(let data):
+                do {
+                    let episods = try JSONDecoder().decode(EpisodeDetailModel.self, from: data)
+                    print(episods.items.count)
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let e):
+                print(e)
+            }
+        }
+    }
+}

@@ -162,7 +162,7 @@ private extension HomePresenter {
     // MARK: - Figure to detail episodes closure func
     
     private func getEpisodesDetail(episodeId : String, resultsCount: Int) {
-        var fetchedDataArray = EpisodeDetailModel(items: [Item(id: 1, title: "", description: "", enclosureUrl: "", duration: 0, episode: 0, feedImage: "", feedId: 0, feedLanguage: "")], count: 0, query: "")
+        var fetchedDataArray = EpisodeDetailModel(items: [Item(id: 1, title: "", description: "", enclosureUrl: "", enclosureType: "", duration: 0, episode: 0, feedImage: "", feedId: 0, feedLanguage: "")], count: 0, query: "")
         let group = DispatchGroup()
         
         group.enter()
