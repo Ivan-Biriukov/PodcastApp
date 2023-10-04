@@ -30,7 +30,6 @@ extension NetworkManager: NetworkManagerProtocol {
         }
     }
     
-    
     func fetchResultsFromSelectedTrendings(categoryName: String, count: Int, completion: @escaping (Result<Data, Error>) -> Void) {
         router.request(.getResultFromSelectedTrending(categoryName: categoryName, resultsCount: count)) { data, response, error in
             guard error == nil, let data else {
@@ -40,7 +39,6 @@ extension NetworkManager: NetworkManagerProtocol {
             completion(.success(data))
         }
     }
-    
     
     func fetchTrending(safe: Bool, completion: @escaping (Result<Data, Error>) -> Void) {
         router.request(.getTrendingsCategoryes(safe: safe)) { data, response, error in

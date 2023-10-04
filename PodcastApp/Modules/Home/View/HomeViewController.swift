@@ -127,11 +127,6 @@ extension HomeViewController: HomeViewInput {
         self.homeView.reloadViews()
     }
     
-//    func updateTableViewDataWithCurrentCategori(viewModels: [HomeViewCategoryTableViewModel]) {
-//        self.homeView.tableViewModel = []
-//        self.homeView.tableViewModel = viewModels
-//        self.homeView.reloadViews()
-//    }
     
     
     func updateSearchCollections(topViewModels: [SearchGenresViewModel], allViewModels: [SearchGenresViewModel]) {

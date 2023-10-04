@@ -41,6 +41,8 @@ private extension HomePresenter {
         var tableViewViewModel : [HomeViewCategoryTableViewModel] = []
         var popularsCategoryes : [CategoryViewModel] = []
         var randomTenCategoryes : [String] = []
+        var searchViewTops : [SearchGenresViewModel] = []
+        var searchViewAll : [SearchGenresViewModel] = []
         
         let group = DispatchGroup()
         let secondGroup = DispatchGroup()
@@ -54,6 +56,7 @@ private extension HomePresenter {
                     
                     for result in  trendings.feeds {
                         trendingsNamesViewModel.append(AllCategoryesViewModel(id: result.id, categoryName: result.name, isItemSelected: false, action: {self?.updateTableViewData(queryText: result.name, resultsCount: 10)}))
+                        searchViewAll.append(SearchGenresViewModel(categoryName: result.name, action: {print(result.id)}))
                     }
                 }
                 catch {
@@ -104,6 +107,7 @@ private extension HomePresenter {
                     do {
                         let serachResults = try JSONDecoder().decode(SearchResultModel.self, from: data)
                         popularsCategoryes.append(CategoryViewModel(genreTitle: name, podcastCount: "\(serachResults.feeds.count)", backgroundColor: .red, action: {print(123)}))
+                        searchViewTops.append(SearchGenresViewModel(categoryName: name, action: {print(serachResults.feeds.count)}))
                     }
                     catch {
                         print(error)
@@ -118,10 +122,10 @@ private extension HomePresenter {
         secondGroup.wait()
         view?.preloadHomeViewTableViewResults(viewModels: tableViewViewModel)
         view?.updateMainCategoryCollection(viewModels: popularsCategoryes)
+        view?.updateSearchCollections(topViewModels: searchViewTops, allViewModels: searchViewAll)
     }
 
-  
-    
+
     func fetchSearchViewCategoryes() {
         
     }
