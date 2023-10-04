@@ -12,7 +12,7 @@ protocol NetworkManagerProtocol {
     func fetchResultsFromSelectedTrendings(categoryName: String, count: Int, completion: @escaping (Result<Data, Error>) -> Void)
     func fetchHomeViewPopulars(categoryName: String, completion: @escaping (Result<Data, Error>) -> Void)
     func fetchFromSearchRequest(requestText: String, resultsCount: Int, completion: @escaping (Result<Data, Error>) -> Void)
-    func fetchEpisodsDetail(feedID: Int, max: Int, completion: @escaping (Result<Data, Error>) -> Void)
+    func fetchEpisodsDetail(feedID: String, max: Int, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 final class NetworkManager {
@@ -21,8 +21,7 @@ final class NetworkManager {
 }
 
 extension NetworkManager: NetworkManagerProtocol {
-    
-    func fetchEpisodsDetail(feedID: Int, max: Int, completion: @escaping (Result<Data, Error>) -> Void) {
+    func fetchEpisodsDetail(feedID: String, max: Int, completion: @escaping (Result<Data, Error>) -> Void) {
         router.request(.getEpisodDetail(id: "\(feedID)", resultsCount: max)) { data, response, error in
             guard error == nil, let data else {
                 completion(.failure(error!))

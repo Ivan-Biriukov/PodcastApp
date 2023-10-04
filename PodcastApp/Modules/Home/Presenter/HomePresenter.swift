@@ -158,4 +158,32 @@ private extension HomePresenter {
         group.wait()
         view?.updateTableView(viewModels: viewModels)
     }
+    
+    // MARK: - Figure to detail episodes closure func
+    
+    private func getEpisodesDetail(episodeId : String, resultsCount: Int) {
+        var fetchedDataArray = EpisodeDetailModel(items: [Item(id: 1, title: "", description: "", enclosureUrl: "", duration: 0, episode: 0, feedImage: "", feedId: 0, feedLanguage: "")], count: 0, query: "")
+        let group = DispatchGroup()
+        
+        group.enter()
+        network.fetchEpisodsDetail(feedID: episodeId, max: resultsCount) { [weak self] result in
+            switch result {
+            case.success(let data):
+                do {
+                    let episodes = try JSONDecoder().decode(EpisodeDetailModel.self, from: data)
+                    fetchedDataArray = episodes
+                }
+                catch {
+                    print(error)
+                }
+            case.failure(let e):
+                print(e)
+            }
+            group.leave()
+        }
+        
+        group.wait()
+        print(fetchedDataArray.items.count)
+        // here update view
+    }
 }
