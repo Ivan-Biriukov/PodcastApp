@@ -67,7 +67,7 @@ extension PodcastAPI: EndPointType {
                 return .get
             case .getResultFromSelectedTrending:
                 return .get
-            case .getPodcastsByFeedID(id: let id):
+            case .getPodcastsByFeedID:
                 return .get
             }
         }
@@ -88,8 +88,7 @@ extension PodcastAPI: EndPointType {
             case .getPodcastsByFeedID(id: let id):
                 return .request(
                     bodyParam: nil,
-                    urlParam: nil
-             //           "?id=\(id)&pretty"
+                    urlParam: ["id" : "\(id)"]
                 )
             }
         }

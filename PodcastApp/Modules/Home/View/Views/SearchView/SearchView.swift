@@ -126,31 +126,7 @@ final class SearchView: UIView {
         
         var oneResult : [SearchResultViewModel] = []
         var allResults : [SearchResultAllPodcastsViewModel] = []
-        
-        group.enter()
-        NetworkManager().fetchSearched(q: searchField.text!, type: "episode", page_size: 10) { [weak self] result in
-//            switch result {
-//            case .success(let data):
-//                do {
-//                    let searchResult = try JSONDecoder().decode(DetailResultModel.self, from: data)
-//                    
-//                    oneResult.append(SearchResultViewModel(bgColor: .green, podcastGroupName: searchResult.results.first?.title_original ?? "-----", episodsCount: "\(searchResult.results.first?.audio_length_sec ?? 1)", authorName: searchResult.results.first?.podcast.publisher_original ?? "dickpick"))
-//                    
-//                    for i in searchResult.results.dropFirst() {
-//                        allResults.append(SearchResultAllPodcastsViewModel(bgColor: .init(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1), podcastName: i.title_original, trackDuration: "\(i.audio_length_sec)", episodeNumber: "\(i.audio_length_sec)"))
-//                    }
-//                    
-//                }
-//                catch {
-//                    print(error.localizedDescription)
-//                }
-//            case .failure(let e):
-//                print(e.localizedDescription)
-//            }
-            group.leave()
-        }
-        
-        group.wait()
+
         let vc = SearchResultsViewController(currentResults: oneResult, allPodcastsResults: allResults, searchText: searchField.text!)
         self.window?.rootViewController?.present(vc, animated: true, completion: nil)
     }
