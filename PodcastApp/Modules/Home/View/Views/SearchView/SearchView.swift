@@ -121,13 +121,35 @@ final class SearchView: UIView {
     // MARK: - Buttons Methods
     
     @objc func searchTaped(_ sender: UIButton) {
-        sender.alpha = 0.5
-        let vcToPresent = SearchResultsViewController(currentResults: [SearchResultViewModel(bgColor: .gray, podcastGroupName: "Baby Pesut Podcast", episodsCount: "56", authorName: "Dr. Oi om jean")], allPodcastsResults: [SearchResultAllPodcastsViewModel(bgColor: .yellow, podcastName: "Between love and career", trackDuration: "56:38", episodeNumber: "56"), SearchResultAllPodcastsViewModel(bgColor: .red, podcastName: "The powerful way to move on", trackDuration: "58:40", episodeNumber: "55"), SearchResultAllPodcastsViewModel(bgColor: .purple, podcastName: "Monkey love makes me curious", trackDuration: "1:40:40", episodeNumber: "54"), SearchResultAllPodcastsViewModel(bgColor: .link, podcastName: "My love is blocked by Covid-19", trackDuration: "1:45:20", episodeNumber: "53"), SearchResultAllPodcastsViewModel(bgColor: .brown, podcastName: "Why should you be baper?", trackDuration: "1:45:20", episodeNumber: "52")], searchText: self.searchField.text!)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            sender.alpha = 1
-            self.window?.rootViewController?.present(vcToPresent, animated: true, completion: nil)
-        })
+        let group = DispatchGroup()
+        
+        var oneResult : [SearchResultViewModel] = []
+        var allResults : [SearchResultAllPodcastsViewModel] = []
+        
+        group.enter()
+        NetworkManager().fetchFromSearchRequest(requestText: searchField.text!, resultsCount: 100) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let feedBacks = try JSONDecoder().decode(SearchResultModel.self, from: data)
+                    oneResult.append(SearchResultViewModel(imageURLString: feedBacks.feeds.first?.image ?? "", podcastGroupName: feedBacks.feeds.first?.title ?? "No results", episodsCount: "\(feedBacks.feeds.first?.episodeCount ?? 0)", authorName: feedBacks.feeds.first?.author ?? "try aghain", action: {self?.loadEpisodsDetails(id: "\(feedBacks.feeds.first?.id ?? 0)", resultsCount: 1000)}))
+                    for feedBack in feedBacks.feeds.dropFirst() {
+                        allResults.append(SearchResultAllPodcastsViewModel(imageURLString: feedBack.image, podcastName: feedBack.title, trackDuration: feedBack.language, episodeNumber: "1", action: {self?.loadEpisodsDetails(id: "\(feedBack.id)", resultsCount: 1000)}))
+                    }
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let e):
+                print(e)
+            }
+            group.leave()
+        }
+
+        group.wait()
+        let vc = SearchResultsViewController(currentResults: oneResult, allPodcastsResults: allResults, searchText: searchField.text!)
+        self.window?.rootViewController?.present(vc, animated: true, completion: nil)
     }
     
     @objc func seeAllTaped (_ sender: UIButton) {
@@ -258,3 +280,22 @@ extension SearchView : UICollectionViewDataSource {
     }
 }
 
+
+extension SearchView {
+    func loadEpisodsDetails(id: String, resultsCount: Int) {
+        NetworkManager().fetchEpisodsDetail(feedID: id, max: resultsCount) { [weak self] result in
+            switch result {
+            case.success(let data):
+                do {
+                    let episods = try JSONDecoder().decode(EpisodeDetailModel.self, from: data)
+                    print(episods.items.count)
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let e):
+                print(e)
+            }
+        }
+    }
+}
