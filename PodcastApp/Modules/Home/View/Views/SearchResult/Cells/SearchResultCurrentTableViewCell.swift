@@ -76,7 +76,6 @@ class SearchResultCurrentTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageBuble.image = nil
-        imageBuble.backgroundColor = .clear
         podcastNameLabel.text = nil
         episodsCountLabel.text = nil
         authorNameLabel.text = nil
@@ -112,6 +111,7 @@ class SearchResultCurrentTableViewCell: UITableViewCell {
     
     func fill(viewModel: SearchResultViewModel) {
         imageUrlString = viewModel.imageURLString
+        imageBuble.kf.indicatorType = .activity
         imageBuble.kf.setImage(with: URL(string: imageUrlString))
         podcastNameLabel.text = viewModel.podcastGroupName
         episodsCountLabel.text = viewModel.episodsCount + " " + "Eps"

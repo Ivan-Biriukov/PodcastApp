@@ -131,7 +131,7 @@ class HomeTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         avatarImageView.image = nil
-        avatarImageView.backgroundColor = .clear
+        //avatarImageView.backgroundColor = .clear
         podcastNameLabel.text = nil
         authorNameLabel.text = nil
         podcastCategoryLabel.text = nil
@@ -180,6 +180,7 @@ class HomeTableViewCell: UITableViewCell {
     
     func fill(viewModel: HomeViewCategoryTableViewModel) {
         urlString = viewModel.imageURLString
+        avatarImageView.kf.indicatorType = .activity
         avatarImageView.kf.setImage(with: URL(string: urlString))
         podcastNameLabel.text = viewModel.podcastName
         authorNameLabel.text = viewModel.authorName

@@ -83,7 +83,6 @@ class AllResultsTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         iconImageView.image = nil
-        iconImageView.backgroundColor = .clear
         podcastNameLabel.text = nil
         durationLabel.text = nil
         episodsCountLabel.text = nil
@@ -127,6 +126,7 @@ class AllResultsTableViewCell: UITableViewCell {
     
     func fill(viewModel: SearchResultAllPodcastsViewModel) {
         imageUrlString = viewModel.imageURLString
+        iconImageView.kf.indicatorType = .activity
         iconImageView.kf.setImage(with: URL(string: imageUrlString))
         podcastNameLabel.text = viewModel.podcastName
         durationLabel.text = viewModel.trackDuration
