@@ -1,8 +1,10 @@
 import UIKit
+import Kingfisher
 
 class AllResultsTableViewCell: UITableViewCell {
     
     static let reuseId = "SearchResultAllResultsCell"
+    private var imageUrlString = ""
 
     // MARK: - UI Elements
     
@@ -81,7 +83,6 @@ class AllResultsTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         iconImageView.image = nil
-        iconImageView.backgroundColor = .clear
         podcastNameLabel.text = nil
         durationLabel.text = nil
         episodsCountLabel.text = nil
@@ -124,7 +125,9 @@ class AllResultsTableViewCell: UITableViewCell {
     }
     
     func fill(viewModel: SearchResultAllPodcastsViewModel) {
-        iconImageView.backgroundColor = viewModel.bgColor
+        imageUrlString = viewModel.imageURLString
+        iconImageView.kf.indicatorType = .activity
+        iconImageView.kf.setImage(with: URL(string: imageUrlString))
         podcastNameLabel.text = viewModel.podcastName
         durationLabel.text = viewModel.trackDuration
         episodsCountLabel.text = viewModel.episodeNumber
