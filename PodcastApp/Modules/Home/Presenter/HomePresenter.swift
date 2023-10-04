@@ -20,10 +20,7 @@ extension HomePresenter: HomePresenterProtocol {
     
     func viewDidLoad() {
         fetchMainViewContollerPreloads()
-        //fetchMainCategoryes()
-       // fetchCategoryesNames()
-      //  fetchTableViewCategory()
-       // fetchSearchViewCategoryes()
+
     }
     
     func updateCurrentCategoryName(with text: String) {
@@ -42,6 +39,7 @@ private extension HomePresenter {
     func fetchMainViewContollerPreloads() {
         var trendingsNamesViewModel : [AllCategoryesViewModel] = []
         var tableViewViewModel : [HomeViewCategoryTableViewModel] = []
+        var popularsCategoryes : [CategoryViewModel] = []
         
         let group = DispatchGroup()
         let secondGroup = DispatchGroup()
@@ -54,7 +52,7 @@ private extension HomePresenter {
                     let trendings = try JSONDecoder().decode(TrendingsNamesModel.self, from: data)
                     
                     for result in  trendings.feeds {
-                        trendingsNamesViewModel.append(AllCategoryesViewModel(id: result.id, categoryName: result.name, isItemSelected: false, action: {print(result.name)}))
+                        trendingsNamesViewModel.append(AllCategoryesViewModel(id: result.id, categoryName: result.name, isItemSelected: false, action: {self?.updateTableViewData(queryText: result.name, resultsCount: 10)}))
                     }
                 }
                 catch {
@@ -94,10 +92,15 @@ private extension HomePresenter {
             secondGroup.leave()
         }
         
-        secondGroup.wait()
-        
-        view?.preloadHomeViewTableViewResults(viewModels: tableViewViewModel)
+        secondGroup.enter()
 
+        
+
+       
+        
+        secondGroup.wait()
+        view?.preloadHomeViewTableViewResults(viewModels: tableViewViewModel)
+        view?.updateMainCategoryCollection(viewModels: popularsCategoryes)
     }
     
     
@@ -230,29 +233,30 @@ private extension HomePresenter {
     
     // MARK: - CategoriesNames Closure Function
     
-    private func updateTableViewData(queryText: String, queryType: String, resultsCount: Int) {
-//        var viewModels : [HomeViewCategoryTableViewModel] = []
-//        let group = DispatchGroup()
-//        
-//        group.enter()
-//        network.fetchSearched(q: queryText, type: queryType, page_size: resultsCount) { [weak self] result in
-//            switch result {
-//            case .success(let data):
-//                do {
-//                    let elemetns = try JSONDecoder().decode(DetailResultModel.self, from: data)
-//                    for i in elemetns.results {
-//                        viewModels.append(HomeViewCategoryTableViewModel(color: .init(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1), podcastName: i.title_original, authorName: i.podcast.publisher_original ?? "unknown", podcastCategoryName: self?.currentSelectedHomeViewCategyName ?? "undefinded", episodsCount: "\(i.audio_length_sec)", savedToFavorits: false, action: {print(i.audio)}))
-//                    }
-//                }
-//                catch {
-//                    print(error.localizedDescription)
-//                }
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//            group.leave()
-//        }
-//        group.wait()
-//        view?.updateTableView(viewModels: viewModels)
+    private func updateTableViewData(queryText: String, resultsCount: Int) {
+        var viewModels : [HomeViewCategoryTableViewModel] = []
+        let group = DispatchGroup()
+        
+        group.enter()
+        network.fetchResultsFromSelectedTrendings(categoryName: queryText, count: resultsCount) { [weak self] result in
+            switch result {
+            case.success(let data):
+                do {
+                    let elements = try JSONDecoder().decode(SearchResultModel.self, from: data)
+                    
+                    for element in elements.feeds {
+                        viewModels.append(HomeViewCategoryTableViewModel(color: .gray, podcastName: element.title, authorName: element.author, podcastCategoryName: queryText, episodsCount: "\(element.episodeCount)", savedToFavorits: false, action: {print(123)}))
+                    }
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let e):
+                print(e)
+            }
+            group.leave()
+        }
+        group.wait()
+        view?.updateTableView(viewModels: viewModels)
     }
 }

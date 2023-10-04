@@ -255,6 +255,7 @@ extension HomeView : UICollectionViewDelegate {
             let viewModel = allCategoryesViewModel[indexPath.row]
             viewModel.action()
             collectionView.reloadData()
+            tableView.reloadData()
         }
     }
 }
