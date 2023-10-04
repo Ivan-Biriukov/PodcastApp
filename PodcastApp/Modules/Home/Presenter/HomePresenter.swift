@@ -4,6 +4,8 @@ final class HomePresenter {
     
     weak var view: HomeViewInput?
     private let router: HomeRouterInput
+    private let network: NetworkManagerProtocol = NetworkManager()
+    private var currentSelectedHomeViewCategyName : String = ""
     
     init(router: HomeRouterInput) {
         self.router = router
@@ -17,10 +19,12 @@ extension HomePresenter: HomePresenterProtocol {
     }
     
     func viewDidLoad() {
-        fetchMainCategoryes()
-        fetchAllCategoryes()
-        fetchTableViewCategory()
-        fetchSearchViewCategoryes()
+        fetchMainViewContollerPreloads()
+
+    }
+    
+    func updateCurrentCategoryName(with text: String) {
+      //  self.currentSelectedHomeViewCategyName = text
     }
     
     func didTapedSeeAllCategoryes() {
@@ -30,77 +34,158 @@ extension HomePresenter: HomePresenterProtocol {
 
 private extension HomePresenter {
     
-    func fetchMainCategoryes() {
-        let viewModels : [CategoryViewModel] = [
-            .init(genreTitle: "Music & Fun", podcastCount: "84", backgroundColor: .init(rgb: 0xFED9D6), action: {print("first cell")}),
-            .init(genreTitle: "Life & Chill", podcastCount: "96", backgroundColor: .init(rgb: 0x97D7F2), action: {print(("second Cell"))}),
-            .init(genreTitle: "Education", podcastCount: "72", backgroundColor: .init(rgb: 0xEDF0FC), action: {print("third Cell")})
-        ]
-        
-        DispatchQueue.main.async {
-            self.view?.updateMainCategoryCollection(viewModels: viewModels)
-        }
-    }
+    // MARK: - Network Section
     
-    func fetchAllCategoryes() {
-        let viewModels : [AllCategoryesViewModel] = [
-            .init(categoryName: "Popular", isItemSelected: true, action: {print("cell taped")}),
-            .init(categoryName: "Recent", isItemSelected: false, action: {print("cell taped")}),
-            .init(categoryName: "Music", isItemSelected: false, action: {print("cell taped")}),
-            .init(categoryName: "Design", isItemSelected: false, action: {print("cell taped")}),
-            .init(categoryName: "Lify", isItemSelected: false, action: {print("cell taped")}),
-            .init(categoryName: "Education", isItemSelected: false, action: {print("cell taped")}),
-            .init(categoryName: "Sport", isItemSelected: false, action: {print("cell taped")}),
-            .init(categoryName: "Chill", isItemSelected: false, action: {print("cell taped")})
-        ]
+    func fetchMainViewContollerPreloads() {
+        var trendingsNamesViewModel : [AllCategoryesViewModel] = []
+        var tableViewViewModel : [HomeViewCategoryTableViewModel] = []
+        var popularsCategoryes : [CategoryViewModel] = []
+        var randomTenCategoryes : [String] = []
+        var searchViewTops : [SearchGenresViewModel] = []
+        var searchViewAll : [SearchGenresViewModel] = []
         
-        DispatchQueue.main.async {
-            self.view?.updateAllCategoryes(viewModels: viewModels)
-        }
-    }
-    
-    func fetchTableViewCategory() {
-        let viewModels : [HomeViewCategoryTableViewModel] = [
-            .init(color: .init(rgb: 0x2882F1), podcastName: "Ngobam", authorName: "Gofar Hilman", podcastCategoryName: "Music & Fun", episodsCount: "23", savedToFavorits: true, action: {print(1)}),
-            .init(color: .init(rgb: 0xFEDCDB), podcastName: "Semprod", authorName: "Kuy Entertainment", podcastCategoryName: "Life & Chill", episodsCount: "44", savedToFavorits: false, action: {print(2)}),
-            .init(color: .init(rgb: 0x97D7F2), podcastName: "Sruput Nendang", authorName: "Marco", podcastCategoryName: "Life & Chill", episodsCount: "46", savedToFavorits: false, action: {print(3)})
-        ]
+        let group = DispatchGroup()
+        let secondGroup = DispatchGroup()
         
-        DispatchQueue.main.async {
-            self.view?.updateTableView(viewModels: viewModels)
+        group.enter()
+        network.fetchTrending(safe: true) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let trendings = try JSONDecoder().decode(TrendingsNamesModel.self, from: data)
+                    
+                    for result in  trendings.feeds {
+                        trendingsNamesViewModel.append(AllCategoryesViewModel(id: result.id, categoryName: result.name, isItemSelected: false, action: {self?.updateTableViewData(queryText: result.name, resultsCount: 10)}))
+                        searchViewAll.append(SearchGenresViewModel(categoryName: result.name, action: {print(result.id)}))
+                    }
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let e):
+                print(e)
+            }
+            group.leave()
         }
+
+        group.wait()
+        
+        if trendingsNamesViewModel.count != 0 {
+            trendingsNamesViewModel[0].isItemSelected = true
+        }
+        view?.preloadTrending(viewModel: trendingsNamesViewModel)
+        for _ in 0...10 {
+            let randomeIndex : Int = Int.random(in: 0..<trendingsNamesViewModel.count)
+            randomTenCategoryes.append(trendingsNamesViewModel[randomeIndex].categoryName)
+        }
+        
+        secondGroup.enter()
+        network.fetchResultsFromSelectedTrendings(categoryName: trendingsNamesViewModel[0].categoryName, count: 5) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let currentData = try JSONDecoder().decode(SearchResultModel.self, from: data)
+                    
+                    for i in currentData.feeds {
+                        tableViewViewModel.append(HomeViewCategoryTableViewModel(imageURLString: i.image, podcastName: i.title, authorName: i.author, podcastCategoryName: trendingsNamesViewModel[0].categoryName, episodsCount: "\(i.episodeCount)", savedToFavorits: false, action: {self?.getEpisodesDetail(episodeId: "\(i.id)", resultsCount: 1000)}))
+                    }
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let e):
+                print(e)
+            }
+            secondGroup.leave()
+        }
+        
+        for name in randomTenCategoryes {
+            secondGroup.enter()
+            network.fetchResultsFromSelectedTrendings(categoryName: name, count: 1000) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    do {
+                        let serachResults = try JSONDecoder().decode(SearchResultModel.self, from: data)
+                        
+                        popularsCategoryes.append(CategoryViewModel(genreTitle: name, podcastCount: "\(Int.random(in: 10...1056))", backgroundColor: .link, action: {print(123)}))
+                        searchViewTops.append(SearchGenresViewModel(categoryName: name, action: {print(serachResults.feeds.count)}))
+                    }
+                    catch {
+                        print(error)
+                    }
+                case .failure(let e):
+                    print(e)
+                }
+            }
+            secondGroup.leave()
+        }
+        
+        secondGroup.wait()
+        view?.preloadHomeViewTableViewResults(viewModels: tableViewViewModel)
+        view?.updateMainCategoryCollection(viewModels: popularsCategoryes)
+        view?.updateSearchCollections(topViewModels: searchViewTops, allViewModels: searchViewAll)
     }
-    
+
+
     func fetchSearchViewCategoryes() {
         
-        let allCategoryesViewModels : [SearchGenresViewModel] = [
-            .init(categoryName: "Popular", action: {print("cell taped")}),
-            .init(categoryName: "Recent", action: {print("cell taped")}),
-            .init(categoryName: "Music", action: {print("cell taped")}),
-            .init(categoryName: "Design", action: {print("cell taped")}),
-            .init(categoryName: "Lify", action: {print("cell taped")}),
-            .init(categoryName: "Education", action: {print("cell taped")}),
-            .init(categoryName: "Sport", action: {print("cell taped")}),
-            .init(categoryName: "Chill", action: {print("cell taped")}),
-            .init(categoryName: "Popular", action: {print("cell taped")}),
-            .init(categoryName: "Recent", action: {print("cell taped")}),
-            .init(categoryName: "Music", action: {print("cell taped")}),
-            .init(categoryName: "Design", action: {print("cell taped")}),
-            .init(categoryName: "Lify", action: {print("cell taped")}),
-            .init(categoryName: "Education", action: {print("cell taped")}),
-            .init(categoryName: "Sport", action: {print("cell taped")}),
-            .init(categoryName: "Chill", action: {print("cell taped")})
-        ]
+    }
+    
+    // MARK: - CategoriesNames Closure Function
+    
+    private func updateTableViewData(queryText: String, resultsCount: Int) {
+        var viewModels : [HomeViewCategoryTableViewModel] = []
+        let group = DispatchGroup()
         
-        var topGenresViewModel = [SearchGenresViewModel]()
-        
-        for (index, element) in allCategoryesViewModels.enumerated() {
-            if index % 2 == 0 {
-                topGenresViewModel.append(element)
+        group.enter()
+        network.fetchResultsFromSelectedTrendings(categoryName: queryText, count: resultsCount) { [weak self] result in
+            switch result {
+            case.success(let data):
+                do {
+                    let elements = try JSONDecoder().decode(SearchResultModel.self, from: data)
+                    
+                    for element in elements.feeds {
+                        viewModels.append(HomeViewCategoryTableViewModel(imageURLString: element.image, podcastName: element.title, authorName: element.author, podcastCategoryName: queryText, episodsCount: "\(element.episodeCount)", savedToFavorits: false, action: {self?.getEpisodesDetail(episodeId: "\(element.id)", resultsCount: 1000)}))
+                    }
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let e):
+                print(e)
             }
+            group.leave()
         }
-        DispatchQueue.main.async {
-            self.view?.updateSearchCollections(topViewModels: allCategoryesViewModels, allViewModels: topGenresViewModel)
+        group.wait()
+        view?.updateTableView(viewModels: viewModels)
+    }
+    
+    // MARK: - Figure to detail episodes closure func
+    
+    private func getEpisodesDetail(episodeId : String, resultsCount: Int) {
+        var fetchedDataArray = EpisodeDetailModel(items: [Item(id: 1, title: "", description: "", enclosureUrl: "", enclosureType: "", duration: 0, episode: 0, feedImage: "", feedId: 0, feedLanguage: "")], count: 0, query: "")
+        let group = DispatchGroup()
+        
+        group.enter()
+        network.fetchEpisodsDetail(feedID: episodeId, max: resultsCount) { [weak self] result in
+            switch result {
+            case.success(let data):
+                do {
+                    let episodes = try JSONDecoder().decode(EpisodeDetailModel.self, from: data)
+                    fetchedDataArray = episodes
+                }
+                catch {
+                    print(error)
+                }
+            case.failure(let e):
+                print(e)
+            }
+            group.leave()
         }
+        
+        group.wait()
+        print(fetchedDataArray.items.count)
+        // here update view
     }
 }
+
