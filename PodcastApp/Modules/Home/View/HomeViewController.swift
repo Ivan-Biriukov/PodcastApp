@@ -9,7 +9,8 @@ extension HomeViewController {
         let separatorColor: UIColor = .systemBlue
         
         let separatorHeight: CGFloat = 2.0
-        let sideTitlePadding: CGFloat = 16.0
+        let sideTitlePadding: CGFloat = 60.0
+        let sideSeparatePadding: CGFloat = 16.0
         let separatorDivideWidth: CGFloat = 2.5
         let tabBarHeight: CGFloat = 80.0
     }
@@ -183,7 +184,7 @@ private extension HomeViewController {
         separatorView.snp.makeConstraints { make in
             make.height.equalTo(constants.separatorHeight)
             make.width.equalTo(view.snp.width).dividedBy(constants.separatorDivideWidth)
-            make.leading.equalToSuperview().inset(constants.sideTitlePadding)
+            make.leading.equalToSuperview().inset(constants.sideSeparatePadding)
             make.bottom.equalTo(mainScrollView.snp.top)
         }
     }
