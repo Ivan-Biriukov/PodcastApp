@@ -126,7 +126,28 @@ final class SearchView: UIView {
         
         var oneResult : [SearchResultViewModel] = []
         var allResults : [SearchResultAllPodcastsViewModel] = []
+        
+        group.enter()
+        NetworkManager().fetchFromSearchRequest(requestText: searchField.text!, resultsCount: 100) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let feedBacks = try JSONDecoder().decode(SearchResultModel.self, from: data)
+                    oneResult.append(SearchResultViewModel(bgColor: .green, podcastGroupName: feedBacks.feeds.first?.title ?? "no name", episodsCount: "\(feedBacks.feeds.first?.episodeCount ?? 0)", authorName: feedBacks.feeds.first?.author ?? "unknown"))
+                    for feedBack in feedBacks.feeds.dropFirst() {
+                        allResults.append(SearchResultAllPodcastsViewModel(bgColor: .yellow, podcastName: feedBack.title, trackDuration: feedBack.language, episodeNumber: "1"))
+                    }
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let e):
+                print(e)
+            }
+            group.leave()
+        }
 
+        group.wait()
         let vc = SearchResultsViewController(currentResults: oneResult, allPodcastsResults: allResults, searchText: searchField.text!)
         self.window?.rootViewController?.present(vc, animated: true, completion: nil)
     }

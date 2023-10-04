@@ -9,6 +9,7 @@ enum PodcastAPI {
     case getTrendingsCategoryes(safe: Bool)
     case getResultFromSelectedTrending(categoryName: String, resultsCount: Int)
     case getPodcastsByFeedID(id: Int)
+    case getSearched(q: String, max: Int)
 }
 
 extension PodcastAPI: EndPointType {
@@ -58,6 +59,8 @@ extension PodcastAPI: EndPointType {
                 return "search/bytitle"
             case .getPodcastsByFeedID:
                 return "podcasts/byfeedid"
+            case .getSearched:
+                return "search/byterm"
             }
         }
         
@@ -68,6 +71,8 @@ extension PodcastAPI: EndPointType {
             case .getResultFromSelectedTrending:
                 return .get
             case .getPodcastsByFeedID:
+                return .get
+            case .getSearched:
                 return .get
             }
         }
@@ -89,6 +94,11 @@ extension PodcastAPI: EndPointType {
                 return .request(
                     bodyParam: nil,
                     urlParam: ["id" : "\(id)"]
+                )
+            case .getSearched(q: let q, max: let max):
+                return .request(
+                    bodyParam: nil,
+                    urlParam: ["q" : q, "max" : "\(max)"]
                 )
             }
         }
