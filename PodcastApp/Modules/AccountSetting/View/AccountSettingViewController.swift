@@ -535,7 +535,7 @@ private extension AccountSettingViewController {
 extension AccountSettingViewController {
     
     @objc func backPressed() {
-        print("Back Pressed")
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func editPhotoPressed(_ sender: UIButton) {

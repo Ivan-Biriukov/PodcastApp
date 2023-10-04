@@ -19,6 +19,8 @@ final class ProfileSettingRouter {
 extension ProfileSettingRouter: ProfileSettingRouterInput {
     func routeToAccountSetting() {
         let accountSettings = AccountSettingAssembly.assemble()
-        view?.navigationController?.pushViewController(accountSettings, animated: true)
+        accountSettings.modalPresentationStyle = .fullScreen
+        accountSettings.modalTransitionStyle = .crossDissolve
+        self.view?.present(accountSettings, animated: true)
     }
 }
