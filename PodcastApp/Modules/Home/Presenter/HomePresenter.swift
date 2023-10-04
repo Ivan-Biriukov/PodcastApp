@@ -106,7 +106,8 @@ private extension HomePresenter {
                 case .success(let data):
                     do {
                         let serachResults = try JSONDecoder().decode(SearchResultModel.self, from: data)
-                        popularsCategoryes.append(CategoryViewModel(genreTitle: name, podcastCount: "\(serachResults.feeds.count)", backgroundColor: .red, action: {print(123)}))
+                        
+                        popularsCategoryes.append(CategoryViewModel(genreTitle: name, podcastCount: "\(Int.random(in: 10...1056))", backgroundColor: .link, action: {print(123)}))
                         searchViewTops.append(SearchGenresViewModel(categoryName: name, action: {print(serachResults.feeds.count)}))
                     }
                     catch {
