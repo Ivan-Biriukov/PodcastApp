@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 final class AuthPresenter {
     weak var view: AuthViewInput?
@@ -10,23 +11,51 @@ final class AuthPresenter {
         self.interactor = interactor
         self.router = router
     }
-    
 }
 
 extension AuthPresenter: AuthPresenterProtocol {
-    
-}
-
-extension AuthPresenter: AuthViewDelegate {
-    func didTapLogin() {
-        print("LOGIN")
+    func loginUser(email: String, password: String) {
+        interactor.loginUser(with: email, and: password) { [weak self] result in
+            switch result {
+            case .success(let username):
+                self?.router.showSuccess(with: "Success")
+                self?.router.routeToMainApp()
+            case .failure(let error):
+                self?.router.showError(with: error.localizedDescription)
+            }
+        }
     }
     
-    func didTapRegister() {
-        print("REGISTER")
+    func registerUser(email: String, password: String, confirmPassword: String) {
+        if password != confirmPassword {
+            router.showError(with: "Password and repeat password don't match")
+            return
+        }
+        
+        if password.count < 6 {
+            router.showError(with: "Password must be at least 6 characters")
+            return
+        }
+        
+        interactor.registerUser(with: email, and: password, and: confirmPassword) { [weak self] result in
+            switch result {
+            case .success(let success):
+                self?.router.showSuccess(with: "Check your email to accept registration")
+            case .failure(let error):
+                self?.router.showError(with: error.localizedDescription)
+            }
+        }
     }
     
-    func didTapGoogle() {
-        print("GOOGLE")
+    func loginWithGoogle() {
+        interactor.loginWithGoogle(view: view as! UIViewController) { [weak self] result in
+            switch result {
+            case .success(let success):
+                self?.router.showSuccess(with: "Success")
+                self?.router.routeToMainApp()
+            case .failure(let error):
+                self?.router.showError(with: error.localizedDescription)
+            }
+        }
     }
 }

@@ -1,8 +1,12 @@
 import UIKit
+import ProgressHUD
 
 final class AuthViewController: UIViewController {
     
-    private let authView: UIView
+    private lazy var authView: UIView = {
+        let view = AuthView(delegate: self)
+        return view
+    }()
     
     private let presenter: AuthPresenterProtocol
     
@@ -13,9 +17,8 @@ final class AuthViewController: UIViewController {
         return scroll
     }()
     
-    init(presenter: AuthPresenterProtocol, view: UIView) {
+    init(presenter: AuthPresenterProtocol) {
         self.presenter = presenter
-        self.authView = view
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -43,5 +46,34 @@ final class AuthViewController: UIViewController {
 }
 
 extension AuthViewController: AuthViewInput {
+    func showError(error: String) {
+        ProgressHUD.showError(error)
+    }
     
+    func showSuccess(with text: String) {
+        ProgressHUD.showSuccess("Success")
+    }
+}
+
+extension AuthViewController: AuthViewDelegate {
+    func didTapLogin(email: String?, password: String?) {
+        guard let email, let password, !email.isEmpty, !password.isEmpty else {
+            ProgressHUD.showError("All fields are required")
+            return
+        }
+        presenter.loginUser(email: email, password: password)
+    }
+    
+    func didTapRegister(email: String?, password: String?, confirmPassword: String?) {
+        guard let email, let password, let confirmPassword,
+              !email.isEmpty, !password.isEmpty, !confirmPassword.isEmpty else {
+            ProgressHUD.showError("All fields are required")
+            return
+        }
+        presenter.registerUser(email: email, password: password, confirmPassword: confirmPassword)
+    }
+    
+    func didTapGoogle() {
+        presenter.loginWithGoogle()
+    }
 }

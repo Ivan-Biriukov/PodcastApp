@@ -2,8 +2,8 @@ import UIKit
 import SnapKit
 
 protocol AuthViewDelegate: AnyObject {
-    func didTapLogin()
-    func didTapRegister()
+    func didTapLogin(email: String?, password: String?)
+    func didTapRegister(email: String?, password: String?, confirmPassword: String?)
     func didTapGoogle()
 }
 
@@ -232,7 +232,11 @@ extension AuthView {
     }
     
     func didTapLoginRegister() {
-        isLoginState ? delegate?.didTapLogin() : delegate?.didTapRegister()
+        isLoginState ? delegate?.didTapLogin(
+            email: emailTextField.text, password: passwordTextField.text) :
+        delegate?.didTapRegister(
+            email: emailTextField.text, password: passwordTextField.text,
+            confirmPassword: repeatPasswordTextField.text)
     }
     
     func didTapGoogle() {
