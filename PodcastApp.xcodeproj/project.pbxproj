@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52A190692ACCFC76007C03F5 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A190682ACCFC76007C03F5 /* OnboardingViewController.swift */; };
+		52A1906B2ACCFD3F007C03F5 /* OnboardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1906A2ACCFD3F007C03F5 /* OnboardingCell.swift */; };
 		57A5BAC22AC72A750036557A /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */; };
 		57A5BAC42AC72B730036557A /* SearchResultAllPodcastsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */; };
 		57A5BAC62AC7530D0036557A /* SearchGenresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC52AC7530D0036557A /* SearchGenresViewModel.swift */; };
@@ -109,6 +111,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52A190682ACCFC76007C03F5 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		52A1906A2ACCFD3F007C03F5 /* OnboardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCell.swift; sourceTree = "<group>"; };
 		57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultAllPodcastsViewModel.swift; sourceTree = "<group>"; };
 		57A5BAC52AC7530D0036557A /* SearchGenresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGenresViewModel.swift; sourceTree = "<group>"; };
@@ -223,6 +227,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52A190672ACCFC65007C03F5 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				52A190682ACCFC76007C03F5 /* OnboardingViewController.swift */,
+				52A1906A2ACCFD3F007C03F5 /* OnboardingCell.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		57A5BAC02AC72A230036557A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,6 +631,7 @@
 		809355EF2ABE23EB0094F3AB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				52A190672ACCFC65007C03F5 /* Onboarding */,
 				57C1AA872AC60A6000444C47 /* Home */,
 				801A81FB2AC5F5B6005ADD4A /* ProfileSetting */,
 				809355F02ABE23FF0094F3AB /* MainTabBar */,
@@ -838,6 +852,7 @@
 				801A82102AC5F5B6005ADD4A /* ProfileSettingsTableViewCell.swift in Sources */,
 				809356042ABE3CD30094F3AB /* UIColor + Extension.swift in Sources */,
 				809356022ABE3BA60094F3AB /* PlayerService.swift in Sources */,
+				52A1906B2ACCFD3F007C03F5 /* OnboardingCell.swift in Sources */,
 				805D4FCB2AC0A48600905151 /* BaseCollectionViewCell.swift in Sources */,
 				804C1FB22AC36B2500B07C87 /* PodcastAPI.swift in Sources */,
 				804C1FA92AC3638C00B07C87 /* JSONParameterEncoder.swift in Sources */,
@@ -876,6 +891,7 @@
 				57C1AA962AC60A6000444C47 /* HomePresenterProtocol.swift in Sources */,
 				801A820D2AC5F5B6005ADD4A /* ProfileMainSettingsViewModel.swift in Sources */,
 				804C1F9C2AC3520D00B07C87 /* EndPointType.swift in Sources */,
+				52A190692ACCFC76007C03F5 /* OnboardingViewController.swift in Sources */,
 				57C1AAB72AC6456200444C47 /* AllResultsTableViewCell.swift in Sources */,
 				57C1AA9B2AC60A6000444C47 /* HomeView.swift in Sources */,
 				809355F72ABE30790094F3AB /* UIImage + Extension.swift in Sources */,
