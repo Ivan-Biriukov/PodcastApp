@@ -32,7 +32,7 @@ private extension ProfileSettingPresenter {
         let viewModels: [ProfileMainSettingsViewModel] = [
             .init(title: "Account Setting",
                   imageName: "profileImage", action: { [weak self] in
-                      self?.router.routeTo()
+                      self?.router.routeToAccountSetting()
             }),
             .init(title: "Change Password",
                   imageName: "shieldImage", action: { [weak self] in

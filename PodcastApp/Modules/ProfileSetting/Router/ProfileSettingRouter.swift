@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ProfileSettingRouterInput {
-    func routeTo()
+    func routeToAccountSetting()
 }
 
 final class ProfileSettingRouter {
@@ -17,9 +17,8 @@ final class ProfileSettingRouter {
 }
 
 extension ProfileSettingRouter: ProfileSettingRouterInput {
-    func routeTo() {
-        let testView = UIViewController()
-        testView.view.backgroundColor = .systemBlue
-        view?.navigationController?.pushViewController(testView, animated: true)
+    func routeToAccountSetting() {
+        let accountSettings = AccountSettingAssembly.assemble()
+        view?.navigationController?.pushViewController(accountSettings, animated: true)
     }
 }
