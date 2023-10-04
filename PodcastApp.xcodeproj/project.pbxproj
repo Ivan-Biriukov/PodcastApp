@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43F768C82ACDBE5100321CEC /* AccountSettingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768BF2ACDBE5100321CEC /* AccountSettingAssembly.swift */; };
+		43F768C92ACDBE5100321CEC /* AccountSettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C12ACDBE5100321CEC /* AccountSettingPresenter.swift */; };
+		43F768CA2ACDBE5100321CEC /* AccountSettingPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C22ACDBE5100321CEC /* AccountSettingPresenterProtocol.swift */; };
+		43F768CB2ACDBE5100321CEC /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C42ACDBE5100321CEC /* AccountSettingViewController.swift */; };
+		43F768CC2ACDBE5100321CEC /* AccountSettingViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C52ACDBE5100321CEC /* AccountSettingViewInput.swift */; };
+		43F768CD2ACDBE5100321CEC /* AccountSettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C72ACDBE5100321CEC /* AccountSettingRouter.swift */; };
 		57A5BAC22AC72A750036557A /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */; };
 		57A5BAC42AC72B730036557A /* SearchResultAllPodcastsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */; };
 		57A5BAC62AC7530D0036557A /* SearchGenresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC52AC7530D0036557A /* SearchGenresViewModel.swift */; };
@@ -111,6 +117,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43F768BF2ACDBE5100321CEC /* AccountSettingAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingAssembly.swift; sourceTree = "<group>"; };
+		43F768C12ACDBE5100321CEC /* AccountSettingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingPresenter.swift; sourceTree = "<group>"; };
+		43F768C22ACDBE5100321CEC /* AccountSettingPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingPresenterProtocol.swift; sourceTree = "<group>"; };
+		43F768C42ACDBE5100321CEC /* AccountSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
+		43F768C52ACDBE5100321CEC /* AccountSettingViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewInput.swift; sourceTree = "<group>"; };
+		43F768C72ACDBE5100321CEC /* AccountSettingRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingRouter.swift; sourceTree = "<group>"; };
 		57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultAllPodcastsViewModel.swift; sourceTree = "<group>"; };
 		57A5BAC52AC7530D0036557A /* SearchGenresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGenresViewModel.swift; sourceTree = "<group>"; };
@@ -227,6 +239,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43F768BD2ACDBE5100321CEC /* AccountSetting */ = {
+			isa = PBXGroup;
+			children = (
+				43F768BE2ACDBE5100321CEC /* Assembly */,
+				43F768C02ACDBE5100321CEC /* Presenter */,
+				43F768C32ACDBE5100321CEC /* View */,
+				43F768C62ACDBE5100321CEC /* Router */,
+			);
+			path = AccountSetting;
+			sourceTree = "<group>";
+		};
+		43F768BE2ACDBE5100321CEC /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				43F768BF2ACDBE5100321CEC /* AccountSettingAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		43F768C02ACDBE5100321CEC /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				43F768C12ACDBE5100321CEC /* AccountSettingPresenter.swift */,
+				43F768C22ACDBE5100321CEC /* AccountSettingPresenterProtocol.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		43F768C32ACDBE5100321CEC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				43F768C42ACDBE5100321CEC /* AccountSettingViewController.swift */,
+				43F768C52ACDBE5100321CEC /* AccountSettingViewInput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		43F768C62ACDBE5100321CEC /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				43F768C72ACDBE5100321CEC /* AccountSettingRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		57A5BAC02AC72A230036557A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +602,7 @@
 				80ED761D2ACC80C4008B93DB /* Auth */,
 				57C1AA872AC60A6000444C47 /* Home */,
 				801A81FB2AC5F5B6005ADD4A /* ProfileSetting */,
+				43F768BD2ACDBE5100321CEC /* AccountSetting */,
 				809355F02ABE23FF0094F3AB /* MainTabBar */,
 			);
 			path = Modules;
@@ -826,6 +884,7 @@
 				8093564B2ABE40840094F3AB /* SavingManagerProtocol.swift in Sources */,
 				804C1FB62AC371AE00B07C87 /* TestModel.swift in Sources */,
 				80ED762E2ACC8284008B93DB /* AuthInteractor.swift in Sources */,
+				43F768CB2ACDBE5100321CEC /* AccountSettingViewController.swift in Sources */,
 				57C1AAA72AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift in Sources */,
 				80ED76302ACC828E008B93DB /* AuthInteractorInput.swift in Sources */,
 				801A82112AC5F5B6005ADD4A /* ProfileSettingRouter.swift in Sources */,
@@ -833,6 +892,7 @@
 				57C1AA9E2AC60C6200444C47 /* UIViewController + Extension.swift in Sources */,
 				57C1AA952AC60A6000444C47 /* HomeAssembly.swift in Sources */,
 				804C1FA72AC3577400B07C87 /* URLParameterEncoder.swift in Sources */,
+				43F768C82ACDBE5100321CEC /* AccountSettingAssembly.swift in Sources */,
 				57C1AA9C2AC60A6000444C47 /* HomeRouter.swift in Sources */,
 				57A5BAC22AC72A750036557A /* SearchResultViewModel.swift in Sources */,
 				804C1FAD2AC3650F00B07C87 /* Router.swift in Sources */,
@@ -849,6 +909,7 @@
 				805D4FCB2AC0A48600905151 /* BaseCollectionViewCell.swift in Sources */,
 				804C1FB22AC36B2500B07C87 /* PodcastAPI.swift in Sources */,
 				80ED762C2ACC8243008B93DB /* AuthPresenterProtocol.swift in Sources */,
+				43F768CA2ACDBE5100321CEC /* AccountSettingPresenterProtocol.swift in Sources */,
 				804C1FA92AC3638C00B07C87 /* JSONParameterEncoder.swift in Sources */,
 				57C1AA9A2AC60A6000444C47 /* SearchView.swift in Sources */,
 				801A820C2AC5F5B6005ADD4A /* ProfileSettingPresenter.swift in Sources */,
@@ -866,6 +927,7 @@
 				57C1AABA2AC646CE00444C47 /* CategoryViewModel.swift in Sources */,
 				57C1AABC2AC6494000444C47 /* HomeViewCategoryTableViewModel.swift in Sources */,
 				801A820B2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift in Sources */,
+				43F768CC2ACDBE5100321CEC /* AccountSettingViewInput.swift in Sources */,
 				809356002ABE3B940094F3AB /* PlayerServiceProtocol.swift in Sources */,
 				801A820A2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift in Sources */,
 				804C1FB02AC36A3600B07C87 /* URLRequest+Extension.swift in Sources */,
@@ -883,7 +945,9 @@
 				57C1AAB52AC644B400444C47 /* SearchResultCurrentTableViewCell.swift in Sources */,
 				57C1AA962AC60A6000444C47 /* HomePresenterProtocol.swift in Sources */,
 				801A820D2AC5F5B6005ADD4A /* ProfileMainSettingsViewModel.swift in Sources */,
+				43F768C92ACDBE5100321CEC /* AccountSettingPresenter.swift in Sources */,
 				80F17BEE2ACCD9280063A245 /* AuthError.swift in Sources */,
+				43F768CD2ACDBE5100321CEC /* AccountSettingRouter.swift in Sources */,
 				80ED76342ACC82CB008B93DB /* AuthViewInput.swift in Sources */,
 				804C1F9C2AC3520D00B07C87 /* EndPointType.swift in Sources */,
 				57C1AAB72AC6456200444C47 /* AllResultsTableViewCell.swift in Sources */,
