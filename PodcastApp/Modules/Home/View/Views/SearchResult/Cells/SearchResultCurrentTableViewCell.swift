@@ -1,8 +1,10 @@
 import UIKit
+import Kingfisher
 
 class SearchResultCurrentTableViewCell: UITableViewCell {
     
     static let reuseId = "SearchResultCurrentResultCell"
+    private var imageUrlString = ""
     
     // MARK: - UI Elemetns
     
@@ -109,7 +111,8 @@ class SearchResultCurrentTableViewCell: UITableViewCell {
     }
     
     func fill(viewModel: SearchResultViewModel) {
-        imageBuble.backgroundColor = viewModel.bgColor
+        imageUrlString = viewModel.imageURLString
+        imageBuble.kf.setImage(with: URL(string: imageUrlString))
         podcastNameLabel.text = viewModel.podcastGroupName
         episodsCountLabel.text = viewModel.episodsCount + " " + "Eps"
         authorNameLabel.text = viewModel.authorName

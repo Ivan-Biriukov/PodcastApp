@@ -133,9 +133,9 @@ final class SearchView: UIView {
             case .success(let data):
                 do {
                     let feedBacks = try JSONDecoder().decode(SearchResultModel.self, from: data)
-                    oneResult.append(SearchResultViewModel(bgColor: .green, podcastGroupName: feedBacks.feeds.first?.title ?? "No results", episodsCount: "\(feedBacks.feeds.first?.episodeCount ?? 0)", authorName: feedBacks.feeds.first?.author ?? "try aghain"))
+                    oneResult.append(SearchResultViewModel(imageURLString: feedBacks.feeds.first!.image, podcastGroupName: feedBacks.feeds.first?.title ?? "No results", episodsCount: "\(feedBacks.feeds.first?.episodeCount ?? 0)", authorName: feedBacks.feeds.first?.author ?? "try aghain"))
                     for feedBack in feedBacks.feeds.dropFirst() {
-                        allResults.append(SearchResultAllPodcastsViewModel(bgColor: .yellow, podcastName: feedBack.title, trackDuration: feedBack.language, episodeNumber: "1"))
+                        allResults.append(SearchResultAllPodcastsViewModel(imageURLString: feedBack.image, podcastName: feedBack.title, trackDuration: feedBack.language, episodeNumber: "1"))
                     }
                 }
                 catch {
