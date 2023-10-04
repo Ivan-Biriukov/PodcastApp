@@ -1,10 +1,12 @@
 import UIKit
 import SnapKit
+import Kingfisher
 
 class HomeTableViewCell: UITableViewCell {
     
     static let reuseId = "HomeTableViewCell"
     private var isLikeButtonTaped : Bool = false
+    private var urlString = ""
     
     // MARK: - UI Elements
     
@@ -129,7 +131,6 @@ class HomeTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         avatarImageView.image = nil
-        avatarImageView.backgroundColor = .clear
         podcastNameLabel.text = nil
         authorNameLabel.text = nil
         podcastCategoryLabel.text = nil
@@ -177,7 +178,9 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     func fill(viewModel: HomeViewCategoryTableViewModel) {
-        avatarImageView.backgroundColor = viewModel.color
+        urlString = viewModel.imageURLString
+        avatarImageView.kf.indicatorType = .activity
+        avatarImageView.kf.setImage(with: URL(string: urlString))
         podcastNameLabel.text = viewModel.podcastName
         authorNameLabel.text = viewModel.authorName
         podcastCategoryLabel.text = viewModel.podcastCategoryName

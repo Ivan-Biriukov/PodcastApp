@@ -13,6 +13,10 @@
 		43F768CB2ACDBE5100321CEC /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C42ACDBE5100321CEC /* AccountSettingViewController.swift */; };
 		43F768CC2ACDBE5100321CEC /* AccountSettingViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C52ACDBE5100321CEC /* AccountSettingViewInput.swift */; };
 		43F768CD2ACDBE5100321CEC /* AccountSettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C72ACDBE5100321CEC /* AccountSettingRouter.swift */; };
+		578CF0D82ACE0A0F006B50C5 /* EpisodeDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CF0D52ACE0A0E006B50C5 /* EpisodeDetailModel.swift */; };
+		578CF0D92ACE0A0F006B50C5 /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CF0D62ACE0A0E006B50C5 /* SearchResultModel.swift */; };
+		578CF0DA2ACE0A0F006B50C5 /* TrendingsNamesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CF0D72ACE0A0F006B50C5 /* TrendingsNamesModel.swift */; };
+		578CF0DE2ACE0FB5006B50C5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 578CF0DD2ACE0FB5006B50C5 /* Kingfisher */; };
 		57A5BAC22AC72A750036557A /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */; };
 		57A5BAC42AC72B730036557A /* SearchResultAllPodcastsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */; };
 		57A5BAC62AC7530D0036557A /* SearchGenresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC52AC7530D0036557A /* SearchGenresViewModel.swift */; };
@@ -55,7 +59,6 @@
 		804C1FB02AC36A3600B07C87 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FAF2AC36A3600B07C87 /* URLRequest+Extension.swift */; };
 		804C1FB22AC36B2500B07C87 /* PodcastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FB12AC36B2500B07C87 /* PodcastAPI.swift */; };
 		804C1FB42AC36C1100B07C87 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FB32AC36C1100B07C87 /* NetworkManager.swift */; };
-		804C1FB62AC371AE00B07C87 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FB52AC371AE00B07C87 /* TestModel.swift */; };
 		805D4FCB2AC0A48600905151 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FCA2AC0A48600905151 /* BaseCollectionViewCell.swift */; };
 		805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FCC2AC0A4F600905151 /* BaseTableViewCell.swift */; };
 		806C2C332ACD510900BA9B16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 806C2C322ACD510900BA9B16 /* GoogleService-Info.plist */; };
@@ -123,6 +126,9 @@
 		43F768C42ACDBE5100321CEC /* AccountSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
 		43F768C52ACDBE5100321CEC /* AccountSettingViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewInput.swift; sourceTree = "<group>"; };
 		43F768C72ACDBE5100321CEC /* AccountSettingRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingRouter.swift; sourceTree = "<group>"; };
+		578CF0D52ACE0A0E006B50C5 /* EpisodeDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeDetailModel.swift; sourceTree = "<group>"; };
+		578CF0D62ACE0A0E006B50C5 /* SearchResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
+		578CF0D72ACE0A0F006B50C5 /* TrendingsNamesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingsNamesModel.swift; sourceTree = "<group>"; };
 		57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultAllPodcastsViewModel.swift; sourceTree = "<group>"; };
 		57A5BAC52AC7530D0036557A /* SearchGenresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGenresViewModel.swift; sourceTree = "<group>"; };
@@ -165,7 +171,6 @@
 		804C1FAF2AC36A3600B07C87 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
 		804C1FB12AC36B2500B07C87 /* PodcastAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAPI.swift; sourceTree = "<group>"; };
 		804C1FB32AC36C1100B07C87 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		804C1FB52AC371AE00B07C87 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		805D4FCA2AC0A48600905151 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		805D4FCC2AC0A4F600905151 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		806C2C322ACD510900BA9B16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -222,6 +227,7 @@
 				80A15BB42ACC92F800134469 /* SnapKit in Frameworks */,
 				80A15BBE2ACC935F00134469 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				80A15BEC2ACC935F00134469 /* FirebaseRemoteConfigSwift in Frameworks */,
+				578CF0DE2ACE0FB5006B50C5 /* Kingfisher in Frameworks */,
 				80A15BCA2ACC935F00134469 /* FirebaseAuthCombine-Community in Frameworks */,
 				80A15BDA2ACC935F00134469 /* FirebaseFunctions in Frameworks */,
 				80A15BC22ACC935F00134469 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
@@ -282,6 +288,16 @@
 				43F768C72ACDBE5100321CEC /* AccountSettingRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		578CF0DB2ACE0A20006B50C5 /* DecodingModels */ = {
+			isa = PBXGroup;
+			children = (
+				578CF0D52ACE0A0E006B50C5 /* EpisodeDetailModel.swift */,
+				578CF0D62ACE0A0E006B50C5 /* SearchResultModel.swift */,
+				578CF0D72ACE0A0F006B50C5 /* TrendingsNamesModel.swift */,
+			);
+			path = DecodingModels;
 			sourceTree = "<group>";
 		};
 		57A5BAC02AC72A230036557A /* ViewModels */ = {
@@ -650,12 +666,12 @@
 		809355F92ABE3B2E0094F3AB /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
+				578CF0DB2ACE0A20006B50C5 /* DecodingModels */,
 				804C1FA32AC356FD00B07C87 /* Errors */,
 				804C1F9A2AC351EB00B07C87 /* Encoding */,
 				804C1F992AC351E700B07C87 /* Service */,
 				804C1F982AC351E100B07C87 /* Manager */,
 				804C1F972AC351D300B07C87 /* EndPoint */,
-				804C1FB52AC371AE00B07C87 /* TestModel.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -819,6 +835,7 @@
 				80A15BED2ACC935F00134469 /* FirebaseStorage */,
 				80A15BEF2ACC935F00134469 /* FirebaseStorageCombine-Community */,
 				80F17BF22ACCDDF00063A245 /* ProgressHUD */,
+				578CF0DD2ACE0FB5006B50C5 /* Kingfisher */,
 			);
 			productName = PodcastApp;
 			productReference = 809355D52ABE23710094F3AB /* PodcastApp.app */;
@@ -853,6 +870,7 @@
 				80A15BB52ACC931800134469 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				80A15BBA2ACC935F00134469 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				80F17BF12ACCDDF00063A245 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+				578CF0DC2ACE0FB5006B50C5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 809355D62ABE23710094F3AB /* Products */;
 			projectDirPath = "";
@@ -882,7 +900,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8093564B2ABE40840094F3AB /* SavingManagerProtocol.swift in Sources */,
-				804C1FB62AC371AE00B07C87 /* TestModel.swift in Sources */,
 				80ED762E2ACC8284008B93DB /* AuthInteractor.swift in Sources */,
 				43F768CB2ACDBE5100321CEC /* AccountSettingViewController.swift in Sources */,
 				57C1AAA72AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift in Sources */,
@@ -900,6 +917,7 @@
 				804C1FA52AC3570500B07C87 /* NetworkError.swift in Sources */,
 				80ED762A2ACC8237008B93DB /* AuthPresenter.swift in Sources */,
 				80A15BF32ACC941000134469 /* AuthView.swift in Sources */,
+				578CF0D92ACE0A0F006B50C5 /* SearchResultModel.swift in Sources */,
 				57C1AAAD2AC637E600444C47 /* SearchViewCollectionViewCell.swift in Sources */,
 				801A82102AC5F5B6005ADD4A /* ProfileSettingsTableViewCell.swift in Sources */,
 				80ED76262ACC81F4008B93DB /* AuthRouterInput.swift in Sources */,
@@ -935,11 +953,13 @@
 				80ED76282ACC8206008B93DB /* AuthRouter.swift in Sources */,
 				801A820E2AC5F5B6005ADD4A /* ProfileSettingViewInput.swift in Sources */,
 				804C1FA22AC3534B00B07C87 /* ParameterEncoding.swift in Sources */,
+				578CF0D82ACE0A0F006B50C5 /* EpisodeDetailModel.swift in Sources */,
 				57C1AAA92AC62E3700444C47 /* HomeTableViewCell.swift in Sources */,
 				801A820F2AC5F5B6005ADD4A /* ProfileSettingViewController.swift in Sources */,
 				80ED76322ACC82C3008B93DB /* AuthViewController.swift in Sources */,
 				57A5BAC42AC72B730036557A /* SearchResultAllPodcastsViewModel.swift in Sources */,
 				804C1F9E2AC3527300B07C87 /* HTTPMethod.swift in Sources */,
+				578CF0DA2ACE0A0F006B50C5 /* TrendingsNamesModel.swift in Sources */,
 				805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */,
 				57C1AAA02AC622DE00444C47 /* UITextField + Extension.swift in Sources */,
 				57C1AAB52AC644B400444C47 /* SearchResultCurrentTableViewCell.swift in Sources */,
@@ -1097,7 +1117,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X6QCC36TXK;
+				DEVELOPMENT_TEAM = 8RR26756PN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PodcastApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1128,7 +1148,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X6QCC36TXK;
+				DEVELOPMENT_TEAM = 8RR26756PN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PodcastApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1176,6 +1196,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		578CF0DC2ACE0FB5006B50C5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		80A15BB22ACC92F800134469 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1211,6 +1239,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		578CF0DD2ACE0FB5006B50C5 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 578CF0DC2ACE0FB5006B50C5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		80A15BB32ACC92F800134469 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 80A15BB22ACC92F800134469 /* XCRemoteSwiftPackageReference "SnapKit" */;

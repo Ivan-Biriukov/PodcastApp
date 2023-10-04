@@ -62,22 +62,7 @@ final class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         configureTabBarModules()
         setTabBarAppearance()
-        
-        
-        network.fetchCategoriest(page: 2) { [weak self] result in
-            switch result {
-            case .success(let data):
-                do {
-                    let genres = try JSONDecoder().decode(GenresModel.self, from: data)
-                    print(genres.genres)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
         }
-    }
 }
 
 private extension MainTabBarController {

@@ -8,7 +8,11 @@ enum NetworkResponse: String {
 }
 
 protocol NetworkManagerProtocol {
-    func fetchCategoriest(page: Int, completion: @escaping (Result<Data, Error>) -> Void)
+    func fetchTrending(safe: Bool,completion: @escaping (Result<Data, Error>) -> Void)
+    func fetchResultsFromSelectedTrendings(categoryName: String, count: Int, completion: @escaping (Result<Data, Error>) -> Void)
+    func fetchHomeViewPopulars(categoryName: String, completion: @escaping (Result<Data, Error>) -> Void)
+    func fetchFromSearchRequest(requestText: String, resultsCount: Int, completion: @escaping (Result<Data, Error>) -> Void)
+    func fetchEpisodsDetail(feedID: String, max: Int, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 final class NetworkManager {
@@ -17,11 +21,8 @@ final class NetworkManager {
 }
 
 extension NetworkManager: NetworkManagerProtocol {
-    func dasd() {
-        
-    }
-    func fetchCategoriest(page: Int, completion: @escaping (Result<Data, Error>) -> Void) {
-        router.request(.getCategories(page: page)) { data, response, error in
+    func fetchEpisodsDetail(feedID: String, max: Int, completion: @escaping (Result<Data, Error>) -> Void) {
+        router.request(.getEpisodDetail(id: "\(feedID)", resultsCount: max)) { data, response, error in
             guard error == nil, let data else {
                 completion(.failure(error!))
                 return
@@ -30,33 +31,44 @@ extension NetworkManager: NetworkManagerProtocol {
         }
     }
     
-
+    func fetchFromSearchRequest(requestText: String, resultsCount: Int, completion: @escaping (Result<Data, Error>) -> Void) {
+        router.request(.getSearched(q: requestText, max: resultsCount)) { data, response, error in
+            guard error == nil, let data else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success(data))
+        }
+    }
     
-//    func fetchPosts(completion: @escaping ([TestPostModel]?, String?) -> ()) {
-//        router.request(.posts) { data, response, error in
-//            if error != nil {
-//                completion(nil, "Something went wrong")
-//                print(error!)
-//            }
-//            
-//            if let response = response as? HTTPURLResponse {
-//                let result = self.handleNetworkResponse(response)
-//                switch result {
-//                case .success:
-//                    guard let responseData = data else {
-//                        completion(nil, NetworkResponse.noData.rawValue)
-//                        return
-//                    }
-//                    do {
-//                        let apiResponse = try JSONDecoder().decode([TestPostModel].self, from: responseData)
-//                        completion(apiResponse, nil)
-//                    } catch {
-//                        completion(nil, NetworkResponse.failed.rawValue)
-//                    }
-//                case .failture(let error):
-//                    completion(nil, error)
-//                }
-//            }
-//        }
-//    }
+    func fetchHomeViewPopulars(categoryName: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        router.request(.getResultFromSelectedTrending(categoryName: categoryName, resultsCount: 1000)) { data, response, error in
+            guard error == nil, let data else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success(data))
+        }
+    }
+    
+    func fetchResultsFromSelectedTrendings(categoryName: String, count: Int, completion: @escaping (Result<Data, Error>) -> Void) {
+        router.request(.getResultFromSelectedTrending(categoryName: categoryName, resultsCount: count)) { data, response, error in
+            guard error == nil, let data else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success(data))
+        }
+    }
+    
+    func fetchTrending(safe: Bool, completion: @escaping (Result<Data, Error>) -> Void) {
+        router.request(.getTrendingsCategoryes(safe: safe)) { data, response, error in
+            guard error == nil, let data else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success(data))
+        }
+    }
 }
+

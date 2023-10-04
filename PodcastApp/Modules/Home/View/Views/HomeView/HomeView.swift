@@ -94,7 +94,6 @@ final class HomeView: UIView{
     private let categoryCollecntion : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2.60, height: UIScreen.main.bounds.height / 4.22)
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 4.22).isActive = true
         collection.backgroundColor = .clear
@@ -104,7 +103,6 @@ final class HomeView: UIView{
     private let categoryesNamesCollection : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 3.125, height: UIScreen.main.bounds.height / 18.45)
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height /  18.0).isActive = true
         collection.backgroundColor = .clear
@@ -196,22 +194,36 @@ final class HomeView: UIView{
         sender.alpha = 0.5
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
             sender.alpha = 1
-            self.delegate?.seeAllTaped()
         })
+    }
+}
+
+// MARK: - CollectionView FlowLayout Delegate
+extension HomeView : UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if collectionView == categoryesNamesCollection {
+            let label = UILabel(frame: CGRect.zero)
+            label.text = allCategoryesViewModel[indexPath.row].categoryName
+                label.sizeToFit()
+                return  CGSize(width: (label.frame.width+60), height: 44)
+        } else {
+            return CGSize(width: UIScreen.main.bounds.width / 2.60, height: UIScreen.main.bounds.height / 4.22)
+        }
     }
 }
 
 // MARK: - Collection Delegates
 
 extension HomeView : UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         switch collectionView {
-            
         case categoryCollecntion:
             let viewModel = categoryesViewModel[indexPath.row]
             viewModel.action()
-            
         default:
             for index in 0 ..< allCategoryesViewModel.count {
                 if index != indexPath.row {
@@ -221,7 +233,11 @@ extension HomeView : UICollectionViewDelegate {
             
             let currentCellSelectedStatus = allCategoryesViewModel[indexPath.row].isItemSelected
             allCategoryesViewModel[indexPath.row].isItemSelected = !currentCellSelectedStatus
+            
+            let viewModel = allCategoryesViewModel[indexPath.row]
+            viewModel.action()
             collectionView.reloadData()
+            tableView.reloadData()
         }
     }
 }

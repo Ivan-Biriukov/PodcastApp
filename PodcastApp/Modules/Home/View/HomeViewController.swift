@@ -9,7 +9,8 @@ extension HomeViewController {
         let separatorColor: UIColor = .systemBlue
         
         let separatorHeight: CGFloat = 2.0
-        let sideTitlePadding: CGFloat = 16.0
+        let sideTitlePadding: CGFloat = 60.0
+        let sideSeparatePadding: CGFloat = 16.0
         let separatorDivideWidth: CGFloat = 2.5
         let tabBarHeight: CGFloat = 80.0
     }
@@ -21,6 +22,7 @@ final class HomeViewController: BaseViewController {
     
     private let presenter: HomePresenterProtocol
     private let constants: Constants
+    private let network: NetworkManagerProtocol = NetworkManager()
     
     private lazy var homeView: HomeView = {
         return HomeView()
@@ -116,6 +118,16 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController: HomeViewInput {
+    func preloadHomeViewTableViewResults(viewModels: [HomeViewCategoryTableViewModel]) {
+        self.homeView.tableViewModel = viewModels
+        self.homeView.reloadViews()
+    }
+    
+    func preloadTrending(viewModel: [AllCategoryesViewModel]) {
+        self.homeView.allCategoryesViewModel = viewModel
+        self.homeView.reloadViews()
+    }
+    
     
     func updateSearchCollections(topViewModels: [SearchGenresViewModel], allViewModels: [SearchGenresViewModel]) {
         self.searchView.allGenresViewModel = allViewModels
@@ -172,7 +184,7 @@ private extension HomeViewController {
         separatorView.snp.makeConstraints { make in
             make.height.equalTo(constants.separatorHeight)
             make.width.equalTo(view.snp.width).dividedBy(constants.separatorDivideWidth)
-            make.leading.equalToSuperview().inset(constants.sideTitlePadding)
+            make.leading.equalToSuperview().inset(constants.sideSeparatePadding)
             make.bottom.equalTo(mainScrollView.snp.top)
         }
     }
@@ -192,5 +204,4 @@ extension HomeViewController : SearchSeeAllDelegate {
     func searchSeeAllTaped() {
         presenter.didTapesTopGenresSeeAll()
     }
-    
 }
