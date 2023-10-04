@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>356608850758-kv8p06ckuja7f78uq05ajjlevht8q9v2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.356608850758-kv8p06ckuja7f78uq05ajjlevht8q9v2</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDk1iHZ47SPieV41AY4X-Te8gM7zyhtDrw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>356608850758</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kashchenko.podcastapp.PodcastApp</string>
+	<key>PROJECT_ID</key>
+	<string>podcastapp-69abc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>podcastapp-69abc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:356608850758:ios:2fede88f12932fe8a54347</string>
+</dict>
+</plist>
