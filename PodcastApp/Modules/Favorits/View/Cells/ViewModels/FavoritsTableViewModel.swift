@@ -5,4 +5,5 @@ struct FavoritsTableViewModel {
     let titleText : String
     let episodesString : String
     let id : Int
+    let action: () -> ()
 }

@@ -5,4 +5,5 @@ struct FavoritsMainPlaylistViewModel {
     let nameText : String
     let authorText : String
     let id : Int
+    let action: () -> ()
 }

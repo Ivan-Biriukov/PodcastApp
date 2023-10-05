@@ -15,11 +15,7 @@ class FavoritsViewController: BaseViewController {
     private let presenter: FavoritsPresenterProtocol
     private let constants: Constants
     private var favoritsViewModels = [FavoritsMainPlaylistViewModel]()
-    private var playListViewModels : [FavoritsTableViewModel] = [
-        .init(imageURLString: "", titleText: "Create Playlist", episodesString: "", id: 0),
-        .init(imageURLString: "", titleText: "MokTest Data", episodesString: "dsfsdfsdf", id: 0)
-    ]
-    
+    private var playListViewModels = [FavoritsTableViewModel]()
     
     // MARK: - UI Elements
     
@@ -80,7 +76,6 @@ class FavoritsViewController: BaseViewController {
         return tb
     }()
     
-    
     // MARK: - LifeCycleMethods
     
     override func viewDidLoad() {
@@ -88,7 +83,7 @@ class FavoritsViewController: BaseViewController {
         addSubviews()
         setupConstraints()
         setupCollections()
-
+        playListViewModels.append(FavoritsTableViewModel(imageURLString: "", titleText: "Create Playlist", episodesString: "", id: 0, action: {self.pushCreateVC()}))
     }
     
     // MARK: - Init
@@ -184,6 +179,10 @@ extension FavoritsViewController: UITableViewDelegate {
         return 64
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = playListViewModels[indexPath.row]
+        viewModel.action()
+    }
 }
 
 // MARK: - TableView DataSource
@@ -235,11 +234,22 @@ extension FavoritsViewController: UICollectionViewDataSource {
         }
         
         if favoritsViewModels.count == 0 {
-            let emptyData = FavoritsMainPlaylistViewModel(imageURLString: "", nameText: "Oops, Your", authorText: "Favorits - empty", id: 0)
+            let emptyData = FavoritsMainPlaylistViewModel(imageURLString: "", nameText: "Oops, Your", authorText: "Favorits - empty", id: 0, action: {print("No Favarits Yet")})
             cell.fill(viewModel: emptyData)
         } else {
             cell.fill(viewModel: favoritsViewModels[indexPath.row])
         }
         return cell
+    }
+}
+
+// MARK: - Cells common actions
+
+private extension FavoritsViewController {
+    
+    func pushCreateVC() {
+        let vcToPresent = CreatePlaylistViewController()
+        vcToPresent.modalPresentationStyle = .fullScreen
+        present(vcToPresent, animated: true)
     }
 }
