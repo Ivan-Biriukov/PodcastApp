@@ -55,6 +55,12 @@ class CreatePlaylistViewController: BaseViewController {
         return img
     }()
     
+    private lazy var selectImageButton : UIButton = {
+        let btn = UIButton(type: .system)
+        btn.addTarget(self, action: #selector(selectImageTaped), for: .touchUpInside)
+        return btn
+    }()
+    
     private lazy var nameTextField : UITextField = {
         let field = UITextField()
         field.addBottomBorder(height: 1, color: .init(rgb: 0xE0E1E6))
@@ -96,6 +102,18 @@ class CreatePlaylistViewController: BaseViewController {
         tb.separatorStyle = .none
         return tb
     }()
+    
+    private lazy var createButton : UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("Create Playlist", for: .normal)
+        btn.setTitleColor(constants.textBlackColor, for: .normal)
+        btn.backgroundColor = .init(rgb: 0xEDF0FC)
+        btn.layer.cornerRadius = 12
+        btn.layer.borderColor = UIColor.black.cgColor
+        btn.layer.borderWidth = 1
+        btn.addTarget(self, action: #selector(createTaped), for: .touchUpInside)
+        return btn
+    }()
 
     // MARK: - LifeCycleMethods
     
@@ -135,6 +153,17 @@ private extension CreatePlaylistViewController {
     @objc func searchTaped(_ sender: UIButton) {
         
     }
+    
+    @objc func createTaped() {
+        
+    }
+    
+    @objc func selectImageTaped() {
+        imageView.alpha = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            self.imageView.alpha = 1
+        })
+    }
 }
 
 // MARK: - Configure UI
@@ -142,7 +171,7 @@ private extension CreatePlaylistViewController {
 private extension CreatePlaylistViewController {
     
     func addSubviews() {
-        addSubviews(views: titleStack, imageView, nameTextField, searchField, searchResultsTableView)
+        addSubviews(views: titleStack, imageView, selectImageButton, nameTextField, searchField, searchResultsTableView, createButton)
     }
     
     func setupConstraints() {
@@ -161,6 +190,12 @@ private extension CreatePlaylistViewController {
         }
         
         imageView.snp.makeConstraints { make in
+            make.height.width.equalTo(84)
+            make.top.equalTo(titleStack.snp.bottom).inset(-33)
+            make.centerX.equalTo(view.snp.centerX)
+        }
+        
+        selectImageButton.snp.makeConstraints { make in
             make.height.width.equalTo(84)
             make.top.equalTo(titleStack.snp.bottom).inset(-33)
             make.centerX.equalTo(view.snp.centerX)
@@ -185,7 +220,13 @@ private extension CreatePlaylistViewController {
         searchResultsTableView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(searchField.snp.bottom).inset(-24)
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(createButton.snp.top).inset(-10)
+        }
+        
+        createButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(64)
+            make.height.equalTo(40)
+            make.bottom.equalToSuperview().inset(40)
         }
         
     }
@@ -208,11 +249,23 @@ private extension CreatePlaylistViewController {
 
 extension CreatePlaylistViewController: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == searchField {
+            // метод делегата поиска
+        }
+        
+        textField.resignFirstResponder()
+        textField.endEditing(true)
+        
+        return true
+    }
 }
 
 // MARK: - TableView Delegate
 
 extension CreatePlaylistViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 88
     }
