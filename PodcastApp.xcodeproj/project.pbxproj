@@ -13,6 +13,12 @@
 		43F768CB2ACDBE5100321CEC /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C42ACDBE5100321CEC /* AccountSettingViewController.swift */; };
 		43F768CC2ACDBE5100321CEC /* AccountSettingViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C52ACDBE5100321CEC /* AccountSettingViewInput.swift */; };
 		43F768CD2ACDBE5100321CEC /* AccountSettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C72ACDBE5100321CEC /* AccountSettingRouter.swift */; };
+		43F769122ACF453000321CEC /* PlayerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F769092ACF453000321CEC /* PlayerAssembly.swift */; };
+		43F769132ACF453000321CEC /* PlayerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F7690B2ACF453000321CEC /* PlayerPresenterProtocol.swift */; };
+		43F769142ACF453000321CEC /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F7690C2ACF453000321CEC /* PlayerPresenter.swift */; };
+		43F769152ACF453000321CEC /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F7690E2ACF453000321CEC /* PlayerViewController.swift */; };
+		43F769162ACF453000321CEC /* PlayerViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F7690F2ACF453000321CEC /* PlayerViewInput.swift */; };
+		43F769172ACF453000321CEC /* PlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F769112ACF453000321CEC /* PlayerRouter.swift */; };
 		578CF0D82ACE0A0F006B50C5 /* EpisodeDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CF0D52ACE0A0E006B50C5 /* EpisodeDetailModel.swift */; };
 		578CF0D92ACE0A0F006B50C5 /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CF0D62ACE0A0E006B50C5 /* SearchResultModel.swift */; };
 		578CF0DA2ACE0A0F006B50C5 /* TrendingsNamesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CF0D72ACE0A0F006B50C5 /* TrendingsNamesModel.swift */; };
@@ -139,6 +145,12 @@
 		43F768C42ACDBE5100321CEC /* AccountSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
 		43F768C52ACDBE5100321CEC /* AccountSettingViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewInput.swift; sourceTree = "<group>"; };
 		43F768C72ACDBE5100321CEC /* AccountSettingRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingRouter.swift; sourceTree = "<group>"; };
+		43F769092ACF453000321CEC /* PlayerAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerAssembly.swift; sourceTree = "<group>"; };
+		43F7690B2ACF453000321CEC /* PlayerPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerPresenterProtocol.swift; sourceTree = "<group>"; };
+		43F7690C2ACF453000321CEC /* PlayerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerPresenter.swift; sourceTree = "<group>"; };
+		43F7690E2ACF453000321CEC /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		43F7690F2ACF453000321CEC /* PlayerViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewInput.swift; sourceTree = "<group>"; };
+		43F769112ACF453000321CEC /* PlayerRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerRouter.swift; sourceTree = "<group>"; };
 		578CF0D52ACE0A0E006B50C5 /* EpisodeDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeDetailModel.swift; sourceTree = "<group>"; };
 		578CF0D62ACE0A0E006B50C5 /* SearchResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
 		578CF0D72ACE0A0F006B50C5 /* TrendingsNamesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingsNamesModel.swift; sourceTree = "<group>"; };
@@ -312,6 +324,51 @@
 			isa = PBXGroup;
 			children = (
 				43F768C72ACDBE5100321CEC /* AccountSettingRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		43F769072ACF453000321CEC /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				43F769082ACF453000321CEC /* Assembly */,
+				43F7690A2ACF453000321CEC /* Presenter */,
+				43F7690D2ACF453000321CEC /* View */,
+				43F769102ACF453000321CEC /* Router */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		43F769082ACF453000321CEC /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				43F769092ACF453000321CEC /* PlayerAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		43F7690A2ACF453000321CEC /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				43F7690B2ACF453000321CEC /* PlayerPresenterProtocol.swift */,
+				43F7690C2ACF453000321CEC /* PlayerPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		43F7690D2ACF453000321CEC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				43F7690E2ACF453000321CEC /* PlayerViewController.swift */,
+				43F7690F2ACF453000321CEC /* PlayerViewInput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		43F769102ACF453000321CEC /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				43F769112ACF453000321CEC /* PlayerRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -736,6 +793,7 @@
 				578CF0DF2ACE1A69006B50C5 /* Favorits */,
 				80ED761D2ACC80C4008B93DB /* Auth */,
 				57C1AA872AC60A6000444C47 /* Home */,
+				43F769072ACF453000321CEC /* Player */,
 				801A81FB2AC5F5B6005ADD4A /* ProfileSetting */,
 				43F768BD2ACDBE5100321CEC /* AccountSetting */,
 				809355F02ABE23FF0094F3AB /* MainTabBar */,
@@ -1029,6 +1087,7 @@
 				57C1AA9E2AC60C6200444C47 /* UIViewController + Extension.swift in Sources */,
 				57C1AA952AC60A6000444C47 /* HomeAssembly.swift in Sources */,
 				804C1FA72AC3577400B07C87 /* URLParameterEncoder.swift in Sources */,
+				43F769132ACF453000321CEC /* PlayerPresenterProtocol.swift in Sources */,
 				43F768C82ACDBE5100321CEC /* AccountSettingAssembly.swift in Sources */,
 				57C1AA9C2AC60A6000444C47 /* HomeRouter.swift in Sources */,
 				57A5BAC22AC72A750036557A /* SearchResultViewModel.swift in Sources */,
@@ -1053,8 +1112,10 @@
 				804C1FA92AC3638C00B07C87 /* JSONParameterEncoder.swift in Sources */,
 				57C1AA9A2AC60A6000444C47 /* SearchView.swift in Sources */,
 				801A820C2AC5F5B6005ADD4A /* ProfileSettingPresenter.swift in Sources */,
+				43F769122ACF453000321CEC /* PlayerAssembly.swift in Sources */,
 				57C1AA992AC60A6000444C47 /* HomeViewInput.swift in Sources */,
 				8093564D2ABE40990094F3AB /* SavingManager.swift in Sources */,
+				43F769172ACF453000321CEC /* PlayerRouter.swift in Sources */,
 				804C1FAB2AC3644B00B07C87 /* NetworkRouter.swift in Sources */,
 				809355F22ABE25B90094F3AB /* MainTabBarController.swift in Sources */,
 				809355D92ABE23710094F3AB /* AppDelegate.swift in Sources */,
@@ -1065,6 +1126,7 @@
 				578CF0F52ACE3C0C006B50C5 /* FavoritsMainPlaylistViewModel.swift in Sources */,
 				578CF0F72ACE3D41006B50C5 /* FavoritsCollectionViewCell.swift in Sources */,
 				578CF0EF2ACE1D16006B50C5 /* FavoritsRouter.swift in Sources */,
+				43F769152ACF453000321CEC /* PlayerViewController.swift in Sources */,
 				57C1AAB02AC6394400444C47 /* SearchResultsViewController.swift in Sources */,
 				804C1FA02AC352DB00B07C87 /* HTTPTask.swift in Sources */,
 				57C1AAA52AC62BA200444C47 /* CategoryCollectionViewCell.swift in Sources */,
@@ -1073,6 +1135,7 @@
 				57A908C72ACF00CB00872DE3 /* CreatePlaylistTableViewCell.swift in Sources */,
 				57C1AABC2AC6494000444C47 /* HomeViewCategoryTableViewModel.swift in Sources */,
 				801A820B2AC5F5B6005ADD4A /* ProfileSettingPresenterProtocol.swift in Sources */,
+				43F769142ACF453000321CEC /* PlayerPresenter.swift in Sources */,
 				43F768CC2ACDBE5100321CEC /* AccountSettingViewInput.swift in Sources */,
 				809356002ABE3B940094F3AB /* PlayerServiceProtocol.swift in Sources */,
 				801A820A2AC5F5B6005ADD4A /* ProfileSettingAssembly.swift in Sources */,
@@ -1082,6 +1145,7 @@
 				80ED76282ACC8206008B93DB /* AuthRouter.swift in Sources */,
 				801A820E2AC5F5B6005ADD4A /* ProfileSettingViewInput.swift in Sources */,
 				804C1FA22AC3534B00B07C87 /* ParameterEncoding.swift in Sources */,
+				43F769162ACF453000321CEC /* PlayerViewInput.swift in Sources */,
 				578CF0D82ACE0A0F006B50C5 /* EpisodeDetailModel.swift in Sources */,
 				57C1AAA92AC62E3700444C47 /* HomeTableViewCell.swift in Sources */,
 				578CF0EB2ACE1BE7006B50C5 /* FavoritsViewController.swift in Sources */,
