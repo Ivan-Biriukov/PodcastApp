@@ -9,8 +9,9 @@ final class ImageChooseAlert {
         static let backgroundAlhpaTo : CGFloat = 0.6
     }
     
-    private let backgroundView: UIView = {
-        let view = UIView()
+    private let backgroundView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+        let view = UIVisualEffectView(effect: blurEffect)
         view.backgroundColor = .black
         view.alpha = 0
         return view
@@ -42,7 +43,6 @@ final class ImageChooseAlert {
         setupAlertViewInnerUI()
         
         alertView.frame = CGRect(x: 0, y: targetView.frame.size.height + 360 , width: targetView.frame.size.width , height: 360)
-
         
         UIView.animate(withDuration: 0.25,
                        animations: {
