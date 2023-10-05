@@ -15,6 +15,10 @@ class FavoritsViewController: BaseViewController {
     private let presenter: FavoritsPresenterProtocol
     private let constants: Constants
     private var favoritsViewModels = [FavoritsMainPlaylistViewModel]()
+    private var playListViewModels : [FavoritsTableViewModel] = [
+        .init(imageURLString: "", titleText: "Create Playlist", episodesString: "", id: 0),
+        .init(imageURLString: "", titleText: "MokTest Data", episodesString: "dsfsdfsdf", id: 0)
+    ]
     
     
     // MARK: - UI Elements
@@ -72,6 +76,7 @@ class FavoritsViewController: BaseViewController {
         tb.delegate = self
         tb.dataSource = self
         tb.separatorStyle = .none
+        tb.register(FavoritsMainTableViewCell.self, forCellReuseIdentifier: FavoritsMainTableViewCell.reuseId)
         return tb
     }()
     
@@ -175,6 +180,10 @@ private extension FavoritsViewController {
 
 extension FavoritsViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 64
+    }
+    
 }
 
 // MARK: - TableView DataSource
@@ -182,14 +191,23 @@ extension FavoritsViewController: UITableViewDelegate {
 extension FavoritsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
+        return playListViewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoritsMainTableViewCell.reuseId, for: indexPath) as? FavoritsMainTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        if indexPath.row == 0 {
+            cell.fill(viewModel: playListViewModels[indexPath.row])
+            cell.setupFirstCell()
+        } else {
+            cell.fill(viewModel: playListViewModels[indexPath.row])
+        }
+        return cell
     }
-    
-    
 }
 
 // MARK: - CollectionView Delegate
@@ -221,7 +239,6 @@ extension FavoritsViewController: UICollectionViewDataSource {
             cell.fill(viewModel: emptyData)
         } else {
             cell.fill(viewModel: favoritsViewModels[indexPath.row])
-
         }
         return cell
     }

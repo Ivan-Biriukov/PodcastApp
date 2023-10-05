@@ -11,7 +11,6 @@ class FavoritsCollectionViewCell: UICollectionViewCell {
     
     private lazy var itemImageView : UIImageView = {
         let image = UIImageView()
-        //image.clipsToBounds = true
         image.layer.masksToBounds = true
         image.contentMode = .scaleToFill
         image.backgroundColor = .init(rgb: 0xD9D9D9)
