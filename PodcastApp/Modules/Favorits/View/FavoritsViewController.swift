@@ -14,6 +14,8 @@ class FavoritsViewController: BaseViewController {
     
     private let presenter: FavoritsPresenterProtocol
     private let constants: Constants
+    private var favoritsViewModels = [FavoritsMainPlaylistViewModel]()
+    
     
     // MARK: - UI Elements
     
@@ -80,6 +82,7 @@ class FavoritsViewController: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         setupConstraints()
+        setupCollections()
 
     }
     
@@ -147,6 +150,7 @@ private extension FavoritsViewController {
     func setupCollections() {
         favoritsCollection.delegate = self
         favoritsCollection.dataSource = self
+        favoritsCollection.register(FavoritsCollectionViewCell.self, forCellWithReuseIdentifier: FavoritsCollectionViewCell.reuseId)
     }
     
     func setupTableView() {
@@ -178,11 +182,11 @@ extension FavoritsViewController: UITableViewDelegate {
 extension FavoritsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        return UITableViewCell()
     }
     
     
@@ -199,12 +203,26 @@ extension FavoritsViewController: UICollectionViewDelegate {
 extension FavoritsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        if favoritsViewModels.count == 0 {
+            return 1
+        } else {
+            return favoritsViewModels.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoritsCollectionViewCell.reuseId, for: indexPath) as? FavoritsCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        if favoritsViewModels.count == 0 {
+            let emptyData = FavoritsMainPlaylistViewModel(imageURLString: "", nameText: "Oops, Your", authorText: "Favorits - empty", id: 0)
+            cell.fill(viewModel: emptyData)
+        } else {
+            cell.fill(viewModel: favoritsViewModels[indexPath.row])
+
+        }
+        return cell
     }
-    
-    
 }
