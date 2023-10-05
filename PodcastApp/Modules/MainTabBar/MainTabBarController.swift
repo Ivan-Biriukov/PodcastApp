@@ -84,8 +84,7 @@ private extension MainTabBarController {
     
         switch page {
         case .favorites:
-            let firstVC = UIViewController()
-            firstVC.view.backgroundColor = .systemRed
+            let firstVC = FavoritsAssembly.assemble()
             navController.pushViewController(firstVC, animated: true)
         case .home:
             let home = HomeAssembly.assemble()
