@@ -162,6 +162,7 @@ private extension CreatePlaylistViewController {
         imageView.alpha = 0.5
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
             self.imageView.alpha = 1
+            ImageChooseAlert.shared.showAlert(on: self)
         })
     }
 }
