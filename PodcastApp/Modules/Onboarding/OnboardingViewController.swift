@@ -23,8 +23,20 @@ final class OnboardingViewController: BaseViewController {
         return view
     }()
 
-    private var mainTitle = UILabel()
-    private var descriptionLabel = UILabel()
+    private let mainTitle: UILabel = {
+       let label = createLabel(text: "SUPER APP SUPER APP SUPER APP", font: .boldSystemFont(ofSize: 34), textColor: UIColor(rgb: 0x413E50))
+        
+        
+        return label
+    }()
+    
+//    private var descriptionLabel: UILabel = {
+//       let label = createLabel(text: <#T##String#>, font: <#T##UIFont#>, textColor: <#T##UIColor#>)
+//
+//
+//        return label
+//    }()
+    
     private var labelsStackView = UIStackView()
     
     private lazy var nextButton: UIButton = {
@@ -60,6 +72,27 @@ final class OnboardingViewController: BaseViewController {
     }()
     
     private var mainStackView = UIStackView()
+//    private var mainStackView: UIStackView = {
+//       return createStackView(for: labelsStackView, buttonsStackView, pageControl, axis: .vertical, spacing: 20)
+//    }()
+    
+    //MARK: - Initialize
+//    init(labelsStackView: UIStackView = UIStackView(), nextButton: UIButton, skipButton: UIButton, buttonsStackView: UIStackView = UIStackView(), mainStackView: UIStackView = UIStackView()) {
+//        self.labelsStackView = labelsStackView
+//        self.nextButton = nextButton
+//        self.skipButton = skipButton
+//        self.buttonsStackView = buttonsStackView
+//        self.mainStackView = mainStackView
+//        super.init(nibName: nil, bundle: nil)
+//    }
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -76,12 +109,18 @@ final class OnboardingViewController: BaseViewController {
         view.addSubview(collectionView)
         view.addSubview(backgroundView)
         
-        mainTitle = createLabel(text: "SUPER APP SUPER APP SUPER APP", font: .boldSystemFont(ofSize: 34), textColor: UIColor(rgb: 0x413E50))
+//        mainTitle =
         descriptionLabel = createLabel(text: "SUPER APP SUPER APP SUPER APP SUPER APP SUPER APP SUPER APP", font: .systemFont(ofSize: 15), textColor: UIColor(rgb: 0x413E50))
         
         labelsStackView = createStackView(for: mainTitle, descriptionLabel, axis: .vertical, spacing: 16)
         buttonsStackView = createStackView(for: nextButton, skipButton, axis: .horizontal, spacing: 89)
         mainStackView = createStackView(for: labelsStackView, buttonsStackView, pageControl, axis: .vertical, spacing: 20)
+        labelsStackView.translatesAutoresizingMaskIntoConstraints = false
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        
         backgroundView.addSubview(mainStackView)
     }
     
