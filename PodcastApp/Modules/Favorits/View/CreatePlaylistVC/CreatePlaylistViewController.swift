@@ -137,7 +137,6 @@ class CreatePlaylistViewController: BaseViewController {
     }
 }
 
-
 // MARK: - Buttons Methods
 
 private extension CreatePlaylistViewController {
