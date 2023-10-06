@@ -7,6 +7,7 @@ protocol AuthServiceProtocol {
     func createUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> ())
     func loginUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> ())
     func loginWithGoogle(view: UIViewController, completion: @escaping (Result<String?, Error>) -> ())
+    func logout(completion: @escaping (Result<Bool, Error>) -> ())
     func isAuthorised() -> Bool
 }
 
@@ -81,5 +82,14 @@ final class AuthService: AuthServiceProtocol {
     
     func isAuthorised() -> Bool {
         return Auth.auth().currentUser != nil
+    }
+    
+    func logout(completion: @escaping (Result<Bool, Error>) -> ()) {
+        do {
+            try Auth.auth().signOut()
+            completion(.success(true))
+        } catch {
+            completion(.failure(error))
+        }
     }
 }
