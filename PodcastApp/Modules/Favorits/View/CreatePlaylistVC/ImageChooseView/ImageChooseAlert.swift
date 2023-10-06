@@ -84,6 +84,10 @@ private extension ImageChooseAlert {
     @objc func selectLocalTaped() {
         
     }
+    
+    @objc func seeAllTaped() {
+        
+    }
 }
 
 private extension ImageChooseAlert {
@@ -129,6 +133,7 @@ private extension ImageChooseAlert {
             btn.setTitle("See all", for: .normal)
             btn.setTitleColor(UIColor.init(rgb: 0xA4A2B0), for: .normal)
             btn.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
+            btn.addTarget(self, action: #selector(seeAllTaped), for: .touchUpInside)
             return btn
         }()
         
@@ -151,6 +156,7 @@ private extension ImageChooseAlert {
             btn.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
             btn.setImage(UIImage(named: "Folder"), for: .normal)
             btn.backgroundColor = .init(rgb: 0xEDF0FC)
+            btn.tintColor = .init(rgb: 0x747183)
             btn.addTarget(self, action: #selector(selectLocalTaped), for: .touchUpInside)
             btn.layer.cornerRadius = 16
             return btn
@@ -159,6 +165,8 @@ private extension ImageChooseAlert {
         [backButton, titleLabel, titleStack, squareStack, selectLocalButton].forEach({alertView.addSubview($0)})
         [choosenTitle, seeAllButton].forEach({titleStack.addArrangedSubview($0)})
         [firstSquare, secondSquare, thirdSquare].forEach({squareStack.addArrangedSubview($0)})
+        
+        leftPadding(value: 67, button: selectLocalButton)
         
         backButton.snp.makeConstraints { make in
             make.height.width.equalTo(24)
@@ -186,6 +194,12 @@ private extension ImageChooseAlert {
             make.height.equalTo(56)
             make.leading.trailing.bottom.equalToSuperview().inset(32)
         }
+    }
+    
+    private func leftPadding(value: CGFloat, button: UIButton) {
+        button.imageView?.translatesAutoresizingMaskIntoConstraints = false
+        button.imageView?.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: value).isActive = true
+        button.imageView?.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
     }
 }
 
