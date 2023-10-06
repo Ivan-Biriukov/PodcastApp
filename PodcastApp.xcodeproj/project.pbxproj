@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		437B1B6F2ACF4FE400B388D6 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B1B6E2ACF4FE400B388D6 /* CustomSlider.swift */; };
 		43F768C82ACDBE5100321CEC /* AccountSettingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768BF2ACDBE5100321CEC /* AccountSettingAssembly.swift */; };
 		43F768C92ACDBE5100321CEC /* AccountSettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C12ACDBE5100321CEC /* AccountSettingPresenter.swift */; };
 		43F768CA2ACDBE5100321CEC /* AccountSettingPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C22ACDBE5100321CEC /* AccountSettingPresenterProtocol.swift */; };
@@ -139,6 +140,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		437B1B6E2ACF4FE400B388D6 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		43F768BF2ACDBE5100321CEC /* AccountSettingAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingAssembly.swift; sourceTree = "<group>"; };
 		43F768C12ACDBE5100321CEC /* AccountSettingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingPresenter.swift; sourceTree = "<group>"; };
 		43F768C22ACDBE5100321CEC /* AccountSettingPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 			children = (
 				43F7690E2ACF453000321CEC /* PlayerViewController.swift */,
 				43F7690F2ACF453000321CEC /* PlayerViewInput.swift */,
+				437B1B6E2ACF4FE400B388D6 /* CustomSlider.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1097,6 +1100,7 @@
 				80ED762A2ACC8237008B93DB /* AuthPresenter.swift in Sources */,
 				80A15BF32ACC941000134469 /* AuthView.swift in Sources */,
 				578CF0D92ACE0A0F006B50C5 /* SearchResultModel.swift in Sources */,
+				437B1B6F2ACF4FE400B388D6 /* CustomSlider.swift in Sources */,
 				57C1AAAD2AC637E600444C47 /* SearchViewCollectionViewCell.swift in Sources */,
 				801A82102AC5F5B6005ADD4A /* ProfileSettingsTableViewCell.swift in Sources */,
 				80ED76262ACC81F4008B93DB /* AuthRouterInput.swift in Sources */,

@@ -67,14 +67,18 @@ final class PlayerViewController: BaseViewController {
             alignment: .center)
     }()
     
-    private lazy var timeSlider: UISlider = {
-        let slider = UISlider()
+    private lazy var timeSlider: CustomSlider = {
+        let slider = CustomSlider()
         slider.minimumValue = 0.0
         slider.maximumValue = 1200.0
         slider.value = 50
         slider.minimumTrackTintColor = .init(rgb: 0x2882F1)
         slider.maximumTrackTintColor = .init(rgb: 0x2882F1)
         slider.thumbTintColor = .init(rgb: 0x2882F1)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 10)
+        let image = UIImage(systemName: "circle.fill", withConfiguration: configuration)
+        slider.setThumbImage(image, for: .normal)
+        slider.setThumbImage(image, for: .highlighted)
         slider.addTarget(self, action: #selector(timeSliderChanged), for: .valueChanged)
         return slider
     }()
