@@ -8,7 +8,7 @@ struct OnboardingStruct {
 final class OnboardingViewController: BaseViewController {
     
     //MARK: - UI
-    let collectionView: UICollectionView = {
+    private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
@@ -29,7 +29,7 @@ final class OnboardingViewController: BaseViewController {
     }()
 
     private lazy var mainTitleLabel: UILabel = {
-       let label = createLabel(text: "SUPER APP\nSUPER APP\nSUPER APP", font: .boldSystemFont(ofSize: 34), textColor: UIColor(rgb: 0x413E50))
+       let label = createLabel(text: "SUPER APP\nSUPER APP\nSUPER APP", font: .systemFont(ofSize: 34, weight: .bold), textColor: UIColor(rgb: 0x413E50))
         label.numberOfLines = 3
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +37,7 @@ final class OnboardingViewController: BaseViewController {
     }()
     
     private lazy var descriptionLabel: UILabel = {
-       let label = createLabel(text: "SUPER APP SUPER APP SUPER APP\nSUPER APP SUPER APP SUPER APP\nSUPER APP SUPER APP SUPER APP", font: .systemFont(ofSize: 15), textColor: UIColor(rgb: 0x413E50))
+       let label = createLabel(text: "SUPER APP SUPER APP SUPER APP\nSUPER APP SUPER APP SUPER APP\nSUPER APP SUPER APP SUPER APP", font: .systemFont(ofSize: 15, weight: .regular), textColor: UIColor(rgb: 0x413E50))
         label.numberOfLines = 3
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +51,7 @@ final class OnboardingViewController: BaseViewController {
     }()
     
     private lazy var nextButton: UIButton = {
-        let button = createTitleButton(title: "Next", titleColor: UIColor(rgb: 0x413E50), font: .systemFont(ofSize: 17))
+        let button = createTitleButton(title: "Next", titleColor: UIColor(rgb: 0x413E50), font: .systemFont(ofSize: 17, weight: .semibold))
         button.backgroundColor = .white
         button.layer.cornerRadius = 20
         button.widthAnchor.constraint(equalToConstant: 85).isActive = true
@@ -62,7 +62,7 @@ final class OnboardingViewController: BaseViewController {
     }()
     
     private lazy var skipButton: UIButton = {
-        let button = createTitleButton(title: "Skip", titleColor: UIColor(rgb: 0x413E50), font: .systemFont(ofSize: 17))
+        let button = createTitleButton(title: "Skip", titleColor: UIColor(rgb: 0x413E50), font: .systemFont(ofSize: 17, weight: .semibold))
         button.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -138,19 +138,22 @@ final class OnboardingViewController: BaseViewController {
     
     
     @objc private func nextButtonTapped() {
-        if collectionItem == 0 {
+        switch collectionItem {
+        case 0:
             nextPage()
             mainTitleLabel.text = "APP SUPER\nAPP SUPER\nAPP SUPER"
-        } else if collectionItem == 1 {
+        case 1:
             nextPage()
             mainTitleLabel.text = "SAP\nSAP\nSAP"
             nextButton.setTitle("Get Started", for: .normal)
             nextButton.setTitleColor(.white, for: .normal)
             nextButton.backgroundColor = UIColor(rgb: 0x2882F1)
             skipButton.isHidden = true
-        } else if collectionItem == 2 {
+        case 2:
             saveUserDefaults()
             showHomeScreen()
+        default:
+            break
         }
     }
     
@@ -184,7 +187,9 @@ extension OnboardingViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: idOnboardingCell, for: indexPath) as! OnboardingCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: idOnboardingCell, for: indexPath) as? OnboardingCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         let model = onboardingArray[indexPath.row]
         cell.cellConfigure(model: model)
         return cell
