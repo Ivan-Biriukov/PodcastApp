@@ -14,6 +14,11 @@ final class HomePresenter {
 
 extension HomePresenter: HomePresenterProtocol {
     
+    func didTapedSearchButton(text: String, results: Int) {
+        fetchSearchResults(searchText: text, resultsCount: results)
+    }
+    
+    
     func didTapesTopGenresSeeAll() {
         print("Did Taped top genres see all")
     }
@@ -129,6 +134,35 @@ private extension HomePresenter {
 
     func fetchSearchViewCategoryes() {
         
+    }
+    
+    func fetchSearchResults(searchText: String, resultsCount: Int) {
+        let group = DispatchGroup()
+        
+        var oneResult : [SearchResultViewModel] = []
+        var allResults : [SearchResultAllPodcastsViewModel] = []
+        
+        group.enter()
+        NetworkManager().fetchFromSearchRequest(requestText: searchText, resultsCount: resultsCount) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let feedBacks = try JSONDecoder().decode(SearchResultModel.self, from: data)
+                    oneResult.append(SearchResultViewModel(imageURLString: feedBacks.feeds.first?.image ?? "", podcastGroupName: feedBacks.feeds.first?.title ?? "No results", episodsCount: "\(feedBacks.feeds.first?.episodeCount ?? 0)", authorName: feedBacks.feeds.first?.author ?? "try aghain", action: {print(12323523523325)}))
+                    for feedBack in feedBacks.feeds.dropFirst() {
+                        allResults.append(SearchResultAllPodcastsViewModel(imageURLString: feedBack.image, podcastName: feedBack.title, trackDuration: feedBack.language, episodeNumber: "1", action: {print("fgdsdsdffdsdsf")}))
+                    }
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let e):
+                print(e)
+            }
+            group.leave()
+        }
+        group.wait()
+        view?.presentSearchResultvC(currentResultviewModel: oneResult, allResultsViewModels: allResults, searchText: searchText)
     }
     
     // MARK: - CategoriesNames Closure Function
