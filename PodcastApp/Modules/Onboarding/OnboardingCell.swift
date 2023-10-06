@@ -1,13 +1,18 @@
 import UIKit
 
-class OnboardingCollectionViewCell: UIView {
+class OnboardingCollectionViewCell: UICollectionViewCell {
     
-    //MARK: - Properties
+    //MARK: - UI
+    private let backgroundImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
-    
-    //MARK: - Initialize
+    //MARK: - Lifecycle
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
         
         setupViews()
         setConstraints()
@@ -19,18 +24,20 @@ class OnboardingCollectionViewCell: UIView {
     
     //MARK: - Methods
     private func setupViews() {
-        
+        addSubview(backgroundImageView)
     }
-}
-
-//MARK: - SetConstraints
-extension OnboardingCollectionViewCell {
+    
+    public func cellConfigure(model: OnboardingStruct) {
+        backgroundImageView.image = model.backgroundImage
+    }
+    
+    //MARK: - Constraints
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            
-            
-            
-            
+            backgroundImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            backgroundImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            backgroundImageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.78),
+            backgroundImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.78)
         ])
     }
 }
