@@ -92,7 +92,8 @@ private extension HomePresenter {
                     let currentData = try JSONDecoder().decode(SearchResultModel.self, from: data)
                     
                     for i in currentData.feeds {
-                        tableViewViewModel.append(HomeViewCategoryTableViewModel(imageURLString: i.image, podcastName: i.title, authorName: i.author, podcastCategoryName: trendingsNamesViewModel[0].categoryName, episodsCount: "\(i.episodeCount)", savedToFavorits: false, action: {self?.getEpisodesDetail(episodeId: "\(i.id)", resultsCount: 1000)}))
+//                        tableViewViewModel.append(HomeViewCategoryTableViewModel(imageURLString: i.image, podcastName: i.title, authorName: i.author, podcastCategoryName: trendingsNamesViewModel[0].categoryName, episodsCount: "\(i.episodeCount)", savedToFavorits: false, action: {self?.getEpisodesDetail(episodeId: "\(i.id)", resultsCount: 1000)}))
+                        tableViewViewModel.append(HomeViewCategoryTableViewModel(imageURLString: i.image, podcastName: i.title, authorName: i.author, podcastCategoryName: trendingsNamesViewModel[0].categoryName, episodsCount: "\(i.episodeCount)", savedToFavorits: false, action: {self?.transferToChannelVC(feedId: "\(i.id)")}))
                     }
                 }
                 catch {
@@ -179,7 +180,7 @@ private extension HomePresenter {
                     let elements = try JSONDecoder().decode(SearchResultModel.self, from: data)
                     
                     for element in elements.feeds {
-                        viewModels.append(HomeViewCategoryTableViewModel(imageURLString: element.image, podcastName: element.title, authorName: element.author, podcastCategoryName: queryText, episodsCount: "\(element.episodeCount)", savedToFavorits: false, action: {self?.getEpisodesDetail(episodeId: "\(element.id)", resultsCount: 1000)}))
+                        viewModels.append(HomeViewCategoryTableViewModel(imageURLString: element.image, podcastName: element.title, authorName: element.author, podcastCategoryName: queryText, episodsCount: "\(element.episodeCount)", savedToFavorits: false, action: {self?.transferToChannelVC(feedId: "\(element.id)")}))
                     }
                 }
                 catch {
@@ -220,6 +221,37 @@ private extension HomePresenter {
         group.wait()
         print(fetchedDataArray.items.count)
         // here update view
+    }
+    
+    
+    private func transferToChannelVC(feedId : String) {
+        var viewModels = ChannelCellViewModel(channelImgURLString: "", channelName: "", episodes: [Episode(episodeImgURLString: "", name: "", timeDuration: 0, episodesCount: "", id: 0)])
+        
+        var ressults : [Episode] = []
+        let group = DispatchGroup()
+        
+        group.enter()
+        network.fetchEpisodsDetail(feedID: feedId, max: 1000) { [weak self] result in
+            switch result {
+            case.success(let data):
+                do {
+                    let episodes = try JSONDecoder().decode(EpisodeDetailModel.self, from: data)
+                    for episode in episodes.items {
+                        ressults.append(Episode(episodeImgURLString: episode.feedImage, name: episode.title, timeDuration: episode.duration, episodesCount: "\(episodes.count)", id: episode.id))
+                    }
+                    viewModels.episodes = ressults
+                }
+                catch {
+                    print(error)
+                }
+            case.failure(let e):
+                print(e)
+            }
+            group.leave()
+        }
+        group.wait()
+        
+        view?.presentChannelVC(viewModels: viewModels)
     }
 }
 
