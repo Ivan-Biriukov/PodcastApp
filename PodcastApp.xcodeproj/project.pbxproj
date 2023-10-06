@@ -23,7 +23,6 @@
 		578CF0D82ACE0A0F006B50C5 /* EpisodeDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CF0D52ACE0A0E006B50C5 /* EpisodeDetailModel.swift */; };
 		578CF0D92ACE0A0F006B50C5 /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CF0D62ACE0A0E006B50C5 /* SearchResultModel.swift */; };
 		578CF0DA2ACE0A0F006B50C5 /* TrendingsNamesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CF0D72ACE0A0F006B50C5 /* TrendingsNamesModel.swift */; };
-		578CF0DE2ACE0FB5006B50C5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 578CF0DD2ACE0FB5006B50C5 /* Kingfisher */; };
 		578CF0E52ACE1AC3006B50C5 /* FavoritsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CF0E42ACE1AC3006B50C5 /* FavoritsAssembly.swift */; };
 		578CF0E72ACE1AFE006B50C5 /* FavoritsPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CF0E62ACE1AFE006B50C5 /* FavoritsPresenterProtocol.swift */; };
 		578CF0E92ACE1B0B006B50C5 /* FavoritsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CF0E82ACE1B0B006B50C5 /* FavoritsPresenter.swift */; };
@@ -80,6 +79,7 @@
 		804C1FB02AC36A3600B07C87 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FAF2AC36A3600B07C87 /* URLRequest+Extension.swift */; };
 		804C1FB22AC36B2500B07C87 /* PodcastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FB12AC36B2500B07C87 /* PodcastAPI.swift */; };
 		804C1FB42AC36C1100B07C87 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C1FB32AC36C1100B07C87 /* NetworkManager.swift */; };
+		80596A012AD0516E0045E449 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 80596A002AD0516E0045E449 /* Kingfisher */; };
 		805D4FCB2AC0A48600905151 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FCA2AC0A48600905151 /* BaseCollectionViewCell.swift */; };
 		805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FCC2AC0A4F600905151 /* BaseTableViewCell.swift */; };
 		806C2C332ACD510900BA9B16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 806C2C322ACD510900BA9B16 /* GoogleService-Info.plist */; };
@@ -231,6 +231,7 @@
 				80A15BC82ACC935F00134469 /* FirebaseAuth in Frameworks */,
 				80F704CF2ACE120000BE0368 /* RealmSwift in Frameworks */,
 				80F17BF32ACCDDF00063A245 /* ProgressHUD in Frameworks */,
+				80596A012AD0516E0045E449 /* Kingfisher in Frameworks */,
 				80A15BB92ACC931800134469 /* GoogleSignInSwift in Frameworks */,
 				80A15BB42ACC92F800134469 /* SnapKit in Frameworks */,
 				80A15BB72ACC931800134469 /* GoogleSignIn in Frameworks */,
@@ -964,6 +965,7 @@
 				80F17BF22ACCDDF00063A245 /* ProgressHUD */,
 				80F704CC2ACE11FF00BE0368 /* Realm */,
 				80F704CE2ACE120000BE0368 /* RealmSwift */,
+				80596A002AD0516E0045E449 /* Kingfisher */,
 			);
 			productName = PodcastApp;
 			productReference = 809355D52ABE23710094F3AB /* PodcastApp.app */;
@@ -999,6 +1001,7 @@
 				80A15BBA2ACC935F00134469 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				80F17BF12ACCDDF00063A245 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 				80F704CB2ACE11FF00BE0368 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				805969FF2AD0516D0045E449 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 809355D62ABE23710094F3AB /* Products */;
 			projectDirPath = "";
@@ -1346,12 +1349,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		578CF0DC2ACE0FB5006B50C5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		805969FF2AD0516D0045E449 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
+				minimumVersion = 7.9.1;
 			};
 		};
 		80A15BB22ACC92F800134469 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -1397,9 +1400,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		578CF0DD2ACE0FB5006B50C5 /* Kingfisher */ = {
+		80596A002AD0516E0045E449 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 578CF0DC2ACE0FB5006B50C5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 805969FF2AD0516D0045E449 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 		80A15BB32ACC92F800134469 /* SnapKit */ = {
