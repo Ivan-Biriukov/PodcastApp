@@ -44,6 +44,8 @@
 		57A5BAC22AC72A750036557A /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */; };
 		57A5BAC42AC72B730036557A /* SearchResultAllPodcastsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */; };
 		57A5BAC62AC7530D0036557A /* SearchGenresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAC52AC7530D0036557A /* SearchGenresViewModel.swift */; };
+		57A792832AD1DDEA003EB976 /* OnboardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A792812AD1DDEA003EB976 /* OnboardingCell.swift */; };
+		57A792842AD1DDEA003EB976 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A792822AD1DDEA003EB976 /* OnboardingViewController.swift */; };
 		57A908C32ACEDF2E00872DE3 /* CreatePlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A908C22ACEDF2E00872DE3 /* CreatePlaylistViewController.swift */; };
 		57A908C72ACF00CB00872DE3 /* CreatePlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A908C62ACF00CB00872DE3 /* CreatePlaylistTableViewCell.swift */; };
 		57A908C92ACF087600872DE3 /* PlaylistTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A908C82ACF087600872DE3 /* PlaylistTableViewModel.swift */; };
@@ -162,6 +164,8 @@
 		57A5BAC12AC72A750036557A /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		57A5BAC32AC72B730036557A /* SearchResultAllPodcastsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultAllPodcastsViewModel.swift; sourceTree = "<group>"; };
 		57A5BAC52AC7530D0036557A /* SearchGenresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGenresViewModel.swift; sourceTree = "<group>"; };
+		57A792812AD1DDEA003EB976 /* OnboardingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCell.swift; sourceTree = "<group>"; };
+		57A792822AD1DDEA003EB976 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		57A908C22ACEDF2E00872DE3 /* CreatePlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistViewController.swift; sourceTree = "<group>"; };
 		57A908C62ACF00CB00872DE3 /* CreatePlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistTableViewCell.swift; sourceTree = "<group>"; };
 		57A908C82ACF087600872DE3 /* PlaylistTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewModel.swift; sourceTree = "<group>"; };
@@ -481,6 +485,15 @@
 				57A5BAC52AC7530D0036557A /* SearchGenresViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		57A792802AD1DDC7003EB976 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				57A792812AD1DDEA003EB976 /* OnboardingCell.swift */,
+				57A792822AD1DDEA003EB976 /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		57A908C12ACEDEAA00872DE3 /* CreatePlaylistVC */ = {
@@ -808,6 +821,7 @@
 		809355EF2ABE23EB0094F3AB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				57A792802AD1DDC7003EB976 /* Onboarding */,
 				578CF0DF2ACE1A69006B50C5 /* Favorits */,
 				80ED761D2ACC80C4008B93DB /* Auth */,
 				57C1AA872AC60A6000444C47 /* Home */,
@@ -1128,6 +1142,7 @@
 				8093564D2ABE40990094F3AB /* SavingManager.swift in Sources */,
 				43F769172ACF453000321CEC /* PlayerRouter.swift in Sources */,
 				804C1FAB2AC3644B00B07C87 /* NetworkRouter.swift in Sources */,
+				57A792842AD1DDEA003EB976 /* OnboardingViewController.swift in Sources */,
 				809355F22ABE25B90094F3AB /* MainTabBarController.swift in Sources */,
 				809355D92ABE23710094F3AB /* AppDelegate.swift in Sources */,
 				57A908C32ACEDF2E00872DE3 /* CreatePlaylistViewController.swift in Sources */,
@@ -1154,6 +1169,7 @@
 				804C1FB02AC36A3600B07C87 /* URLRequest+Extension.swift in Sources */,
 				57A5BAC62AC7530D0036557A /* SearchGenresViewModel.swift in Sources */,
 				80ED76282ACC8206008B93DB /* AuthRouter.swift in Sources */,
+				57A792832AD1DDEA003EB976 /* OnboardingCell.swift in Sources */,
 				801A820E2AC5F5B6005ADD4A /* ProfileSettingViewInput.swift in Sources */,
 				804C1FA22AC3534B00B07C87 /* ParameterEncoding.swift in Sources */,
 				43F769162ACF453000321CEC /* PlayerViewInput.swift in Sources */,
