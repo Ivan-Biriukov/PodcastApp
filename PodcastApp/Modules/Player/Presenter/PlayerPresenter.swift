@@ -19,6 +19,45 @@ final class PlayerPresenter {
 
 extension PlayerPresenter: PlayerPresenterProtocol {
     
+    func viewDidLoad() {
+        print("viewDidLoad")
+    }
+    
+    func back() {
+        print("back")
+    }
+    
+    func addPlaylist() {
+        print("addPlaylist")
+    }
+    
+    func seek(to time: TimeInterval) {
+        print("seek")
+    }
+    
+    func shuffle() {
+        print("shuffle")
+    }
+    
+    func previous() {
+        print("previous")
+    }
+    
+    func play() {
+        print("play")
+    }
+    
+    func pause() {
+        print("pause")
+    }
+    
+    func next() {
+        print("next")
+    }
+    
+    func repeating() {
+        print("repeating")
+    }
 }
 
 private extension PlayerPresenter {
