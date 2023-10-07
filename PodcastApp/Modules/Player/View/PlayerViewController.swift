@@ -15,6 +15,9 @@ final class PlayerViewController: BaseViewController {
     private var player : AVPlayer?
     private let presenter: PlayerPresenterProtocol
     private var links : [String]
+    private var urlLinks: [URL] {
+        links.compactMap { URL(string: $0) }
+    }
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
@@ -141,6 +144,12 @@ final class PlayerViewController: BaseViewController {
         return view
     }()
     
+    private var isPlaying: Bool = false {
+        didSet {
+            
+        }
+    }
+    
     
     // MARK: - Init
     init(presenter: PlayerPresenterProtocol, links : [String]) {
@@ -153,10 +162,15 @@ final class PlayerViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        player?.removeTimeObserver(<#T##observer: Any##Any#>)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         makeConstraints()
+        playPressed()
     }
 }
 
@@ -311,16 +325,38 @@ extension PlayerViewController {
     }
     
     @objc func previousPressed() {
-        presenter.previous()
+        guard let duration  = player?.currentItem?.duration else {return}
+        let playerCurrentTime = CMTimeGetSeconds(player!.currentTime())
+        let newTime = playerCurrentTime - 5
+        if newTime < (CMTimeGetSeconds(duration) + 5) {
+            let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
+            player!.seek(to: time2, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
+        }
     }
     
     @objc func playPressed() {
-        print(links.first)
-        presenter.play()
+        guard let url = urlLinks.first, player?.timeControlStatus != .playing else {
+            player?.pause()
+            return
+        }
+        player = AVPlayer(url: url)
+        player?.play()
+        
+        let time = CMTime(value: 1, timescale: 1)
+        let observer = player?.addPeriodicTimeObserver(forInterval: time, queue: .main, using: { time in
+            print("\(time)")
+        })
     }
     
     @objc func nextPressed() {
-        presenter.next()
+        guard let duration  = player?.currentItem?.duration else {return}
+        let playerCurrentTime = CMTimeGetSeconds(player!.currentTime())
+        let newTime = playerCurrentTime + 5
+        if newTime < (CMTimeGetSeconds(duration) - 5) {
+            let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
+            player!.seek(to: time2, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
+        }
+        
     }
     
     @objc func repeatPressed() {
