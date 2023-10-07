@@ -13,8 +13,13 @@ final class PlayerViewController: BaseViewController {
     
     // MARK: - Properties
     private var player : AVPlayer?
+    var playerItem: AVPlayerItem!
+
     private let presenter: PlayerPresenterProtocol
     private var links : [String]
+    private var urlLinks: [URL] {
+        links.compactMap { URL(string: $0) }
+    }
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
@@ -64,7 +69,7 @@ final class PlayerViewController: BaseViewController {
     
     private lazy var currentTimeLabel: UILabel = {
         return createLabel(
-            text: "44:30",
+            text: "",
             font: .systemFont(ofSize: 14, weight: .regular),
             textColor: .init(rgb: 0x423F51),
             alignment: .center)
@@ -72,9 +77,6 @@ final class PlayerViewController: BaseViewController {
     
     private lazy var timeSlider: CustomSlider = {
         let slider = CustomSlider()
-        slider.minimumValue = 0.0
-        slider.maximumValue = 1200.0
-        slider.value = 50
         slider.minimumTrackTintColor = .init(rgb: 0x2882F1)
         slider.maximumTrackTintColor = .init(rgb: 0x2882F1)
         slider.thumbTintColor = .init(rgb: 0x2882F1)
@@ -88,7 +90,7 @@ final class PlayerViewController: BaseViewController {
     
     private lazy var endTimeLabel: UILabel = {
         return createLabel(
-            text: "56:38",
+            text: "",
             font: .systemFont(ofSize: 14, weight: .regular),
             textColor: .init(rgb: 0x423F51),
             alignment: .center)
@@ -141,6 +143,12 @@ final class PlayerViewController: BaseViewController {
         return view
     }()
     
+    private var isPlaying: Bool = false {
+        didSet {
+            playButton.setImage(UIImage(named: isPlaying ? "pauseImage" : "playImage"), for: .normal)
+        }
+    }
+    
     
     // MARK: - Init
     init(presenter: PlayerPresenterProtocol, links : [String]) {
@@ -157,6 +165,7 @@ final class PlayerViewController: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         makeConstraints()
+        playPressed()
     }
 }
 
@@ -296,14 +305,9 @@ extension PlayerViewController {
     }
     
     @objc func timeSliderChanged(sender: UISlider) {
-        let seconds = Int(sender.value) % 60
-        let minutes = Int(sender.value) / 60
-        currentTimeLabel.text = String(format: "%02d:%02d", minutes, seconds)
-        
-        let remainingTime = sender.maximumValue - sender.value
-        let remainingSeconds = Int(remainingTime) % 60
-        let remainingMinutes = Int(remainingTime) / 60
-        endTimeLabel.text = String(format: "%02d:%02d", remainingMinutes, remainingSeconds)
+        let duration = CMTimeGetSeconds(playerItem.duration)
+        let currentTime = duration * Double(sender.value)
+        player?.seek(to: CMTime(seconds: currentTime, preferredTimescale: 1))
     }
     
     @objc func shufflePressed() {
@@ -311,16 +315,46 @@ extension PlayerViewController {
     }
     
     @objc func previousPressed() {
-        presenter.previous()
+        let timeToAdd = CMTime(seconds: -5, preferredTimescale: 1)
+        guard let currentTime = player?.currentTime() else { return }
+        let newTime = CMTimeAdd(currentTime, timeToAdd)
+        player?.seek(to: newTime)
     }
     
     @objc func playPressed() {
-        print(links.first)
-        presenter.play()
+        isPlaying = !isPlaying
+        guard let url = urlLinks.first, player?.timeControlStatus != .playing else {
+            player?.pause()
+            return
+        }
+        playerItem = AVPlayerItem(url: url)
+        player = AVPlayer(playerItem: playerItem)
+        player?.play()
+        
+        player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: DispatchQueue.main) { [weak self] time in
+            guard let self = self else { return }
+            
+            let currentTime = CMTimeGetSeconds(time)
+            let duration = CMTimeGetSeconds(self.playerItem.duration)
+            let remainingTime = duration - currentTime
+            
+            self.currentTimeLabel.text = self.formatTime(currentTime)
+            self.endTimeLabel.text = self.formatTime(remainingTime)
+            self.timeSlider.value = Float(currentTime / duration)
+        }
+    }
+    
+    func formatTime(_ time: TimeInterval) -> String {
+        let minutes = Int(time / 60)
+        let seconds = Int(time.truncatingRemainder(dividingBy: 60))
+        return String(format: "%02d:%02d", minutes, seconds)
     }
     
     @objc func nextPressed() {
-        presenter.next()
+        let timeToAdd = CMTime(seconds: 5, preferredTimescale: 1)
+        guard let currentTime = player?.currentTime() else { return }
+        let newTime = CMTimeAdd(currentTime, timeToAdd)
+        player?.seek(to: newTime)
     }
     
     @objc func repeatPressed() {
