@@ -134,7 +134,7 @@ extension HomeViewController: HomeViewInput {
     
     func pushPlayerVC(tracks: [String]) {
         let topVC = topMostController()
-        let playerVC = PlayerAssembly.assemble()
+        let playerVC = PlayerAssembly.assemble(links: tracks)
         playerVC.modalPresentationStyle = .fullScreen
         playerVC.modalTransitionStyle = .crossDissolve
         topVC.present(playerVC, animated: true)

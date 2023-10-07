@@ -14,6 +14,7 @@ final class PlayerViewController: BaseViewController {
     // MARK: - Properties
     private var player : AVPlayer?
     private let presenter: PlayerPresenterProtocol
+    private var links : [String]
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
@@ -142,8 +143,9 @@ final class PlayerViewController: BaseViewController {
     
     
     // MARK: - Init
-    init(presenter: PlayerPresenterProtocol) {
+    init(presenter: PlayerPresenterProtocol, links : [String]) {
         self.presenter = presenter
+        self.links = links
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -286,6 +288,7 @@ extension PlayerViewController {
     
     @objc func backPressed() {
         presenter.back()
+        self.dismiss(animated: true)
     }
     
     @objc func addPlaylistPressed() {
@@ -312,6 +315,7 @@ extension PlayerViewController {
     }
     
     @objc func playPressed() {
+        print(links.first)
         presenter.play()
     }
     

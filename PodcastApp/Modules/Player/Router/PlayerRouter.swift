@@ -17,7 +17,7 @@ final class PlayerRouter {
 
 extension PlayerRouter: PlayerRouterInput {
     func routeToPlayerVC() {
-        let playerVC = PlayerAssembly.assemble()
+        let playerVC = PlayerAssembly.assemble(links: [])
         playerVC.modalPresentationStyle = .fullScreen
         playerVC.modalTransitionStyle = .crossDissolve
         self.view?.present(playerVC, animated: true)
