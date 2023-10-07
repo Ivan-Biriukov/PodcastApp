@@ -8,4 +8,5 @@
 import Foundation
 
 protocol PlayerViewInput: AnyObject {
+    func updateNowPlaying(viewModels: [PlayerViewModel])
 }

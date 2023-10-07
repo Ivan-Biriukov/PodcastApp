@@ -8,8 +8,10 @@ struct ChannelCellViewModel {
 
 struct Episode {
     let episodeImgURLString : String
+    let soundUrlString : String
     let name : String
     let timeDuration : Int
     let episodesCount : String
     let id : Int
+    let action : () -> ()
 }

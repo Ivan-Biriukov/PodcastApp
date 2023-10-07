@@ -7,10 +7,12 @@
 
 import UIKit
 import SnapKit
+import AVFoundation
 
 final class PlayerViewController: BaseViewController {
     
     // MARK: - Properties
+    private var player : AVPlayer?
     private let presenter: PlayerPresenterProtocol
     
     private lazy var backButton: UIButton = {
@@ -157,6 +159,10 @@ final class PlayerViewController: BaseViewController {
 }
 
 extension PlayerViewController: PlayerViewInput {
+    func updateNowPlaying(viewModels: [PlayerViewModel]) {
+        
+    }
+    
 }
 
 // MARK: - Extensions
@@ -279,12 +285,11 @@ private extension PlayerViewController {
 extension PlayerViewController {
     
     @objc func backPressed() {
-        print("backPressed")
-        self.dismiss(animated: true, completion: nil)
+        presenter.back()
     }
     
     @objc func addPlaylistPressed() {
-        print("addPlaylistPressed")
+        presenter.addPlaylist()
     }
     
     @objc func timeSliderChanged(sender: UISlider) {
@@ -299,22 +304,22 @@ extension PlayerViewController {
     }
     
     @objc func shufflePressed() {
-        print("shufflePressed")
+        presenter.shuffle()
     }
     
     @objc func previousPressed() {
-        print("Save Changes Pressed")
+        presenter.previous()
     }
     
     @objc func playPressed() {
-        print("playPressed")
+        presenter.play()
     }
     
     @objc func nextPressed() {
-        print("nextPressed")
+        presenter.next()
     }
     
     @objc func repeatPressed() {
-        print("repeatPressed")
+        presenter.repeating()
     }
 }

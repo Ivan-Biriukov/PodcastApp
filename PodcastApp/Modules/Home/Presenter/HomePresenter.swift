@@ -225,7 +225,7 @@ private extension HomePresenter {
     
     
     private func transferToChannelVC(feedId : String) {
-        var viewModels = ChannelCellViewModel(channelImgURLString: "", channelName: "", episodes: [Episode(episodeImgURLString: "", name: "", timeDuration: 0, episodesCount: "", id: 0)])
+        var viewModels = ChannelCellViewModel(channelImgURLString: "", channelName: "", episodes: [Episode(episodeImgURLString: "", soundUrlString: "", name: "", timeDuration: 0, episodesCount: "", id: 0, action: { print("goToPlayer") })])
         
         var ressults : [Episode] = []
         let group = DispatchGroup()
@@ -237,7 +237,7 @@ private extension HomePresenter {
                 do {
                     let episodes = try JSONDecoder().decode(EpisodeDetailModel.self, from: data)
                     for episode in episodes.items {
-                        ressults.append(Episode(episodeImgURLString: episode.feedImage, name: episode.title, timeDuration: episode.duration, episodesCount: "\(episodes.count)", id: episode.id))
+                        ressults.append(Episode(episodeImgURLString: episode.feedImage, soundUrlString: "", name: episode.title, timeDuration: episode.duration, episodesCount: "\(episodes.count)", id: episode.id, action: { print("dfgdf") } ))
                     }
                     viewModels.episodes = ressults
                 }
