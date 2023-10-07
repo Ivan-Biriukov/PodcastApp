@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 import ProgressHUD
 
 final class AuthRouter {
@@ -14,10 +15,14 @@ extension AuthRouter: AuthRouterInput {
         ProgressHUD.showError(error)
     }
     
-    func routeToMainApp() {
-        let mainTabBar = MainTabBarController()
+    func routeToMainApp(user: RealmUserModel) {
+        let mainTabBar = MainTabBarController(currentUser: user)
         mainTabBar.modalTransitionStyle = .crossDissolve
         mainTabBar.modalPresentationStyle = .fullScreen
         view?.present(mainTabBar, animated: true)
+    }
+    
+    func routeToContinueRegister(user: User) {
+        print(user)
     }
 }

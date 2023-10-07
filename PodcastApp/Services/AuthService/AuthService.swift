@@ -6,7 +6,7 @@ import FirebaseAuth
 protocol AuthServiceProtocol {
     func createUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> ())
     func loginUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> ())
-    func loginWithGoogle(view: UIViewController, completion: @escaping (Result<String?, Error>) -> ())
+    func loginWithGoogle(view: UIViewController, completion: @escaping (Result<User, Error>) -> ())
     func logout(completion: @escaping (Result<Bool, Error>) -> ())
     func isAuthorised() -> Bool
 }
@@ -48,7 +48,7 @@ final class AuthService: AuthServiceProtocol {
         }
     }
     
-    func loginWithGoogle(view: UIViewController, completion: @escaping (Result<String?, Error>) -> ()) {
+    func loginWithGoogle(view: UIViewController, completion: @escaping (Result<User, Error>) -> ()) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
@@ -75,7 +75,7 @@ final class AuthService: AuthServiceProtocol {
                     return
                 }
                 
-                completion(.success(user.uid))
+                completion(.success(user))
             }
         }
     }

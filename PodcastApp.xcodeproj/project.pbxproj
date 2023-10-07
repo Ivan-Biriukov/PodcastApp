@@ -90,6 +90,11 @@
 		805D4FCB2AC0A48600905151 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FCA2AC0A48600905151 /* BaseCollectionViewCell.swift */; };
 		805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FCC2AC0A4F600905151 /* BaseTableViewCell.swift */; };
 		806C2C332ACD510900BA9B16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 806C2C322ACD510900BA9B16 /* GoogleService-Info.plist */; };
+		807590422AD1D8450096B9A7 /* UserInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807590412AD1D8450096B9A7 /* UserInfoRouter.swift */; };
+		807590442AD1D85D0096B9A7 /* UserInfoInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807590432AD1D85D0096B9A7 /* UserInfoInteractorInput.swift */; };
+		807590462AD1D87B0096B9A7 /* UserInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807590452AD1D87B0096B9A7 /* UserInfoInteractor.swift */; };
+		807590482AD1D8B40096B9A7 /* UserInfoViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807590472AD1D8B40096B9A7 /* UserInfoViewInput.swift */; };
+		8075904A2AD1D8C80096B9A7 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807590492AD1D8C80096B9A7 /* UserInfoViewController.swift */; };
 		809355D92ABE23710094F3AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809355D82ABE23710094F3AB /* AppDelegate.swift */; };
 		809355E22ABE23730094F3AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 809355E12ABE23730094F3AB /* Assets.xcassets */; };
 		809355E52ABE23730094F3AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 809355E32ABE23730094F3AB /* LaunchScreen.storyboard */; };
@@ -207,6 +212,11 @@
 		805D4FCA2AC0A48600905151 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		805D4FCC2AC0A4F600905151 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		806C2C322ACD510900BA9B16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		807590412AD1D8450096B9A7 /* UserInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRouter.swift; sourceTree = "<group>"; };
+		807590432AD1D85D0096B9A7 /* UserInfoInteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoInteractorInput.swift; sourceTree = "<group>"; };
+		807590452AD1D87B0096B9A7 /* UserInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoInteractor.swift; sourceTree = "<group>"; };
+		807590472AD1D8B40096B9A7 /* UserInfoViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewInput.swift; sourceTree = "<group>"; };
+		807590492AD1D8C80096B9A7 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		809355D52ABE23710094F3AB /* PodcastApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		809355D82ABE23710094F3AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		809355E12ABE23730094F3AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -749,6 +759,66 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
+		8075903A2AD1D7900096B9A7 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				807590402AD1D7BC0096B9A7 /* Router */,
+				8075903F2AD1D7B90096B9A7 /* Entity */,
+				8075903E2AD1D7B00096B9A7 /* Presenter */,
+				8075903D2AD1D7AB0096B9A7 /* Interactor */,
+				8075903C2AD1D7A70096B9A7 /* View */,
+				8075903B2AD1D79E0096B9A7 /* Assembly */,
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		8075903B2AD1D79E0096B9A7 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		8075903C2AD1D7A70096B9A7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				807590472AD1D8B40096B9A7 /* UserInfoViewInput.swift */,
+				807590492AD1D8C80096B9A7 /* UserInfoViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8075903D2AD1D7AB0096B9A7 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				807590432AD1D85D0096B9A7 /* UserInfoInteractorInput.swift */,
+				807590452AD1D87B0096B9A7 /* UserInfoInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		8075903E2AD1D7B00096B9A7 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8075903F2AD1D7B90096B9A7 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		807590402AD1D7BC0096B9A7 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				807590412AD1D8450096B9A7 /* UserInfoRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		809355CC2ABE23710094F3AB = {
 			isa = PBXGroup;
 			children = (
@@ -808,6 +878,7 @@
 		809355EF2ABE23EB0094F3AB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8075903A2AD1D7900096B9A7 /* UserInfo */,
 				578CF0DF2ACE1A69006B50C5 /* Favorits */,
 				80ED761D2ACC80C4008B93DB /* Auth */,
 				57C1AA872AC60A6000444C47 /* Home */,
@@ -954,6 +1025,7 @@
 		80ED76212ACC80E7008B93DB /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				80F704D12ACE136500BE0368 /* RealmUserModel.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -987,7 +1059,6 @@
 		80F704D02ACE135A00BE0368 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				80F704D12ACE136500BE0368 /* RealmUserModel.swift */,
 				578FAEDC2AD0686C000FA657 /* SavedFavoritsRealmModel.swift */,
 				578FAEDE2AD068F9000FA657 /* SelfRealmSavedLists.swift */,
 			);
@@ -1087,6 +1158,7 @@
 				80ED762E2ACC8284008B93DB /* AuthInteractor.swift in Sources */,
 				43F768CB2ACDBE5100321CEC /* AccountSettingViewController.swift in Sources */,
 				578CF0E72ACE1AFE006B50C5 /* FavoritsPresenterProtocol.swift in Sources */,
+				807590482AD1D8B40096B9A7 /* UserInfoViewInput.swift in Sources */,
 				57C1AAA72AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift in Sources */,
 				80ED76302ACC828E008B93DB /* AuthInteractorInput.swift in Sources */,
 				801A82112AC5F5B6005ADD4A /* ProfileSettingRouter.swift in Sources */,
@@ -1125,6 +1197,7 @@
 				801A820C2AC5F5B6005ADD4A /* ProfileSettingPresenter.swift in Sources */,
 				43F769122ACF453000321CEC /* PlayerAssembly.swift in Sources */,
 				57C1AA992AC60A6000444C47 /* HomeViewInput.swift in Sources */,
+				8075904A2AD1D8C80096B9A7 /* UserInfoViewController.swift in Sources */,
 				8093564D2ABE40990094F3AB /* SavingManager.swift in Sources */,
 				43F769172ACF453000321CEC /* PlayerRouter.swift in Sources */,
 				804C1FAB2AC3644B00B07C87 /* NetworkRouter.swift in Sources */,
@@ -1132,6 +1205,7 @@
 				809355D92ABE23710094F3AB /* AppDelegate.swift in Sources */,
 				57A908C32ACEDF2E00872DE3 /* CreatePlaylistViewController.swift in Sources */,
 				804C1FB42AC36C1100B07C87 /* NetworkManager.swift in Sources */,
+				807590442AD1D85D0096B9A7 /* UserInfoInteractorInput.swift in Sources */,
 				80ED76372ACC8345008B93DB /* AuthService.swift in Sources */,
 				578CF0E52ACE1AC3006B50C5 /* FavoritsAssembly.swift in Sources */,
 				578CF0F52ACE3C0C006B50C5 /* FavoritsMainPlaylistViewModel.swift in Sources */,
@@ -1177,10 +1251,12 @@
 				43F768C92ACDBE5100321CEC /* AccountSettingPresenter.swift in Sources */,
 				80F17BEE2ACCD9280063A245 /* AuthError.swift in Sources */,
 				80F704D22ACE136500BE0368 /* RealmUserModel.swift in Sources */,
+				807590462AD1D87B0096B9A7 /* UserInfoInteractor.swift in Sources */,
 				578FAEE82AD09E88000FA657 /* ChannelCellViewModel.swift in Sources */,
 				43F768CD2ACDBE5100321CEC /* AccountSettingRouter.swift in Sources */,
 				80ED76342ACC82CB008B93DB /* AuthViewInput.swift in Sources */,
 				804C1F9C2AC3520D00B07C87 /* EndPointType.swift in Sources */,
+				807590422AD1D8450096B9A7 /* UserInfoRouter.swift in Sources */,
 				578FAEE12AD08F18000FA657 /* ChannelViewController.swift in Sources */,
 				57C1AAB72AC6456200444C47 /* AllResultsTableViewCell.swift in Sources */,
 				57C1AA9B2AC60A6000444C47 /* HomeView.swift in Sources */,
@@ -1330,7 +1406,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8RR26756PN;
+				DEVELOPMENT_TEAM = X6QCC36TXK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PodcastApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1343,7 +1419,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kashchenko.podcastapp.PodcastApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kashchenko.PodcastApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1361,7 +1437,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8RR26756PN;
+				DEVELOPMENT_TEAM = X6QCC36TXK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PodcastApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1374,7 +1450,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kashchenko.podcastapp.PodcastApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kashchenko.PodcastApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

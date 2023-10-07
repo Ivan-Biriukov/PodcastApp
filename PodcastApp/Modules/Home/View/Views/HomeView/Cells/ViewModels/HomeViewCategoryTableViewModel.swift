@@ -8,4 +8,5 @@ struct HomeViewCategoryTableViewModel {
     let episodsCount : String
     var savedToFavorits : Bool
     let action: () -> ()
+    let didLike: (Bool) -> ()
 }

@@ -17,9 +17,15 @@ extension AuthPresenter: AuthPresenterProtocol {
     func loginUser(email: String, password: String) {
         interactor.loginUser(with: email, and: password) { [weak self] result in
             switch result {
-            case .success(let username):
+            case .success(let user):
                 self?.router.showSuccess(with: "Success")
-                self?.router.routeToMainApp()
+                SavingManager.shared.fetchUser(for: user.uid) { [weak self] user in
+                    if let user {
+                        print(user)
+                    } else {
+                        print("Not found")
+                    }
+                }
             case .failure(let error):
                 self?.router.showError(with: error.localizedDescription)
             }
@@ -39,8 +45,9 @@ extension AuthPresenter: AuthPresenterProtocol {
         
         interactor.registerUser(with: email, and: password, and: confirmPassword) { [weak self] result in
             switch result {
-            case .success(let success):
+            case .success(let user):
                 self?.router.showSuccess(with: "Check your email to accept registration")
+                print(user)
             case .failure(let error):
                 self?.router.showError(with: error.localizedDescription)
             }
@@ -50,9 +57,17 @@ extension AuthPresenter: AuthPresenterProtocol {
     func loginWithGoogle() {
         interactor.loginWithGoogle(view: view as! UIViewController) { [weak self] result in
             switch result {
-            case .success(let success):
+            case .success(let user):
                 self?.router.showSuccess(with: "Success")
-                self?.router.routeToMainApp()
+                SavingManager.shared.fetchUser(for: user.uid) { [weak self] realmUser in
+                    if let realmUser {
+                        self?.router.routeToMainApp(user: realmUser)
+                    } else {
+                        let user: RealmUserModel = .init(username: "dsa", email: "ds", userID: "fdsfds")
+                        self?.router.routeToMainApp(user: user)
+                        //self?.router.routeToContinueRegister(user: user)
+                    }
+                }
             case .failure(let error):
                 self?.router.showError(with: error.localizedDescription)
             }
