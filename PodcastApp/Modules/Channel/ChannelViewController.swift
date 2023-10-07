@@ -139,6 +139,11 @@ extension ChannelViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 88
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = viewModels.episodes[indexPath.row]
+        viewModel.action()
+    }
 }
 
 // MARK: - TableView DataSource
@@ -147,8 +152,7 @@ extension ChannelViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModels.episodes.count - 1
-    }
-    
+    }    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

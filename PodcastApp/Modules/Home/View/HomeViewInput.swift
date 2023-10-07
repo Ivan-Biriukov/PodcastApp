@@ -5,6 +5,7 @@ protocol HomeViewInput: AnyObject {
     func preloadHomeViewTableViewResults(viewModels: [HomeViewCategoryTableViewModel])
     func presentSearchResultvC(currentResultviewModel: [SearchResultViewModel], allResultsViewModels: [SearchResultAllPodcastsViewModel], searchText: String)
     func presentChannelVC(viewModels : ChannelCellViewModel)
+    func pushPlayerVC(tracks: [String])
     
     
     func updateMainCategoryCollection(viewModels: [CategoryViewModel])

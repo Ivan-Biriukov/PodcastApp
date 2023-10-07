@@ -237,7 +237,7 @@ private extension HomePresenter {
                 do {
                     let episodes = try JSONDecoder().decode(EpisodeDetailModel.self, from: data)
                     for episode in episodes.items {
-                        ressults.append(Episode(episodeImgURLString: episode.feedImage, soundUrlString: "", name: episode.title, timeDuration: episode.duration, episodesCount: "\(episodes.count)", id: episode.id, action: { print("dfgdf") } ))
+                        ressults.append(Episode(episodeImgURLString: episode.feedImage, soundUrlString: "", name: episode.title, timeDuration: episode.duration, episodesCount: "\(episodes.count)", id: episode.id, action: { self?.view?.pushPlayerVC(tracks: [episode.enclosureUrl]); print("print from closure") } ))
                     }
                     viewModels.episodes = ressults
                 }
