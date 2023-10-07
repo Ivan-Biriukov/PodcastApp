@@ -165,6 +165,9 @@ final class PlayerViewController: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         makeConstraints()
+        guard let url = urlLinks.first else { return }
+        playerItem = AVPlayerItem(url: url)
+        player = AVPlayer(playerItem: playerItem)
         playPressed()
     }
 }
@@ -323,13 +326,11 @@ extension PlayerViewController {
     
     @objc func playPressed() {
         isPlaying = !isPlaying
-        guard let url = urlLinks.first, player?.timeControlStatus != .playing else {
+        if player?.timeControlStatus == .playing {
             player?.pause()
-            return
+        } else {
+            player?.play()
         }
-        playerItem = AVPlayerItem(url: url)
-        player = AVPlayer(playerItem: playerItem)
-        player?.play()
         
         player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: DispatchQueue.main) { [weak self] time in
             guard let self = self else { return }
