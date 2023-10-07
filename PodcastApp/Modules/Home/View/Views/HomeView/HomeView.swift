@@ -224,6 +224,7 @@ extension HomeView : UICollectionViewDelegate {
         case categoryCollecntion:
             let viewModel = categoryesViewModel[indexPath.row]
             viewModel.action()
+            
         default:
             for index in 0 ..< allCategoryesViewModel.count {
                 if index != indexPath.row {

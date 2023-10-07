@@ -118,6 +118,16 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController: HomeViewInput {
+    func presentChannelVC(viewModels: ChannelCellViewModel) {
+        let vcToPresent = ChannelViewController(viewModels: viewModels)
+        vcToPresent.modalPresentationStyle = .fullScreen
+        self.present(vcToPresent, animated: true)
+    }
+    
+    func presentSearchResultvC(currentResultviewModel: [SearchResultViewModel], allResultsViewModels: [SearchResultAllPodcastsViewModel], searchText: String) {
+        self.present(SearchResultsViewController(currentResults: currentResultviewModel, allPodcastsResults: allResultsViewModels, searchText: searchText), animated: true)
+    }
+    
     func preloadHomeViewTableViewResults(viewModels: [HomeViewCategoryTableViewModel]) {
         self.homeView.tableViewModel = viewModels
         self.homeView.reloadViews()
@@ -201,6 +211,11 @@ extension HomeViewController : HomeSeeAllDelegate {
 // MARK: - SearchView Delegate
 
 extension HomeViewController : SearchSeeAllDelegate {
+    
+    func searchTaped(request: String, resultsCount: Int) {
+        presenter.didTapedSearchButton(text: request, results: resultsCount)
+    }
+    
     func searchSeeAllTaped() {
         presenter.didTapesTopGenresSeeAll()
     }

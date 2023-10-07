@@ -3,6 +3,8 @@ import Foundation
 protocol HomeViewInput: AnyObject {
     func preloadTrending(viewModel: [AllCategoryesViewModel])
     func preloadHomeViewTableViewResults(viewModels: [HomeViewCategoryTableViewModel])
+    func presentSearchResultvC(currentResultviewModel: [SearchResultViewModel], allResultsViewModels: [SearchResultAllPodcastsViewModel], searchText: String)
+    func presentChannelVC(viewModels : ChannelCellViewModel)
     
     
     func updateMainCategoryCollection(viewModels: [CategoryViewModel])
