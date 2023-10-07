@@ -47,6 +47,8 @@ extension SavingManager {
 
 // MARK: - Saving Protocol
 
+/*
+
 extension SavingManager: SavingManagerProtocol {
 
     func saveUser(user: RealmUserModel, completion: @escaping (Bool) -> Void) {
@@ -172,3 +174,5 @@ extension SavingManager: SavingManagerProtocol {
         }
     }
 }
+
+*/

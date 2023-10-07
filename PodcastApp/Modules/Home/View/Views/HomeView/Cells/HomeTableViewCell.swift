@@ -5,7 +5,15 @@ import Kingfisher
 class HomeTableViewCell: UITableViewCell {
     
     static let reuseId = "HomeTableViewCell"
-    private var isLikeButtonTaped : Bool = false
+    
+    private var isLiked: Bool = false {
+        didSet {
+            likeButton.setImage(isLiked ? .Home.activeLikeImage : .Home.likeImage, for: .normal)
+        }
+    }
+    
+    private var didTapLike: ((Bool) -> ())?
+    
     private var urlString = ""
     
     // MARK: - UI Elements
@@ -31,9 +39,7 @@ class HomeTableViewCell: UITableViewCell {
     private lazy var likeButton : UIButton = {
         let buton = UIButton()
         buton.setImage(.Home.likeImage, for: .normal)
-        buton.heightAnchor.constraint(equalToConstant: 17).isActive = true
-        buton.widthAnchor.constraint(equalToConstant: 19).isActive = true
-        buton.addTarget(self, action: #selector(didTapedLike(_:)), for: .touchUpInside)
+        buton.addTarget(self, action: #selector(didTapedLike), for: .touchUpInside)
         buton.contentMode = .scaleAspectFill
         return buton
     }()
@@ -115,8 +121,9 @@ class HomeTableViewCell: UITableViewCell {
     
     // MARK: - Button Method
     
-    @objc private func didTapedLike(_ sender: UIButton) {
-        updateButtonStatus(selected: isLikeButtonTaped)
+    @objc private func didTapedLike() {
+        isLiked.toggle()
+        didTapLike?(isLiked)
     }
     
     // MARK: - Init
@@ -166,13 +173,14 @@ class HomeTableViewCell: UITableViewCell {
         
         likeButton.snp.makeConstraints{ make in
             make.centerY.equalTo(bubbleView.snp.centerY)
+            make.size.equalTo(24)
             make.trailing.equalTo(bubbleView.snp.trailing).inset(8)
         }
         
         mainTitleStack.snp.makeConstraints{ make in
             make.top.equalTo(bubbleView.snp.top).inset(14)
             make.leading.equalTo(avatarImageView.snp.trailing).inset(-19)
-            make.trailing.equalTo(likeButton.snp.leading).inset(19)
+            make.trailing.equalTo(likeButton.snp.leading)
             make.bottom.equalTo(bubbleView.snp.bottom).inset(15)
         }
     }
@@ -185,15 +193,8 @@ class HomeTableViewCell: UITableViewCell {
         authorNameLabel.text = viewModel.authorName
         podcastCategoryLabel.text = viewModel.podcastCategoryName
         episodsCountLabel.text = viewModel.episodsCount + " " + "Eps"
-        isLikeButtonTaped = viewModel.savedToFavorits
-    }
-    
-    func updateButtonStatus(selected: Bool) {
-        if selected {
-            likeButton.setImage(.Home.activeLikeImage, for: .normal)
-        } else {
-            likeButton.setImage(.Home.likeImage, for: .normal)
-        }
+        isLiked = viewModel.savedToFavorits
+        didTapLike = viewModel.didLike
     }
 }
 

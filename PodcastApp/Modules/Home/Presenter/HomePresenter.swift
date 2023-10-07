@@ -92,8 +92,9 @@ private extension HomePresenter {
                     let currentData = try JSONDecoder().decode(SearchResultModel.self, from: data)
                     
                     for i in currentData.feeds {
-//                        tableViewViewModel.append(HomeViewCategoryTableViewModel(imageURLString: i.image, podcastName: i.title, authorName: i.author, podcastCategoryName: trendingsNamesViewModel[0].categoryName, episodsCount: "\(i.episodeCount)", savedToFavorits: false, action: {self?.getEpisodesDetail(episodeId: "\(i.id)", resultsCount: 1000)}))
-                        tableViewViewModel.append(HomeViewCategoryTableViewModel(imageURLString: i.image, podcastName: i.title, authorName: i.author, podcastCategoryName: trendingsNamesViewModel[0].categoryName, episodsCount: "\(i.episodeCount)", savedToFavorits: false, action: {self?.transferToChannelVC(feedId: "\(i.id)")}))
+                        tableViewViewModel.append(HomeViewCategoryTableViewModel(imageURLString: i.image, podcastName: i.title, authorName: i.author, podcastCategoryName: trendingsNamesViewModel[0].categoryName, episodsCount: "\(i.episodeCount)", savedToFavorits: false, action: {self?.transferToChannelVC(feedId: "\(i.id)")}, didLike: { [weak self] isLiked in
+                            print("save to fav")
+                        }))
                     }
                 }
                 catch {
@@ -180,7 +181,9 @@ private extension HomePresenter {
                     let elements = try JSONDecoder().decode(SearchResultModel.self, from: data)
                     
                     for element in elements.feeds {
-                        viewModels.append(HomeViewCategoryTableViewModel(imageURLString: element.image, podcastName: element.title, authorName: element.author, podcastCategoryName: queryText, episodsCount: "\(element.episodeCount)", savedToFavorits: false, action: {self?.transferToChannelVC(feedId: "\(element.id)")}))
+                        viewModels.append(HomeViewCategoryTableViewModel(imageURLString: element.image, podcastName: element.title, authorName: element.author, podcastCategoryName: queryText, episodsCount: "\(element.episodeCount)", savedToFavorits: false, action: {self?.transferToChannelVC(feedId: "\(element.id)")}, didLike: { [weak self] isLiked in
+                            #warning("Save to favorite")
+                        }))
                     }
                 }
                 catch {

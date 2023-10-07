@@ -7,8 +7,8 @@ final class RealmUserModel: Object {
     @Persisted var email: String = ""
     @Persisted var userID: String = ""
     @Persisted var avatarImageData: Data = Data()
-    var favoritsLists = List<SavedFavoritsRealmModel>()
-    var selfsLists = List<SelfRealmSavedLists>()
+    //var favoritsLists = List<SavedFavoritsRealmModel>()
+    //var selfsLists = List<SelfRealmSavedLists>()
     
     convenience init(username: String, email: String, userID: String, avatarImageData: Data = Data()) {
         self.init()
