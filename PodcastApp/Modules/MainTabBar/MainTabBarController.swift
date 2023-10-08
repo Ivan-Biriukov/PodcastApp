@@ -51,28 +51,17 @@ fileprivate enum TabBarPage {
 }
 
 final class MainTabBarController: UITabBarController {
-    
     private let network: NetworkManagerProtocol = NetworkManager()
-    private let currentUser: RealmUserModel
     
     private let pages: [TabBarPage] = [
         .favorites, .home, .settings
     ]
     
-    init(currentUser: RealmUserModel) {
-        self.currentUser = currentUser
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabBarModules()
         setTabBarAppearance()
-        }
+    }
 }
 
 private extension MainTabBarController {
@@ -107,7 +96,7 @@ private extension MainTabBarController {
         return navController
     }
     
-    private func setTabBarAppearance() {
+    func setTabBarAppearance() {
         let positionX: CGFloat = 25
         let positionY: CGFloat = 15
         let width = tabBar.bounds.width - positionX * 2
@@ -132,6 +121,5 @@ private extension MainTabBarController {
         tabBar.layer.shadowOpacity = 0.075
         tabBar.layer.shadowOffset = .init(width: 2.5, height: 2.5)
         tabBar.layer.shadowRadius = 10
-
     }
 }

@@ -90,6 +90,9 @@
 		805D4FCB2AC0A48600905151 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FCA2AC0A48600905151 /* BaseCollectionViewCell.swift */; };
 		805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4FCC2AC0A4F600905151 /* BaseTableViewCell.swift */; };
 		806C2C332ACD510900BA9B16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 806C2C322ACD510900BA9B16 /* GoogleService-Info.plist */; };
+		806E3A082AD2891C00C2F48A /* UserInfoPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E3A072AD2891C00C2F48A /* UserInfoPresenterProtocol.swift */; };
+		806E3A0A2AD2892A00C2F48A /* UserInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E3A092AD2892A00C2F48A /* UserInfoPresenter.swift */; };
+		806E3A0C2AD28A6A00C2F48A /* UserInfoAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E3A0B2AD28A6A00C2F48A /* UserInfoAssembly.swift */; };
 		807590422AD1D8450096B9A7 /* UserInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807590412AD1D8450096B9A7 /* UserInfoRouter.swift */; };
 		807590442AD1D85D0096B9A7 /* UserInfoInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807590432AD1D85D0096B9A7 /* UserInfoInteractorInput.swift */; };
 		807590462AD1D87B0096B9A7 /* UserInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807590452AD1D87B0096B9A7 /* UserInfoInteractor.swift */; };
@@ -212,6 +215,9 @@
 		805D4FCA2AC0A48600905151 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		805D4FCC2AC0A4F600905151 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		806C2C322ACD510900BA9B16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		806E3A072AD2891C00C2F48A /* UserInfoPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoPresenterProtocol.swift; sourceTree = "<group>"; };
+		806E3A092AD2892A00C2F48A /* UserInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoPresenter.swift; sourceTree = "<group>"; };
+		806E3A0B2AD28A6A00C2F48A /* UserInfoAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoAssembly.swift; sourceTree = "<group>"; };
 		807590412AD1D8450096B9A7 /* UserInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRouter.swift; sourceTree = "<group>"; };
 		807590432AD1D85D0096B9A7 /* UserInfoInteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoInteractorInput.swift; sourceTree = "<group>"; };
 		807590452AD1D87B0096B9A7 /* UserInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoInteractor.swift; sourceTree = "<group>"; };
@@ -775,6 +781,7 @@
 		8075903B2AD1D79E0096B9A7 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				806E3A0B2AD28A6A00C2F48A /* UserInfoAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -800,6 +807,8 @@
 		8075903E2AD1D7B00096B9A7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				806E3A072AD2891C00C2F48A /* UserInfoPresenterProtocol.swift */,
+				806E3A092AD2892A00C2F48A /* UserInfoPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -878,9 +887,9 @@
 		809355EF2ABE23EB0094F3AB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				80ED761D2ACC80C4008B93DB /* Auth */,
 				8075903A2AD1D7900096B9A7 /* UserInfo */,
 				578CF0DF2ACE1A69006B50C5 /* Favorits */,
-				80ED761D2ACC80C4008B93DB /* Auth */,
 				57C1AA872AC60A6000444C47 /* Home */,
 				43F769072ACF453000321CEC /* Player */,
 				801A81FB2AC5F5B6005ADD4A /* ProfileSetting */,
@@ -1156,6 +1165,7 @@
 			files = (
 				8093564B2ABE40840094F3AB /* SavingManagerProtocol.swift in Sources */,
 				80ED762E2ACC8284008B93DB /* AuthInteractor.swift in Sources */,
+				806E3A0A2AD2892A00C2F48A /* UserInfoPresenter.swift in Sources */,
 				43F768CB2ACDBE5100321CEC /* AccountSettingViewController.swift in Sources */,
 				578CF0E72ACE1AFE006B50C5 /* FavoritsPresenterProtocol.swift in Sources */,
 				807590482AD1D8B40096B9A7 /* UserInfoViewInput.swift in Sources */,
@@ -1181,6 +1191,7 @@
 				437B1B6F2ACF4FE400B388D6 /* CustomSlider.swift in Sources */,
 				57C1AAAD2AC637E600444C47 /* SearchViewCollectionViewCell.swift in Sources */,
 				801A82102AC5F5B6005ADD4A /* ProfileSettingsTableViewCell.swift in Sources */,
+				806E3A0C2AD28A6A00C2F48A /* UserInfoAssembly.swift in Sources */,
 				80ED76262ACC81F4008B93DB /* AuthRouterInput.swift in Sources */,
 				809356042ABE3CD30094F3AB /* UIColor + Extension.swift in Sources */,
 				80A15BF52ACCA74300134469 /* AuthTextField.swift in Sources */,
@@ -1243,6 +1254,7 @@
 				804C1F9E2AC3527300B07C87 /* HTTPMethod.swift in Sources */,
 				578CF0DA2ACE0A0F006B50C5 /* TrendingsNamesModel.swift in Sources */,
 				805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */,
+				806E3A082AD2891C00C2F48A /* UserInfoPresenterProtocol.swift in Sources */,
 				57C1AAA02AC622DE00444C47 /* UITextField + Extension.swift in Sources */,
 				57C1AAB52AC644B400444C47 /* SearchResultCurrentTableViewCell.swift in Sources */,
 				57C1AA962AC60A6000444C47 /* HomePresenterProtocol.swift in Sources */,

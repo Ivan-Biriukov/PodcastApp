@@ -4,6 +4,8 @@ enum AuthTextFieldType {
     case email
     case password
     case confirmPassword
+    case firstName
+    case lastName
     
     var placeholder: String {
         switch self {
@@ -13,6 +15,10 @@ enum AuthTextFieldType {
             return "Enter your password"
         case .confirmPassword:
             return "Confirm your password"
+        case .firstName:
+            return "First name"
+        case .lastName:
+            return "Last name"
         }
     }
 }
@@ -61,6 +67,7 @@ private extension AuthTextField {
             isSecureTextEntry = true
         case .confirmPassword:
             isSecureTextEntry = true
+        case .firstName, .lastName: break
         }
     }
 }
