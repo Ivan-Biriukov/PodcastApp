@@ -16,13 +16,14 @@ extension AuthRouter: AuthRouterInput {
     }
     
     func routeToMainApp(user: RealmUserModel) {
-        let mainTabBar = MainTabBarController(currentUser: user)
-        mainTabBar.modalTransitionStyle = .crossDissolve
-        mainTabBar.modalPresentationStyle = .fullScreen
-        view?.present(mainTabBar, animated: true)
+        let mainTabBar = MainTabBarController()
+        view?.navigationController?.modalPresentationStyle = .fullScreen
+        view?.navigationController?.modalTransitionStyle = .crossDissolve
+        view?.navigationController?.present(mainTabBar, animated: true)
     }
     
     func routeToContinueRegister(user: User) {
-        print(user)
+        let userInfoScreen = UserInfoAssembly.assemble(peerUser: user)
+        view?.navigationController?.pushViewController(userInfoScreen, animated: true)
     }
 }

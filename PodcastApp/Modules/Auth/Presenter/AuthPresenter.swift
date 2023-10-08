@@ -63,9 +63,7 @@ extension AuthPresenter: AuthPresenterProtocol {
                     if let realmUser {
                         self?.router.routeToMainApp(user: realmUser)
                     } else {
-                        let user: RealmUserModel = .init(username: "dsa", email: "ds", userID: "fdsfds")
-                        self?.router.routeToMainApp(user: user)
-                        //self?.router.routeToContinueRegister(user: user)
+                        self?.router.routeToContinueRegister(user: user)
                     }
                 }
             case .failure(let error):

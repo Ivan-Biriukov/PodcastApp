@@ -1,8 +1,12 @@
-//
-//  UserInfoRouter.swift
-//  PodcastApp
-//
-//  Created by Кащенко on 7.10.23.
-//
+import UIKit
 
-import Foundation
+final class UserInfoRouter {
+    weak var view: UIViewController?
+    
+    func routeToMainApp(user: RealmUserModel) {
+        let mainApp = MainTabBarController()
+        view?.navigationController?.modalPresentationStyle = .fullScreen
+        view?.navigationController?.modalTransitionStyle = .crossDissolve
+        view?.navigationController?.present(mainApp, animated: true)
+    }
+}
