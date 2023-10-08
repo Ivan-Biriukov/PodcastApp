@@ -15,7 +15,7 @@ class FavoritsViewController: BaseViewController {
     private let presenter: FavoritsPresenterProtocol
     private let constants: Constants
     private var favoritsViewModels = [FavoritsMainPlaylistViewModel]()
-    private var playListViewModels = [FavoritsTableViewModel]()
+    var playListViewModels = [FavoritsTableViewModel]()
     
     // MARK: - UI Elements
     
@@ -67,7 +67,7 @@ class FavoritsViewController: BaseViewController {
         return createLabel(text: "Your Playlist", font: .systemFont(ofSize: 16, weight: .bold), textColor: constants.textBlackColor)
     }()
     
-    private lazy var playlistTableView : UITableView = {
+     lazy var playlistTableView : UITableView = {
         let tb = UITableView()
         tb.delegate = self
         tb.dataSource = self
