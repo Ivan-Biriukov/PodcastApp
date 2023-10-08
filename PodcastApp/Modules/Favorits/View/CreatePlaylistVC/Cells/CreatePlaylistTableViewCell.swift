@@ -5,8 +5,15 @@ import Kingfisher
 class CreatePlaylistTableViewCell: UITableViewCell {
 
     static let reuseId = "PlaylistableViewCell"
-    private var isItemAdded : Bool = false
     private var urlString = ""
+    
+    private var isItemAdded: Bool = false {
+        didSet {
+            addButton.setImage(isItemAdded ? .Main.plusIcon : .Main.selectedPlusIcon, for: .normal)
+        }
+    }
+    
+    private var didTapAdd: ((Bool) -> ())?
     
     // MARK: - UI Elements
     
@@ -28,7 +35,7 @@ class CreatePlaylistTableViewCell: UITableViewCell {
     
     private lazy var addButton : UIButton = {
         let buton = UIButton()
-        buton.setImage(UIImage(systemName: "plus.app"), for: .normal)
+        buton.setImage(.Main.plusIcon, for: .normal)
         buton.addTarget(self, action: #selector(didTapedLike(_:)), for: .touchUpInside)
         buton.contentMode = .scaleAspectFill
         buton.tintColor = .init(rgb: 0x413E50)
@@ -92,7 +99,8 @@ class CreatePlaylistTableViewCell: UITableViewCell {
     // MARK: - Button Method
     
     @objc private func didTapedLike(_ sender: UIButton) {
-        updateButtonStatus(selected: isItemAdded)
+        isItemAdded.toggle()
+        didTapAdd?(isItemAdded)
     }
     
     // MARK: - Init

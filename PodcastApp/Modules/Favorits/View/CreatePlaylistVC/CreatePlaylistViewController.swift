@@ -152,7 +152,10 @@ private extension CreatePlaylistViewController {
     }
     
     @objc func createTaped() {
+        guard let vc = FavoritsAssembly.assemble() as? FavoritsViewController else {return}
+        vc.playListViewModels.append(FavoritsTableViewModel(imageURLString: "", titleText: nameTextField.text!, episodesString: "12", id: 0, action: {}))
         
+        vc.playlistTableView.reloadData()
     }
     
     @objc func selectImageTaped() {
