@@ -20,6 +20,8 @@ final class PlayerViewController: BaseViewController {
     private var urlLinks: [URL] {
         links.compactMap { URL(string: $0) }
     }
+    private var track: String
+    private var author: String
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
@@ -53,7 +55,7 @@ final class PlayerViewController: BaseViewController {
     
     private lazy var trackLabel: UILabel = {
         return createLabel(
-            text: "Baby Pesut Eps 56",
+            text: "",
             font: .systemFont(ofSize: 16, weight: .bold),
             textColor: .init(rgb: 0x423F51),
             alignment: .center)
@@ -61,7 +63,7 @@ final class PlayerViewController: BaseViewController {
     
     private lazy var authorLabel: UILabel = {
         return createLabel(
-            text: "Dr. Oi om jean",
+            text: "",
             font: .systemFont(ofSize: 14, weight: .regular),
             textColor: .init(rgb: 0xA3A1AF),
             alignment: .center)
@@ -151,9 +153,11 @@ final class PlayerViewController: BaseViewController {
     
     
     // MARK: - Init
-    init(presenter: PlayerPresenterProtocol, links : [String]) {
+    init(presenter: PlayerPresenterProtocol, links : [String], track: String, author: String) {
         self.presenter = presenter
         self.links = links
+        self.track = track
+        self.author = author
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -169,6 +173,8 @@ final class PlayerViewController: BaseViewController {
         playerItem = AVPlayerItem(url: url)
         player = AVPlayer(playerItem: playerItem)
         playPressed()
+        authorLabel.text = author
+        trackLabel.text = track
     }
 }
 

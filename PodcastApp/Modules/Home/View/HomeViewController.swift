@@ -117,7 +117,7 @@ final class HomeViewController: BaseViewController {
     }
 }
 
-extension HomeViewController: HomeViewInput {
+extension HomeViewController: HomeViewInput {    
     
     func topMostController() -> UIViewController {
         var topController: UIViewController = (UIApplication
@@ -132,12 +132,13 @@ extension HomeViewController: HomeViewInput {
         return topController
     }
     
-    func pushPlayerVC(tracks: [String]) {
+    func pushPlayerVC(tracks: [String], track: String, author: String) {
         let topVC = topMostController()
-        let playerVC = PlayerAssembly.assemble(links: tracks)
+        let playerVC = PlayerAssembly.assemble(links: tracks, track: track, author: author)
         playerVC.modalPresentationStyle = .fullScreen
         playerVC.modalTransitionStyle = .crossDissolve
         topVC.present(playerVC, animated: true)
+        print(tracks, author)
     }
     
     func presentChannelVC(viewModels: ChannelCellViewModel) {

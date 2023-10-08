@@ -16,8 +16,7 @@ extension HomePresenter: HomePresenterProtocol {
     
     func didTapedSearchButton(text: String, results: Int) {
         fetchSearchResults(searchText: text, resultsCount: results)
-    }
-    
+    }    
     
     func didTapesTopGenresSeeAll() {
         print("Did Taped top genres see all")
@@ -25,7 +24,6 @@ extension HomePresenter: HomePresenterProtocol {
     
     func viewDidLoad() {
         fetchMainViewContollerPreloads()
-
     }
     
     func updateCurrentCategoryName(with text: String) {
@@ -240,7 +238,7 @@ private extension HomePresenter {
                 do {
                     let episodes = try JSONDecoder().decode(EpisodeDetailModel.self, from: data)
                     for episode in episodes.items {
-                        ressults.append(Episode(episodeImgURLString: episode.feedImage, soundUrlString: "", name: episode.title, timeDuration: episode.duration, episodesCount: "\(episodes.count)", id: episode.id, action: { self?.view?.pushPlayerVC(tracks: [episode.enclosureUrl]); print("print from closure") } ))
+                        ressults.append(Episode(episodeImgURLString: episode.feedImage, soundUrlString: "", name: episode.title, timeDuration: episode.duration, episodesCount: "\(episodes.count)", id: episode.id, action: { self?.view?.pushPlayerVC(tracks: [episode.enclosureUrl], track: episode.title, author: "\(episode.id)"); print("print from closure") } ))
                     }
                     viewModels.episodes = ressults
                 }

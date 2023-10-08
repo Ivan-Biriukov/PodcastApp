@@ -9,11 +9,11 @@ import UIKit
 
 final class PlayerAssembly {
     
-    static func assemble(links : [String]) -> UIViewController {
+    static func assemble(links : [String], track: String, author: String) -> UIViewController {
         
         let router = PlayerRouter()
         let presenter = PlayerPresenter(router: router)
-        let view = PlayerViewController(presenter: presenter, links: links)
+        let view = PlayerViewController(presenter: presenter, links: links, track: track, author: author)
         
         router.view = view
         presenter.view = view
