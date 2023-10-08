@@ -10,13 +10,23 @@ import SnapKit
 
 final class AccountSettingViewController: BaseViewController {
     
+    enum PicturePickerType {
+        case camera
+        case photoLibrary
+    }
+    
     // MARK: - Properties
     private let presenter: AccountSettingPresenterProtocol
     
     var documentsUrl: URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
-    var recipeImageLocalPath : String = ""
+    
+    private lazy var blurView: UIVisualEffectView = {
+        let effect = UIBlurEffect(style: .dark)
+        let blur = UIVisualEffectView(effect: effect)
+        return blur
+    }()
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
@@ -323,7 +333,6 @@ final class AccountSettingViewController: BaseViewController {
         view.backgroundColor = .white
         addSubviews()
         makeConstraints()
-        setupPhotoPicker()
         setupTextFields()
         registerForKeyBoardNotifications()
         setupDatePicker()
@@ -529,6 +538,14 @@ private extension AccountSettingViewController {
             make.bottom.equalTo(contentView.snp.bottom).offset(8)
         }
     }
+    
+    func presentProfilePicturePicker(type: PicturePickerType) {
+        let picker = UIImagePickerController()
+        picker.sourceType = type == .camera ? .camera : .photoLibrary
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true)
+    }
 }
 
 // MARK: - Target Actions
@@ -541,9 +558,10 @@ extension AccountSettingViewController {
     @objc func editPhotoPressed(_ sender: UIButton) {
         sender.alpha = 0.5
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            sender.alpha = 1
-            self.present(self.photoPickerView, animated: true)
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.3) {
+                self.showPhotoPickerView()
+            }
         }
     }
     
@@ -564,26 +582,48 @@ extension AccountSettingViewController {
     @objc func saveChangesPressed() {
         print("Save Changes Pressed")
     }
+    
+    @objc private func didTapBlurView() {
+        blurView.removeFromSuperview()
+    }
 }
 
-// MARK: - ImagePickerControllerDelegate
-extension AccountSettingViewController : UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+// MARK: - PhotoPickerViewDelegate
+
+extension AccountSettingViewController: PhotoPickerViewDelegate {
     
-    func setupPhotoPicker() {
-        photoPickerView.delegate = self
-        photoPickerView.sourceType = .photoLibrary
+    func didChangePhotoAlbum() {
+        presentProfilePicturePicker(type: .photoLibrary)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        let choosenImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        self.recipeImageLocalPath = save(image: choosenImage)!
-        self.photoImage.image = choosenImage
-        self.dismiss(animated: true, completion: nil)
+    func didChangeCamera() {
+        presentProfilePicturePicker(type: .camera)
     }
     
+    func didChangeDelete() {
+        print("Delete")
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension AccountSettingViewController: UIImagePickerControllerDelegate,
+                                 UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info:
+                               [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        guard let image = info[
+            UIImagePickerController.InfoKey.editedImage
+        ] as? UIImage else {
+            return
+        }
+        photoImage.image = image
+        blurView.removeFromSuperview()
     }
 }
 
@@ -598,6 +638,31 @@ extension AccountSettingViewController {
         }
         print("Error saving image")
         return nil
+    }
+    
+    func showPhotoPickerView() {
+        let pickerView = PhotoPickerView()
+        pickerView.delegate = self
+        view.addSubviewWithoutTranslates(blurView)
+        blurView.contentView.addSubviewWithoutTranslates(pickerView)
+        
+        NSLayoutConstraint.activate([
+            blurView.topAnchor.constraint(equalTo: view.topAnchor),
+            blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            pickerView.centerYAnchor.constraint(equalTo: blurView.centerYAnchor),
+            pickerView.heightAnchor.constraint(equalTo: blurView.heightAnchor, multiplier: 1.4/3),
+            pickerView.leadingAnchor.constraint(equalTo: blurView.leadingAnchor, constant: 24),
+            pickerView.trailingAnchor.constraint(equalTo: blurView.trailingAnchor, constant: -24),
+        ])
+        
+        updateViewConstraints()
+        
+        let recognizer = UITapGestureRecognizer()
+        recognizer.addTarget(self, action: #selector(didTapBlurView))
+        blurView.addGestureRecognizer(recognizer)
     }
 }
 
@@ -636,9 +701,9 @@ extension AccountSettingViewController {
     
     private func setupDatePicker() {
         dateOfBirthTextField.datePicker(target: self,
-                             doneAction: #selector(doneAction),
-                             cancelAction: #selector(cancelAction),
-                             datePickerMode: .date)
+                                        doneAction: #selector(doneAction),
+                                        cancelAction: #selector(cancelAction),
+                                        datePickerMode: .date)
     }
     
     @objc func cancelAction() {
@@ -678,8 +743,7 @@ extension UITextField {
             
             let barButtonItem = UIBarButtonItem(barButtonSystemItem: style,
                                                 target: buttonTarget,
-                                                action: action)
-            
+                                                action: action)            
             return barButtonItem
         }
         

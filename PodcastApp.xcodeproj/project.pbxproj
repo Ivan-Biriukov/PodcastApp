@@ -10,6 +10,11 @@
 		437B1B6F2ACF4FE400B388D6 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B1B6E2ACF4FE400B388D6 /* CustomSlider.swift */; };
 		437B1C4E2AD1811F00B388D6 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B1C4D2AD1811F00B388D6 /* Podcast.swift */; };
 		437B1C502AD1817400B388D6 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B1C4F2AD1817400B388D6 /* PlayerViewModel.swift */; };
+		437B1C572AD281A300B388D6 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B1C562AD281A300B388D6 /* PhotoPickerView.swift */; };
+		437B1C592AD281D700B388D6 /* PhotoPickerMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B1C582AD281D700B388D6 /* PhotoPickerMethodView.swift */; };
+		437B1C5B2AD2824E00B388D6 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B1C5A2AD2824E00B388D6 /* UILabel + Extension.swift */; };
+		437B1C5D2AD2831E00B388D6 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B1C5C2AD2831E00B388D6 /* UIStackView + Extension.swift */; };
+		437B1C5F2AD283B800B388D6 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B1C5E2AD283B800B388D6 /* UIView + Extension.swift */; };
 		43F768C82ACDBE5100321CEC /* AccountSettingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768BF2ACDBE5100321CEC /* AccountSettingAssembly.swift */; };
 		43F768C92ACDBE5100321CEC /* AccountSettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C12ACDBE5100321CEC /* AccountSettingPresenter.swift */; };
 		43F768CA2ACDBE5100321CEC /* AccountSettingPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F768C22ACDBE5100321CEC /* AccountSettingPresenterProtocol.swift */; };
@@ -134,6 +139,11 @@
 		437B1B6E2ACF4FE400B388D6 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		437B1C4D2AD1811F00B388D6 /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		437B1C4F2AD1817400B388D6 /* PlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		437B1C562AD281A300B388D6 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
+		437B1C582AD281D700B388D6 /* PhotoPickerMethodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerMethodView.swift; sourceTree = "<group>"; };
+		437B1C5A2AD2824E00B388D6 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
+		437B1C5C2AD2831E00B388D6 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
+		437B1C5E2AD283B800B388D6 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		43F768BF2ACDBE5100321CEC /* AccountSettingAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingAssembly.swift; sourceTree = "<group>"; };
 		43F768C12ACDBE5100321CEC /* AccountSettingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingPresenter.swift; sourceTree = "<group>"; };
 		43F768C22ACDBE5100321CEC /* AccountSettingPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -274,6 +284,15 @@
 				437B1C4F2AD1817400B388D6 /* PlayerViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		437B1C552AD2813B00B388D6 /* ChangePicture */ = {
+			isa = PBXGroup;
+			children = (
+				437B1C562AD281A300B388D6 /* PhotoPickerView.swift */,
+				437B1C582AD281D700B388D6 /* PhotoPickerMethodView.swift */,
+			);
+			path = ChangePicture;
 			sourceTree = "<group>";
 		};
 		43F768BD2ACDBE5100321CEC /* AccountSetting */ = {
@@ -888,6 +907,7 @@
 				43F769072ACF453000321CEC /* Player */,
 				801A81FB2AC5F5B6005ADD4A /* ProfileSetting */,
 				43F768BD2ACDBE5100321CEC /* AccountSetting */,
+				437B1C552AD2813B00B388D6 /* ChangePicture */,
 				809355F02ABE23FF0094F3AB /* MainTabBar */,
 				578FAEE22AD096D7000FA657 /* Channel */,
 			);
@@ -918,6 +938,9 @@
 				809356032ABE3CD30094F3AB /* UIColor + Extension.swift */,
 				57C1AA9D2AC60C6200444C47 /* UIViewController + Extension.swift */,
 				57C1AA9F2AC622DE00444C47 /* UITextField + Extension.swift */,
+				437B1C5A2AD2824E00B388D6 /* UILabel + Extension.swift */,
+				437B1C5C2AD2831E00B388D6 /* UIStackView + Extension.swift */,
+				437B1C5E2AD283B800B388D6 /* UIView + Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1158,6 +1181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8093564B2ABE40840094F3AB /* SavingManagerProtocol.swift in Sources */,
+				437B1C572AD281A300B388D6 /* PhotoPickerView.swift in Sources */,
 				80ED762E2ACC8284008B93DB /* AuthInteractor.swift in Sources */,
 				43F768CB2ACDBE5100321CEC /* AccountSettingViewController.swift in Sources */,
 				578CF0E72ACE1AFE006B50C5 /* FavoritsPresenterProtocol.swift in Sources */,
@@ -1165,7 +1189,9 @@
 				57C1AAA72AC62D8C00444C47 /* CategoryesNamesCollectionViewCell.swift in Sources */,
 				80ED76302ACC828E008B93DB /* AuthInteractorInput.swift in Sources */,
 				801A82112AC5F5B6005ADD4A /* ProfileSettingRouter.swift in Sources */,
+				437B1C5D2AD2831E00B388D6 /* UIStackView + Extension.swift in Sources */,
 				57C1AA982AC60A6000444C47 /* HomeViewController.swift in Sources */,
+				437B1C592AD281D700B388D6 /* PhotoPickerMethodView.swift in Sources */,
 				57C1AA9E2AC60C6200444C47 /* UIViewController + Extension.swift in Sources */,
 				57C1AA952AC60A6000444C47 /* HomeAssembly.swift in Sources */,
 				804C1FA72AC3577400B07C87 /* URLParameterEncoder.swift in Sources */,
@@ -1208,6 +1234,7 @@
 				809355D92ABE23710094F3AB /* AppDelegate.swift in Sources */,
 				57A908C32ACEDF2E00872DE3 /* CreatePlaylistViewController.swift in Sources */,
 				804C1FB42AC36C1100B07C87 /* NetworkManager.swift in Sources */,
+				437B1C5B2AD2824E00B388D6 /* UILabel + Extension.swift in Sources */,
 				807590442AD1D85D0096B9A7 /* UserInfoInteractorInput.swift in Sources */,
 				80ED76372ACC8345008B93DB /* AuthService.swift in Sources */,
 				578CF0E52ACE1AC3006B50C5 /* FavoritsAssembly.swift in Sources */,
@@ -1246,6 +1273,7 @@
 				578CF0F32ACE3BE9006B50C5 /* FavoritsTableViewModel.swift in Sources */,
 				804C1F9E2AC3527300B07C87 /* HTTPMethod.swift in Sources */,
 				578CF0DA2ACE0A0F006B50C5 /* TrendingsNamesModel.swift in Sources */,
+				437B1C5F2AD283B800B388D6 /* UIView + Extension.swift in Sources */,
 				805D4FCD2AC0A4F600905151 /* BaseTableViewCell.swift in Sources */,
 				57C1AAA02AC622DE00444C47 /* UITextField + Extension.swift in Sources */,
 				57C1AAB52AC644B400444C47 /* SearchResultCurrentTableViewCell.swift in Sources */,
