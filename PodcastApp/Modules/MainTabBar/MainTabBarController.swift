@@ -8,11 +8,11 @@ fileprivate enum TabBarPage {
     var pageIndex: Int {
         switch self {
         case .favorites:
-            0
+            return 0
         case .home:
-            1
+            return 1
         case .settings:
-            2
+            return 2
         }
     }
     
@@ -41,16 +41,17 @@ fileprivate enum TabBarPage {
     var pageTitle: String {
         switch self {
         case .favorites:
-            "Favorites"
+            return "Favorites"
         case .home:
-            "Home"
+            return "Home"
         case .settings:
-            "Settings"
+            return "Settings"
         }
     }
 }
 
 final class MainTabBarController: UITabBarController {
+    private let network: NetworkManagerProtocol = NetworkManager()
     
     private let pages: [TabBarPage] = [
         .favorites, .home, .settings
@@ -59,6 +60,7 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabBarModules()
+        setTabBarAppearance()
     }
 }
 
@@ -81,19 +83,43 @@ private extension MainTabBarController {
     
         switch page {
         case .favorites:
-            let firstVC = UIViewController()
-            firstVC.view.backgroundColor = .systemRed
+            let firstVC = FavoritsAssembly.assemble()
             navController.pushViewController(firstVC, animated: true)
         case .home:
-            let firstVC = UIViewController()
-            firstVC.view.backgroundColor = .systemOrange
-            navController.pushViewController(firstVC, animated: true)
+            let home = HomeAssembly.assemble()
+            navController.pushViewController(home, animated: true)
         case .settings:
-            let firstVC = UIViewController()
-            firstVC.view.backgroundColor = .systemYellow
-            navController.pushViewController(firstVC, animated: true)
+            let settings = ProfileSettingAssembly.assemble()
+            navController.pushViewController(settings, animated: true)
         }
         
         return navController
+    }
+    
+    func setTabBarAppearance() {
+        let positionX: CGFloat = 25
+        let positionY: CGFloat = 15
+        let width = tabBar.bounds.width - positionX * 2
+        let height = tabBar.bounds.height + positionY * 2
+        
+        let roundLayer = CAShapeLayer()
+        
+        let bezierPath = UIBezierPath(roundedRect: CGRect(x: positionX, y: tabBar.bounds.minY - positionY * 1.2, width: width, height: height), cornerRadius: height / 3.5)
+        
+        roundLayer.path = bezierPath.cgPath
+        
+        tabBar.layer.insertSublayer(roundLayer, at: 0)
+        
+        tabBar.itemWidth = width / 3
+        tabBar.itemPositioning = .fill
+        
+        roundLayer.fillColor = UIColor.tabBarMain.cgColor
+        tabBar.tintColor = .tabBarItemAccent
+        tabBar.unselectedItemTintColor = .tabBarNotChosen
+        
+        tabBar.layer.shadowColor = UIColor.black.cgColor
+        tabBar.layer.shadowOpacity = 0.075
+        tabBar.layer.shadowOffset = .init(width: 2.5, height: 2.5)
+        tabBar.layer.shadowRadius = 10
     }
 }
