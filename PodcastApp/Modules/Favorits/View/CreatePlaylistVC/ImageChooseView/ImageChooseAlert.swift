@@ -8,7 +8,7 @@ final class ImageChooseAlert {
     struct Constants {
         static let backgroundAlhpaTo : CGFloat = 0.6
     }
-    
+                
     private let backgroundView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
         let view = UIVisualEffectView(effect: blurEffect)
@@ -27,6 +27,7 @@ final class ImageChooseAlert {
     }()
     
     private var myTargetView: UIView?
+    private var myTargetVC : UIViewController?
         
     func showAlert(on viewController: UIViewController) {
         
@@ -35,6 +36,7 @@ final class ImageChooseAlert {
         }
         
         myTargetView = targetView
+        myTargetVC = viewController
         
         backgroundView.frame = targetView.bounds
         targetView.addSubview(backgroundView)
@@ -75,14 +77,21 @@ final class ImageChooseAlert {
     }
 }
 
-private extension ImageChooseAlert {
+ extension ImageChooseAlert {
     
     @objc func backTaped() {
         dismissAlert()
     }
     
-    @objc func selectLocalTaped() {
+     @objc func selectLocalTaped() {
         
+        let photoPikerView : UIImagePickerController = {
+            let piker = UIImagePickerController()
+            return piker
+        }()
+        
+        myTargetVC?.present(photoPikerView, animated: true)
+        self.dismissAlert()
     }
     
     @objc func seeAllTaped() {

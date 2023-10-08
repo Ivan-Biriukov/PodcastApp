@@ -13,9 +13,7 @@ class CreatePlaylistViewController: BaseViewController {
     // MARK: - Propertyes
     
     private let constants: Constants
-    private var searchResultsViewModels : [PlaylistTableViewModel] = [
-        .init(image: .Onboarding.firstImage!, listName: "Проверка полета", authorName: "хз что тут", duration: "1:11:11", action: {print("OOppss")})
-    ]
+    private var searchResultsViewModels : [PlaylistTableViewModel] = []
     
     // MARK: - UI Elements
     
@@ -150,7 +148,7 @@ private extension CreatePlaylistViewController {
     }
     
     @objc func searchTaped(_ sender: UIButton) {
-        
+        fetchSearchResults(searchText: searchField.text!)
     }
     
     @objc func createTaped() {
@@ -252,7 +250,7 @@ extension CreatePlaylistViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == searchField {
-            // метод делегата поиска
+            fetchSearchResults(searchText: textField.text!)
         }
         
         textField.resignFirstResponder()
@@ -301,3 +299,50 @@ extension CreatePlaylistViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: - Network Request Methods
+
+extension CreatePlaylistViewController {
+    
+    func fetchSearchResults(searchText: String) {
+        
+        searchResultsViewModels = []
+        
+        let group = DispatchGroup()
+        group.enter()
+        NetworkManager().fetchFromSearchRequest(requestText: searchText, resultsCount: 1000) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let results = try JSONDecoder().decode(SearchResultModel.self, from: data)
+                    for result in results.feeds {
+                        self?.searchResultsViewModels.append(PlaylistTableViewModel(imageURLString: result.image, listName: result.title, authorName: result.author, duration: "\(result.episodeCount)", action: {}))
+                    }
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let e):
+                print(e)
+            }
+            group.leave()
+        }
+        
+        group.wait()
+        self.searchResultsTableView.reloadData()
+    }
+}
+
+extension CreatePlaylistViewController : UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+   
+// В Этом методе мы получаем доступ к фото, когда пользователь его выбрал или сделал
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        imageView.image  = tempImage
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }}

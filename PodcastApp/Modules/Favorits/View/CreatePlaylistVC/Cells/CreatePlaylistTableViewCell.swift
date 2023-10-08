@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Kingfisher
 
 class CreatePlaylistTableViewCell: UITableViewCell {
 
@@ -149,7 +150,9 @@ class CreatePlaylistTableViewCell: UITableViewCell {
     }
     
     func fill(viewModel: PlaylistTableViewModel) {
-        itemImageView.image = viewModel.image
+        urlString = viewModel.imageURLString
+        itemImageView.kf.indicatorType = .activity
+        itemImageView.kf.setImage(with: URL(string: viewModel.imageURLString))
         playlistName.text = viewModel.listName
         podcastCategoryLabel.text = viewModel.authorName
         episodsCountLabel.text = viewModel.duration
